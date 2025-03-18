@@ -1,0 +1,1258 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Análisis Exploratorio de las primeras 16 variables del conjunto de datos &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'EDA';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Final Project - Deep Learning" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_uninorte.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo_uninorte.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Final Project - Deep Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis Exploratorio de las primeras 16 variables del conjunto de datos</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FEDA.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/EDA.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Análisis Exploratorio de las primeras 16 variables del conjunto de datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-las-primeras-16-variables-del-conjunto-de-datos">
+<h1>Análisis Exploratorio de las primeras 16 variables del conjunto de datos<a class="headerlink" href="#analisis-exploratorio-de-las-primeras-16-variables-del-conjunto-de-datos" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/henry/Downloads/Cacervix/CaCervix/&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;CACU1985A2019.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/henry/Downloads/Cacervix/CaCervix/&#39;</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;CACU1985A2019.xlsx&#39;</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\henry\miniconda3\envs\ml_venv\lib\site-packages\pandas\io\excel\_base.py:495,</span> in <span class="ni">read_excel</span><span class="nt">(io, sheet_name, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, date_format, thousands, decimal, comment, skipfooter, storage_options, dtype_backend, engine_kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">io</span><span class="p">,</span> <span class="n">ExcelFile</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span>     <span class="n">should_close</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">--&gt; </span><span class="mi">495</span>     <span class="n">io</span> <span class="o">=</span> <span class="n">ExcelFile</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">496</span>         <span class="n">io</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">497</span>         <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">498</span>         <span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">499</span>         <span class="n">engine_kwargs</span><span class="o">=</span><span class="n">engine_kwargs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span> <span class="k">elif</span> <span class="n">engine</span> <span class="ow">and</span> <span class="n">engine</span> <span class="o">!=</span> <span class="n">io</span><span class="o">.</span><span class="n">engine</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span>         <span class="s2">&quot;Engine should not be specified when passing &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">504</span>         <span class="s2">&quot;an ExcelFile - ExcelFile already has the engine set&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">505</span>     <span class="p">)</span>
+
+<span class="nn">File c:\Users\henry\miniconda3\envs\ml_venv\lib\site-packages\pandas\io\excel\_base.py:1550,</span> in <span class="ni">ExcelFile.__init__</span><span class="nt">(self, path_or_buffer, engine, storage_options, engine_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1548</span>     <span class="n">ext</span> <span class="o">=</span> <span class="s2">&quot;xls&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1549</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1550</span>     <span class="n">ext</span> <span class="o">=</span> <span class="n">inspect_excel_format</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1551</span>         <span class="n">content_or_path</span><span class="o">=</span><span class="n">path_or_buffer</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span>
+<span class="g g-Whitespace">   </span><span class="mi">1552</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1553</span>     <span class="k">if</span> <span class="n">ext</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1554</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1555</span>             <span class="s2">&quot;Excel file format cannot be determined, you must specify &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1556</span>             <span class="s2">&quot;an engine manually.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1557</span>         <span class="p">)</span>
+
+<span class="nn">File c:\Users\henry\miniconda3\envs\ml_venv\lib\site-packages\pandas\io\excel\_base.py:1402,</span> in <span class="ni">inspect_excel_format</span><span class="nt">(content_or_path, storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1399</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">content_or_path</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1400</span>     <span class="n">content_or_path</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">content_or_path</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1402</span> <span class="k">with</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1403</span>     <span class="n">content_or_path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">,</span> <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span> <span class="n">is_text</span><span class="o">=</span><span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">1404</span> <span class="p">)</span> <span class="k">as</span> <span class="n">handle</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1405</span>     <span class="n">stream</span> <span class="o">=</span> <span class="n">handle</span><span class="o">.</span><span class="n">handle</span>
+<span class="g g-Whitespace">   </span><span class="mi">1406</span>     <span class="n">stream</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\henry\miniconda3\envs\ml_venv\lib\site-packages\pandas\io\common.py:882,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">873</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">874</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">875</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">878</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">879</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">880</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">881</span>         <span class="c1"># Binary mode</span>
+<span class="ne">--&gt; </span><span class="mi">882</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">883</span>     <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">885</span> <span class="c1"># Convert BytesIO or file objects passed with an encoding</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:/Users/henry/Downloads/Cacervix/CaCervix/CACU1985A2019.xlsx&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pyreadstat
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pyreadstat
+  Downloading pyreadstat-1.2.8-cp39-cp39-win_amd64.whl.metadata (1.1 kB)
+Requirement already satisfied: pandas&gt;=1.2.0 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pyreadstat) (2.2.3)
+Requirement already satisfied: numpy&gt;=1.22.4 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (1.25.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2025.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2025.1)
+Requirement already satisfied: six&gt;=1.5 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.2.0-&gt;pyreadstat) (1.17.0)
+Downloading pyreadstat-1.2.8-cp39-cp39-win_amd64.whl (2.4 MB)
+   ---------------------------------------- 0.0/2.4 MB ? eta -:--:--
+   ----------------- ---------------------- 1.0/2.4 MB 5.6 MB/s eta 0:00:01
+   ---------------------------------------  2.4/2.4 MB 7.5 MB/s eta 0:00:01
+   ---------------------------------------- 2.4/2.4 MB 4.2 MB/s eta 0:00:00
+Installing collected packages: pyreadstat
+Successfully installed pyreadstat-1.2.8
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyreadstat</span>
+
+<span class="n">df</span><span class="p">,</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">pyreadstat</span><span class="o">.</span><span class="n">read_sav</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;CACU1985A2019.sav&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>  <span class="c1"># Ver las primeras filas del DataFrame</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  COD_DPTO COD_MUNIC A_DEFUN SIT_DEFUN      COD_INST  \
+0       11       001       1         2                 
+1       76       001       1         2                 
+2       08       001       1         1                 
+3       15       001       1         1    1500100021   
+4       76       001       1         1  760010379901   
+
+                              NOM_INST     ANO MES SEXO EST_CIVIL  ...  \
+0                                       1996.0  11    2         1  ...   
+1                                       2007.0  01    2         1  ...   
+2                                       1998.0  04    2         3  ...   
+3                H SAN RAFAEL DE TUNJA  2005.0  04    2         1  ...   
+4  E.S.E. HOSPITAL UNIVERSITARIO DEL V  2006.0  09    2         1  ...   
+
+  C_ANT32 C_PAT1 C_PAT2 C_BAS1 C_MCM1 IDPROFCER CAUSA_666_667 CAU_HOMOL  \
+0                         1809                                      025   
+1                         C539                            209       025   
+2                         C539                            209       025   
+3                         C539                            209       025   
+4           G959          C539                            209       025   
+
+   QUINQ  EDAD2  
+0  95A99    0A4  
+1  05A09    5a9  
+2  95A99  10a14  
+3  05A09  10a14  
+4  05A09  10a14  
+
+[5 rows x 48 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(51448, 48)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_html</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\henry\AppData\Local\Temp\ipykernel_2268\2896340341.py:1: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
+  from IPython.core.display import display, HTML
+</pre></div>
+</div>
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>COD_DPTO</th>
+      <th>COD_MUNIC</th>
+      <th>A_DEFUN</th>
+      <th>SIT_DEFUN</th>
+      <th>COD_INST</th>
+      <th>NOM_INST</th>
+      <th>ANO</th>
+      <th>MES</th>
+      <th>SEXO</th>
+      <th>EST_CIVIL</th>
+      <th>gru_ed1</th>
+      <th>gru_ed2</th>
+      <th>NIVEL_EDU</th>
+      <th>MUERTEPORO</th>
+      <th>SIMUERTEPO</th>
+      <th>OCUPACION</th>
+      <th>IDPERTET</th>
+      <th>CODPRES</th>
+      <th>CODPTORE</th>
+      <th>CODMUNRE</th>
+      <th>AREA_RES</th>
+      <th>SEG_SOCIAL</th>
+      <th>IDADMISALU</th>
+      <th>IDCLASADMI</th>
+      <th>pman_muer</th>
+      <th>CONS_EXP</th>
+      <th>CODOCUR</th>
+      <th>CODMUNOC</th>
+      <th>c_muerte</th>
+      <th>ASIS_MED</th>
+      <th>CAUSA_MULT</th>
+      <th>C_DIR1</th>
+      <th>C_DIR12</th>
+      <th>C_ANT1</th>
+      <th>C_ANT12</th>
+      <th>C_ANT2</th>
+      <th>C_ANT22</th>
+      <th>C_ANT3</th>
+      <th>C_ANT32</th>
+      <th>C_PAT1</th>
+      <th>C_PAT2</th>
+      <th>C_BAS1</th>
+      <th>C_MCM1</th>
+      <th>IDPROFCER</th>
+      <th>CAUSA_666_667</th>
+      <th>CAU_HOMOL</th>
+      <th>QUINQ</th>
+      <th>EDAD2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>11</td>
+      <td>001</td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>1996.0</td>
+      <td>11</td>
+      <td>2</td>
+      <td>1</td>
+      <td>07</td>
+      <td></td>
+      <td>9</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>11</td>
+      <td>001</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>95A99</td>
+      <td>0A4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>76</td>
+      <td>001</td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>2007.0</td>
+      <td>01</td>
+      <td>2</td>
+      <td>1</td>
+      <td>08</td>
+      <td></td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>170</td>
+      <td>76</td>
+      <td>001</td>
+      <td>1</td>
+      <td>3</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>4</td>
+      <td>1</td>
+      <td></td>
+      <td>J969</td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td></td>
+      <td>209</td>
+      <td>025</td>
+      <td>05A09</td>
+      <td>5a9</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>08</td>
+      <td>001</td>
+      <td>1</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>1998.0</td>
+      <td>04</td>
+      <td>2</td>
+      <td>3</td>
+      <td>09</td>
+      <td></td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>170</td>
+      <td>08</td>
+      <td>001</td>
+      <td>1</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td>1</td>
+      <td></td>
+      <td>J969</td>
+      <td></td>
+      <td>C780</td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td></td>
+      <td>209</td>
+      <td>025</td>
+      <td>95A99</td>
+      <td>10a14</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>15</td>
+      <td>001</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1500100021</td>
+      <td>H SAN RAFAEL DE TUNJA</td>
+      <td>2005.0</td>
+      <td>04</td>
+      <td>2</td>
+      <td>1</td>
+      <td>09</td>
+      <td></td>
+      <td>9</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>170</td>
+      <td>15</td>
+      <td>001</td>
+      <td>3</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td>1</td>
+      <td></td>
+      <td>J969</td>
+      <td></td>
+      <td>T093</td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td></td>
+      <td>209</td>
+      <td>025</td>
+      <td>05A09</td>
+      <td>10a14</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>76</td>
+      <td>001</td>
+      <td>1</td>
+      <td>1</td>
+      <td>760010379901</td>
+      <td>E.S.E. HOSPITAL UNIVERSITARIO DEL V</td>
+      <td>2006.0</td>
+      <td>09</td>
+      <td>2</td>
+      <td>1</td>
+      <td>09</td>
+      <td></td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>170</td>
+      <td>76</td>
+      <td>001</td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>2</td>
+      <td>1</td>
+      <td></td>
+      <td>I469</td>
+      <td></td>
+      <td>J969</td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>G959</td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td></td>
+      <td>209</td>
+      <td>025</td>
+      <td>05A09</td>
+      <td>10a14</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(df[&#39;OCUPACION&#39;].value_counts().unique())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;OCUPACION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;&#39; &#39;ESTUDIANTE&#39; &#39;HOGAR&#39; &#39;CAJERA&#39; &#39;MESEROS, TABERNEROS Y AFINES&#39;
+ &#39;VENDEDORA&#39; &#39;SIN INFORMACION&#39; &#39;OFICIOS VARIOS&#39; &#39;ZAPATEROS Y AFINES&#39;
+ &#39;VENDEDORES AMBULANTES&#39; &#39;TRABAJADORES SOCIALES Y AFINES&#39;
+ &#39;LIMPIABOTAS Y OTROS TRABAJADORES CALLEJEROS&#39;
+ &#39;T?CNICOS EN DISE?O Y DECORADORES&#39;
+ &#39;AUXILIARES DE ENFERMER?A Y ODONTOLOG?A&#39;
+ &#39;CAJEROS Y EXPENDEDORES DE BILLETES&#39; &#39;?&#39; &#39;AMA DE CASA&#39; &#39;AGRICULTURA&#39;
+ &#39;COCINEROS Y AFINES&#39; &#39;VENDEDORES, DEMOSTRADORES DE TIENDAS Y ALMACENES&#39;
+ &#39;COORDINADORES Y SUPERVISORES FINANCIEROS Y ADMINISTRATIVOS&#39;
+ &#39;AUXILIARES ADMINISTRATIVOS Y AFINES&#39; &#39;SECRETARIOS (AS)&#39;
+ &#39;PROFESIONALES DE LA EDUCACIËN, NO CLASIFICADOS BAJO OTROS EP&#39;
+ &#39;PENSIONADO&#39; &#39;MECANËGRAFOS, TRANSCRIPTORES DE TEXTOS Y AFINES&#39;
+ &#39;REPRESENTANTES COMERCIALES Y T+CNICOS DE VENTAS&#39; &#39;PERSONAL DOM+STICO&#39;
+ &#39;OTROS TRABAJADORES DE SERVICIOS PERSONALES A PARTICULARES, N&#39;
+ &#39;ASEADORES Y FUMIGADORES DE OFICINAS, HOTELES Y OTROS ESTABLE&#39;
+ &#39;PERSONAL DOMÉSTICO&#39;
+ &#39;TÉCNICOS Y POSTSECUNDARIOS NO UNIVERSITARIOS EN INGENIERÍA I&#39;
+ &#39;M?DICOS, PROFESIONALES EN CIENCIAS DE LA SALUD Y AFINES, NO&#39;
+ &#39;REPRESENTANTES COMERCIALES Y T?CNICOS DE VENTAS&#39;
+ &#39;NI?ERAS Y CUIDADORAS INFANTILES&#39; &#39;AGRICULTORES DE CULTIVOS TRANSITORIOS&#39;
+ &#39;DIRIGENTES Y ADMINISTRADORES DE ORGANIZACIONES DE EMPLEADORE&#39;
+ &#39;SASTRES, MODISTOS COSTUREROS SOMBREREROS Y AFINES&#39;
+ &#39;PANADEROS  PASTELEROS Y CONFITEROS&#39; &#39;PSICÓLOGOS&#39; &#39;CONDUCTORES DE TAXIS&#39;
+ &#39;OTROS TRABAJADORES DE SERVICIOS PERSONALES A PARTICULARES  NO CLASIFICADOS BAJO OTROS EPÍGRAFES&#39;
+ &#39;OPERADORES DE MÁQUINAS PARA FABRICAR PRODUCTOS DE PLÁSTICO&#39;
+ &#39;VENDEDORES  DEMOSTRADORES DE TIENDAS Y ALMACENES&#39;
+ &#39;RECEPCIONISTAS  EMPLEADOS DE INFORMACIÓN Y SERVICIO AL CLIENTE&#39;
+ &#39;SERVICIOS GENERALES&#39;
+ &#39;PELUQUEROS, ESPECIALISTAS EN TRATAMIENTOS DE BELLEZA Y AFINE&#39;
+ &#39;TRABAJADORES DE HUERTAS, INVERNADEROS, VIVEROS Y JARDINES&#39;
+ &#39;RECOLECTORES DE BASURA&#39; &#39;AUXILIARES DE CONTABILIDAD Y C-LCULO DE COSTOS&#39;
+ &#39;AUXILIARES DE ENFERMER-A Y ODONTOLOG-A&#39;
+ &#39;OPERADORES DE M-QUINAS PARA FABRICAR PRODUCTOS DE PAPEL Y AF&#39; &#39;ABOGADOS&#39;
+ &#39;ENFERMEROS(AS) PROFESIONALES&#39; &#39;VENDEDORES A DOMICILIO Y POR TEL+FONO&#39;
+ &#39;INGENIEROS INDUSTRIALES Y AFINES&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCIËN Y OPERACIONES EN C&#39;
+ &#39;CATADORES Y CLASIFICADORES DE ALIMENTOS Y BEBIDAS&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PERSONAL Y DE RELACIONES LABO&#39;
+ &#39;TRABAJADORES DE LOS CUIDADOS PERSONALES Y AFINES, NO CLASIFI&#39;
+ &#39;ESPECIALISTAS EN M+TODOS PEDAGËGICOS Y MATERIAL DID-CTICO&#39;
+ &#39;T+CNICOS EN PROGRAMACIËN INFORM-TICA&#39; &#39;METEORËLOGOS&#39;
+ &#39;MODELOS DE MODAS, ARTE Y PUBLICIDAD&#39;
+ &#39;PROFESORES DE EDUCACIËN SECUNDARIA&#39;
+ &#39;T+CNICOS, POSTSECUNDARIOS NO UNIVERSITARIOS Y ASISTENTES EN&#39;
+ &#39;ESCRITORES, PERIODISTAS Y AFINES&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE PRODUCCIËN Y OPERACIONES EN&#39;
+ &#39;CONTADORES&#39;
+ &#39;AGRICULTORES DE CULTIVOS PERMANENTES (PLANTACIONES DE -RBOLE&#39;
+ &#39;MÚSICOS, CANTANTES Y BAILARINES CALLEJEROS, DE CABARET Y AFI&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PUBLICIDAD Y DE RELACIONES PÚ&#39;
+ &#39;ARQUITECTOS, INGENIEROS Y AFINES, NO CLASIFICADOS BAJO OTROS&#39;
+ &#39;NIÑERAS Y CUIDADORAS INFANTILES&#39;
+ &#39;AUXILIARES DE CONTABILIDAD Y CÁLCULO DE COSTOS&#39;
+ &#39;TÉCNICOS, POSTSECUNDARIOS NO UNIVERSITARIOS EN INGENIERÍA CI&#39;
+ &#39;OTROS COORDINADORES Y SUPERVISORES EN MANDOS MEDIOS DE EMPRE&#39;
+ &#39;PROFESORES DE EDUCACIÓN PREESCOLAR&#39; &#39;AGENTES DE LA POLICÍA NACIONAL&#39;
+ &#39;PROFESORES DE EDUCACI?N PRIMARIA&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE VENTAS Y COMERCIALIZACI?N&#39;
+ &#39;ANALISTAS DE SISTEMAS INFORM?TICOS&#39;
+ &#39;INGENIEROS EL?CTRICOS, INGENIEROS ELECTR?NICOS DE TELECOMUNI&#39;
+ &#39;OFICIALES DE LAS FUERZAS MILITARES&#39;
+ &#39;OPERADORES DE EQUIPOS DE RADIODIFUSI?N, TELEVISI?N Y TELECOM&#39;
+ &#39;AGENTES COMERCIALES Y CORREDORES, NO CLASIFICADOS BAJO OTROS&#39;
+ &#39;OPERARIOS DEL TRATAMIENTO DE LA MADERA&#39; &#39;PARTERAS&#39;
+ &#39;PROFESORES DE EDUCACI?N PREESCOLAR&#39; &#39;T?CNICOS Y ASISTENTES EN FARMACIA&#39;
+ &#39;T?CNICOS, POSTSECUNDARIOS NO UNIVERSITARIOS Y ASISTENTES DE&#39;
+ &#39;PERSONAL DOM?STICO&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCI?N Y OPERACIONES EN T&#39;
+ &#39;PRACTICANTES DE LA MEDICINA TRADICIONAL&#39;
+ &#39;DIRECTORES GENERALES, DE EMPRESAS O ENTIDADES DE LA ADMINIST&#39;
+ &#39;ACTORES Y DIRECTORES DE CINE, RADIO, TEATRO, TELEVISI?N Y AF&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE PRODUCCI?N Y OPERACIONES EN&#39;
+ &#39;OTROS ARTESANOS  NO CLASIFICADOS BAJO OTROS EPÍGRAFES&#39;
+ &#39;TÉCNICOS EN AGRONOMÍA  ZOOTECNIA Y SILVICULTURA&#39;
+ &#39;AUXILIARES DE ENFERMERÍA Y ODONTOLOGÍA&#39;
+ &#39;DIRIGENTES Y ADMINISTRADORES DE ORGANIZACIONES DE EMPLEADORES  DE TRABAJADORES Y DE OTRAS DE IN&#39;
+ &#39;FONOAUDÍOLOGOS  FISIOTERAPEUTAS Y AFINES&#39;
+ &#39;CONDUCTORES DE CAMIONETAS Y VEHÍCULOS LIVIANOS&#39;
+ &#39;EMPLEADOS DE BIBLIOTECAS Y ARCHIVOS&#39;
+ &#39;PELUQUEROS  ESPECIALISTAS EN TRATAMIENTOS DE BELLEZA Y AFINES&#39;
+ &#39;SASTRES  MODISTOS COSTUREROS SOMBREREROS Y AFINES&#39;
+ &#39;AGENTES COMERCIALES Y CORREDORES  NO CLASIFICADOS BAJO OTROS EPÍGRAFES&#39;
+ &#39;CONSEJEROS EDUCATIVOS&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE PUBLICIDAD  INFORMACIÓN  RELACIONES PÚBLICAS Y SERVICIO AL CLIE&#39;
+ &#39;ASISTENTES DE ENSEÑANZA EN EDUCACIÓN SUPERIOR  SECUNDARIA Y PRIMARIA&#39;
+ &#39;DIRECTORES DE REGIONALES SUCURSALES OFICINAS Y AFINES DE EMPRESAS PRIVADAS&#39;
+ &#39;AGENTES DE COMPRAS  INTERMEDIARIOS Y CONSIGNATARIOS&#39;
+ &#39;TÉCNICOS  POSTSECUNDARIOS NO UNIVERSITARIOS Y ASISTENTES DE SERVICIOS ADMINISTRATIVOS Y AFINES&#39;
+ &#39;VIGILANTES Y CELADORES&#39;
+ &#39;MÉDICOS  PROFESIONALES EN CIENCIAS DE LA SALUD Y AFINES  NO CLASIFICADOS BAJO OTROS EPÍGRAFES&#39;
+ &#39;VENDEDORES EN QUIOSCOS Y PUESTOS DE MERCADO&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCIÓN Y OPERACIONES EN RESTAURANTES  HOTELES Y AFINES&#39;
+ &#39;OPERARIA&#39; &#39;FINCA&#39; &#39;OFICIOS DOMESTICOS&#39; &#39;EMPLEADA&#39; &#39;DOCENTE&#39;
+ &#39;OPERADORES DE M-QUINAS PARA COSER&#39; &#39;CULTIVADORA DE FLORES&#39; &#39;AGRICULTOR&#39;
+ &#39;AUXILIAR DE DROGUERIA&#39; &#39;COMERCIANTE&#39; &#39;PSICOLOGA&#39;
+ &#39;DIRECTORES Y GERENTES GENERALES DE EMPRESAS PRIVADAS&#39;
+ &#39;FONOAUD-OLOGOS, FISIOTERAPEUTAS Y AFINES&#39;
+ &#39;PROFESIONALES DEL DERECHO, NO CLASIFICADOS BAJO OTROS EP-GRA&#39;
+ &#39;PROFESORES DE EDUCACIËN PREESCOLAR&#39;
+ &#39;INSTRUCTORES MEDIOS DE TRANSPORTE Y AFINES&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE VENTAS Y COMERCIALIZACIËN&#39; &#39;COMPRADORES&#39;
+ &#39;PILOTOS DE AVIACIËN Y AFINES&#39; &#39;PROFESORES DE EDUCACIËN PRIMARIA&#39;
+ &#39;RECEPTORES DE APUESTAS Y AFINES&#39; &#39;PRESTAMISTAS&#39;
+ &#39;T+CNICOS Y ASISTENTES EN FARMACIA&#39;
+ &#39;ENCARGADOS DE CONTROL DE ABASTECIMIENTOS E INVENTARIO&#39;
+ &#39;OTROS ARTESANOS, NO CLASIFICADOS BAJO OTROS EP-GRAFES&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE SERVICIOS SOCIALES, EDUCACIË&#39;
+ &#39;VISITADORA M+DICA&#39; &#39;NIÐERAS Y CUIDADORAS INFANTILES&#39;
+ &#39;OPERADORES DE M-QUINAS PARA FABRICAR PRODUCTOS TEXTILES Y AR&#39;
+ &#39;M+DICOS, PROFESIONALES EN CIENCIAS DE LA SALUD Y AFINES, NO&#39;
+ &#39;RECEPCIONISTAS, EMPLEADOS DE INFORMACIËN Y SERVICIO AL CLIEN&#39;
+ &#39;PERSONAL DE LOS SERVICIOS DE PROTECCIËN Y SEGURIDAD, NO CLAS&#39;
+ &#39;ENCUADERNADORES Y AFINES&#39; &#39;VENDEDORES A DOMICILIO Y POR TELÉFONO&#39;
+ &#39;ESPECIALISTAS EN MÉTODOS PEDAGÓGICOS Y MATERIAL DIDÁCTICO&#39;
+ &#39;TÉCNICOS EN PROGRAMACIÓN INFORMÁTICA&#39;
+ &#39;INSTRUCTORES DE EDUCACIÓN VOCACIONAL ARTESANAL&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE VENTAS Y COMERCIALIZACIÓN&#39;
+ &#39;ESCULTORES, PINTORES Y AFINES&#39; &#39;PROFESORES DE EDUCACIÓN SECUNDARIA&#39;
+ &#39;ANALISTAS Y AGENTES FINANCIEROS&#39;
+ &#39;ENCARGADOS DE SERVICIOS DE APOYO A LA PRODUCCI?N&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCI?N Y OPERACIONES EN S&#39;
+ &#39;VENDEDORES A DOMICILIO Y POR TEL?FONO&#39;
+ &#39;EMPLEADOS TELEFONISTAS Y DE SERVICIOS DE INTERNET&#39; &#39;PSIC?LOGOS&#39;
+ &#39;DIRIGENTES Y ADMINISTRADORES DE ORGANIZACIONES HUMANITARIAS&#39;
+ &#39;COORDINADORES Y SUPERVISORES EN MANDOS MEDIOS DE PRODUCCI?N&#39;
+ &#39;JEFES DE COMUNIDADES IND?GENAS, ETNIAS ESPECIALES Y AFINES&#39;
+ &#39;OPERARIOS DE LA CONSERVACI?N DE FRUTAS, LEGUMBRES, VERDURAS&#39;
+ &#39;REPRESENTANTES COMERCIALES Y TÉCNICOS DE VENTAS&#39;
+ &#39;MÉDICOS VETERINARIOS Y ZOOTECNISTAS&#39; &#39;ECONOMISTAS&#39;
+ &#39;MESEROS  TABERNEROS Y AFINES&#39;
+ &#39;ARQUITECTOS  INGENIEROS Y AFINES  NO CLASIFICADOS BAJO OTROS EPÍGRAFES&#39;
+ &#39;AGRICULTORES DE CULTIVOS PERMANENTES (PLANTACIONES DE ÁRBOLES Y ARBUSTOS)&#39;
+ &#39;ACOMPAÑANTES&#39; &#39;AUXILIAR DE COBRANZA&#39; &#39;AUX  CARTERA&#39;
+ &#39;TRABAJADOR INDEPENDIENTE&#39; &#39;RECOLECTORES DE MATERIAL RECICLABLE&#39;
+ &#39;OPERADORES DE M-QUINAS PULIDORAS, GALVANIZADORAS Y RECUBRIDO&#39;
+ &#39;PELUQUERA&#39; &#39;PULIDORES DE METALES Y AFILADORES DE HERRAMIENTAS&#39;
+ &#39;TRABAJADORES AGROPECUARIOS&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE ABASTECIMIENTO Y DISTRIBUCIËN&#39;
+ &#39;BORDADORES Y AFINES&#39; &#39;CONDENADA LEY 30&#39;
+ &#39;T+CNICOS, POSTSECUNDARIOS NO UNIVERSITARIOS EN CIENCIAS F-SI&#39;
+ &#39;INGENIEROS EL+CTRICOS, INGENIEROS ELECTRËNICOS DE TELECOMUNI&#39;
+ &#39;AUXILIARES LAICOS DE LOS CULTOS&#39;
+ &#39;PROFESORES DE UNIVERSIDADES Y OTROS ESTABLECIMIENTOS DE EDUC&#39;
+ &#39;ASISTENTES EN TRABAJO SOCIAL Y COMUNITARIO&#39;
+ &#39;AUXILIARES DE SERVICIOS ESTAD-STICOS Y FINANCIEROS&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE PRODUCCIÓN Y OPERACIONES EN&#39;
+ &#39;OPERADORES DE MÁQUINAS PARA LA FABRICACIÓN DE CALZADO Y AFIN&#39;
+ &#39;OPERARIOS DE LA CONSERVACIÓN DE FRUTAS, LEGUMBRES, VERDURAS&#39;
+ &#39;EMBALADORES MANUALES Y OTROS OBREROS DE LA INDUSTRIA MANUFAC&#39;
+ &#39;INSPECTORES DE LA EDUCACIÓN&#39;
+ &#39;T?CNICOS Y POSTSECUNDARIOS NO UNIVERSITARIOS EN MEC?NICA Y C&#39;
+ &#39;RECEPCIONISTAS, EMPLEADOS DE INFORMACI?N Y SERVICIO AL CLIEN&#39;
+ &#39;PROFESORES DE EDUCACI?N SECUNDARIA&#39;
+ &#39;AGRICULTORES DE CULTIVOS PERMANENTES (PLANTACIONES DE ?RBOLE&#39;
+ &#39;ODONT?LOGOS&#39;
+ &#39;OPERADORES DE M?QUINAS PARA FABRICAR PRODUCTOS TEXTILES Y AR&#39;
+ &#39;OBREROS DE ENSAMBLE&#39;
+ &#39;T?CNICOS, POSTSECUNDARIOS NO UNIVERSITARIOS Y ASISTENTES EN&#39;
+ &#39;ESTADÍSTICOS&#39; &#39;ODONTÓLOGOS&#39; &#39;FLORISTAS Y ARREGLISTAS FLORALES&#39;
+ &#39;TÉCNICOS  POSTSECUNDARIOS NO UNIVERSITARIOS Y ASISTENTES DEL DERECHO Y SERVICIOS LEGALES Y AFIN&#39;
+ &#39;TÉCNICOS Y ASISTENTES EN FARMACIA&#39; &#39;PESCADORES&#39;
+ &#39;OPERADORES DE MÁQUINAS PARA FABRICAR PRODUCTOS TEXTILES Y ARTÍCULOS DE PIEL Y CUERO  NO CLASIFI&#39;
+ &#39;GERENTE FINANCIERO&#39; &#39;OPERARIA MAQUINA PLANA&#39; &#39;AMA DE  CASA&#39; &#39;AMA DECASA&#39;
+ &#39;OFICIOS VARIOS EN SEMINARIO&#39; &#39;SERVICIOS DOMESTICOS&#39; &#39;PORFESORA&#39;
+ &#39;EMPLEADA DE SERVICIO&#39; &#39;CULTIVADORA FLORES&#39; &#39;VENDERORA&#39;
+ &#39;AUXILIAR DE ESTADISTICA&#39; &#39;COCINERA&#39; &#39;PSICËLOGOS&#39;
+ &#39;AGENTES DE LA POLIC-A NACIONAL&#39; &#39;ASISTENTES DE EDUCACIËN ESPECIAL&#39;
+ &#39;OPERADORES DE INSTALACIONES PARA LA FABRICACIËN DE PAPEL&#39;
+ &#39;ARTESANOS DE LOS TEJIDOS, EL CUERO Y MATERIALES SIMILARES&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS FINANCIEROS Y ADMINISTRATIVOS&#39; &#39;ESTILISTA&#39;
+ &#39;JEFES DE COMUNIDADES IND-GENAS, ETNIAS ESPECIALES Y AFINES&#39;
+ &#39;F-SICOS Y ASTRËNOMOS&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCIËN Y OPERACIONES EN A&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCIÓN Y OPERACIONES EN C&#39;
+ &#39;PROFESIONALES DE LA EDUCACIÓN, NO CLASIFICADOS BAJO OTROS EP&#39;
+ &#39;PERSONAL DE POMPAS FÚNEBRES Y EMBALSAMADORES&#39;
+ &#39;PROFESIONALES DEL DERECHO, NO CLASIFICADOS BAJO OTROS EPÍGRA&#39;
+ &#39;TÉCNICOS, POSTSECUNDARIOS NO UNIVERSITARIOS Y ASISTENTES DE&#39;
+ &#39;OBREROS Y PEONES AGROPECUARIOS DE LABRANZA Y DE INVERNADERO&#39;
+ &#39;PROFESORES DE EDUCACIÓN PRIMARIA&#39; &#39;OBREROS DE MINAS Y CANTERAS&#39;
+ &#39;ASISTENTES DE COMERCIO EXTERIOR&#39;
+ &#39;ARTESANOS DE LA MADERA Y MATERIALES SIMILARES&#39;
+ &#39;ASISTENTES DE ENSE?ANZA EN EDUCACI?N PREESCOLAR&#39;
+ &#39;OPERADORES DE TELARES Y OTRAS M?QUINAS TEJEDORAS&#39; &#39;PRESA BUEN PASTOR&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCI?N Y OPERACIONES EN A&#39;
+ &#39;MATEM?TICOS Y ACTUARIOS&#39;
+ &#39;ASEADORES Y FUMIGADORES DE OFICINAS  HOTELES Y OTROS ESTABLECIMIENTOS&#39;
+ &#39;CARNICEROS  PESCADEROS Y AFINES&#39;
+ &#39;OPERADORES DE INSTALACIONES DE VIDRIERÍA  CERÁMICA Y AFINES  NO CLASIFICADOS BAJO OTROS EPÍGRAF&#39;
+ &#39;HIGIENISTAS Y PROMOTORES DE SALUD&#39; &#39;ESCULTORES  PINTORES Y AFINES&#39;
+ &#39;LAVANDEROS Y PLANCHADORES MANUALES&#39;
+ &#39;TRABAJADORES DE LOS CUIDADOS PERSONALES Y AFINES  NO CLASIFICADOS BAJO OTROS EPÍGRAFES&#39;
+ &#39;PERSONAL DE LOS SERVICIOS DE PROTECCIÓN Y SEGURIDAD  NO CLASIFICADO BAJO OTROS EPÍGRAFES&#39;
+ &#39;NUTRICIONISTAS Y DIETISTAS&#39;
+ &#39;OPERARIOS DE LA CONSERVACIÓN DE FRUTAS  LEGUMBRES  VERDURAS Y AFINES&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCIÓN Y OPERACIONES EN AGRICULTURA  CAZA  SILVICULTURA Y PE&#39;
+ &#39;MODISTA&#39; &#39;ODONTËLOGOS&#39; &#39;CUIDANDO ANCIANOS&#39; &#39;MODISTERIA&#39; &#39;NINGUNA&#39;
+ &#39;COORDINADORES Y SUPERVISORES EN MANDOS MEDIOS DE PRODUCCIËN&#39;
+ &#39;MINEROS Y CANTEROS&#39;
+ &#39;ESPECIALISTAS EN ORGANIZACIËN, ADMINISTRACIËN DE EMPRESAS, A&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE VENTAS Y COMERCIALIZACIËN&#39;
+ &#39;OBREROS DE OBRAS P+BLICAS Y MANTENIMIENTO: CARRETERAS, PRESA&#39;
+ &#39;BIBLIOTECARIOS, DOCUMENTALISTAS Y AFINES&#39;
+ &#39;SOCIËLOGOS, ANTROPËLOGOS Y AFINES&#39;
+ &#39;PINTORES DECORADORES DE VIDRIO, CERÁMICA Y OTROS MATERIALES&#39;
+ &#39;TÉCNICOS EN DISEÑO Y DECORADORES&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE SERVICIOS SOCIALES, EDUCACIÓ&#39;
+ &#39;AGRICULTORES DE CULTIVOS PERMANENTES (PLANTACIONES DE ÁRBOLE&#39;
+ &#39;ELECTROT?CNICOS&#39; &#39;PROFESORES E INSTRUCTORES DE EDUCACI?N ESPECIAL&#39;
+ &#39;PROFESIONALES DE LA EDUCACI?N, NO CLASIFICADOS BAJO OTROS EP&#39;
+ &#39;OTROS ARTESANOS, NO CLASIFICADOS BAJO OTROS EP?GRAFES&#39; &#39;GU?AS&#39;
+ &#39;TEJEDORES CON TELARES O DE TEJIDOS DE PUNTO Y AFINES&#39;
+ &#39;AYUDANTES EN REPARACI?N Y MEC?NICA EN GENERAL (EXCEPTO VEH?C&#39;
+ &#39;TAQUILLEROS&#39; &#39;INSPECTORES DE LA EDUCACI?N&#39;
+ &#39;ASISTENTES DE ENSE?ANZA EN EDUCACI?N SUPERIOR, SECUNDARIA Y&#39;
+ &#39;EBANISTAS Y AFINES&#39;
+ &#39;ESPECIALISTAS EN ORGANIZACIÓN  ADMINISTRACIÓN DE EMPRESAS  ANÁLISIS FINANCIERO Y AFINES  NO CLA&#39;
+ &#39;NUTRICIONISTA&#39; &#39;HIOGAR&#39; &#39;DISCAPACITADA&#39; &#39;ACOMPAÐANTES&#39; &#39;OFICIOS  VARIOS&#39;
+ &#39;OFICIOS VARAIOS&#39;
+ &#39;ACTORES Y DIRECTORES DE CINE, RADIO, TEATRO, TELEVISIËN Y AF&#39;
+ &#39;T+CNICOS EN DISEÐO Y DECORADORES&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCIËN Y OPERACIONES EN R&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCIËN Y OPERACIONES EN S&#39; &#39;M+DICOS&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCIÓN Y OPERACIONES EN A&#39;
+ &#39;SUBOFICIALES DE LA POLICÍA NACIONAL&#39;
+ &#39;PROFESORES E INSTRUCTORES DE EDUCACIÓN ESPECIAL&#39; &#39;AGR?NOMOS Y AFINES&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE VENTAS Y COMERCIALIZACI?N&#39;
+ &#39;INSTRUCTORES DE EDUCACI?N VOCACIONAL ARTESANAL&#39;
+ &#39;ARQUITECTOS Y URBANISTAS&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE PRODUCCI?N Y OPERACIONES EN C&#39;
+ &#39;ARTESANOS DE LOS TEJIDOS  EL CUERO Y MATERIALES SIMILARES&#39;
+ &#39;PORTEROS   CONSERJES Y AFINES&#39;
+ &#39;OBREROS DE OBRAS PÚBLICAS Y MANTENIMIENTO: CARRETERAS  PRESAS Y OBRAS SIMILARES&#39;
+ &#39;SUPERIORA PROVINCIAL&#39; &#39;NINGUNO&#39; &#39;COMERCIANTE DE FLORES&#39; &#39;CAMPESINA&#39;
+ &#39;AMA DE  CS&#39; &#39;ESTAD-STICOS&#39; &#39;AGRËNOMOS Y AFINES&#39;
+ &#39;AUXILIARES DE LA POLICIA NACIONAL&#39; &#39;COBRADORES Y AFINES&#39;
+ &#39;FABRICANTES Y AFINADORES DE INSTRUMENTOS MUSICALES&#39;
+ &#39;INGENIEROS QU?MICOS Y AFINES&#39; &#39;T?CNICOS EN PROGRAMACI?N INFORM?TICA&#39;
+ &#39;DIRECTORES DE REGIONALES  SUCURSALES  OFICINAS Y AFINES DE LA ADMINISTRACIÓN PÚBLICA&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE PRODUCCIÓN Y OPERACIONES EN CUIDADOS PERSONALES  LIMPIEZA Y SER&#39;
+ &#39;TRABAJADORA DEL CAMPO&#39; &#39;SECRETARIA&#39; &#39;0&#39; &#39;GUARNECEDORA&#39; &#39;AMA  DE CASA&#39;
+ &#39;ALFAREROS Y AFINES (BARRO, ARCILLA Y ABRASIVOS)&#39;
+ &#39;SACERDOTES Y RELIGIOSOS DE DISTINTAS DOCTRINAS&#39;
+ &#39;PANADEROS, PASTELEROS Y CONFITEROS&#39; &#39;AGRÓNOMOS Y AFINES&#39;
+ &#39;CARNICEROS, PESCADEROS Y AFINES&#39;
+ &#39;MIEMBROS DEL PODER EJECUTIVO Y DE LOS CUERPOS LEGISLATIVOS&#39;
+ &#39;COORDINADORES Y SUPERVISORES DE SERVICIOS SOCIALES, EDUCACI?&#39;
+ &#39;JEFES DE COMUNIDADES INDÍGENAS  ETNIAS ESPECIALES Y AFINES&#39;
+ &#39;PROFESORES DE UNIVERSIDADES Y OTROS ESTABLECIMIENTOS DE EDUCACIÓN SUPERIOR&#39;
+ &#39;SIN OCUPACION&#39;
+ &#39;IMPRESORES DE SERICIGRAF-A Y ESTAMPADORES A LA PLANCHA Y EN&#39; &#39;CESANTE&#39;
+ &#39;EMPLEADA DOMESTICA&#39;
+ &#39;INGENIEROS CATASTRALES, INGENIEROS GEËGRAFOS Y AFINES&#39;
+ &#39;AGENTES P+BLICOS Y PRIVADOS DE COLOCACIËN Y CONTRATISTAS DE&#39;
+ &#39;PROFESORES E INSTRUCTORES DE EDUCACIËN ESPECIAL&#39;
+ &#39;DIRECTORES DE DEPARTAMENTOS DE VENTAS Y COMERCIALIZACIÓN&#39;
+ &#39;JEFES DE COMUNIDADES INDÍGENAS, ETNIAS ESPECIALES Y AFINES&#39;
+ &#39;FIL?LOGOS, TRADUCTORES E INT?RPRETES&#39; &#39;ACOMPA?ANTES&#39;
+ &#39;EMPLEADOS DE SERVICIOS DE CORREO&#39;
+ &#39;OPERADORES DE MÁQUINAS PARA PROCESAR CEREALES  PRODUCTOS DE PANADERÍA  REPOSTERÍA Y CONFITERÍA&#39;
+ &#39;CRIADORES DE GANADO Y TRABAJADORES DE LA CRÍA DE ANIMALES DOMÉSTICOS DIVERSOS&#39;
+ &#39;ILEGIBLE&#39; &#39;AMA DE CS&#39; &#39;OPERADORES DE TELARES Y OTRAS M-QUINAS TEJEDORAS&#39;
+ &#39;T+CNICOS, POSTSECUNDARIOS NO UNIVERSITARIOS Y ASISTENTES DE&#39;
+ &#39;MECAN?GRAFOS, TRANSCRIPTORES DE TEXTOS Y AFINES&#39;
+ &#39;OBREROS DE PESCA, CAZA Y TRAMPA&#39;
+ &#39;MECANÓGRAFOS  TRANSCRIPTORES DE TEXTOS Y AFINES&#39; &#39;OFIVIOS VARIOS&#39;
+ &#39;SENILIDAD&#39; &#39;AMA  DE  CS&#39; &#39;PORTEROS , CONSERJES Y AFINES&#39; &#39;CURANDEROS&#39;
+ &#39;PROFESORA&#39; &#39;DESCONOCIDA&#39;
+ &#39;AGENTES P?BLICOS Y PRIVADOS DE COLOCACI?N Y CONTRATISTAS DE&#39;
+ &#39;TRABAJADORES PECUARIOS, GANADEROS Y AFINES, NO CLASIFICADOS&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Final Project - Deep Learning</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
