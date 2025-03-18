@@ -89,7 +89,7 @@ Pillow==10.0.0
 platformdirs==3.10.0
 plotly==5.16.1
 prompt-toolkit==3.0.39
-protobuf==3.19.6
+protobuf>=3.20
 psutil==5.9.5
 pure-eval==0.2.2
 pyasn1==0.5.0
@@ -103,7 +103,6 @@ pyparsing==3.0.9
 python-dateutil==2.8.2
 pytz==2023.3
 PyWavelets==1.4.1
-pywin32==306
 PyYAML==6.0.1
 pyzmq==25.1.1
 referencing==0.30.2
@@ -143,10 +142,10 @@ SQLAlchemy==2.0.20
 stack-data==0.6.2
 statsmodels==0.14.0
 tabulate==0.9.0
-tensorboard==2.10.1
+tensorboard==2.11.0
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
-tensorflow==2.10.1
+tensorflow==2.11.0  # En lugar de 2.10.1
 tensorflow-estimator==2.10.0
 tensorflow-io-gcs-filesystem==0.31.0
 termcolor==2.3.0
