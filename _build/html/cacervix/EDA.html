@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -181,6 +181,7 @@
         </ul>
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../EDA.html">Análisis Exploratorio de las primeras 16 variables del conjunto de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../EDA_juan.html">Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code></a></li>
 </ul>
 
     </div>
@@ -400,79 +401,34 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting pyreadstat
-  Downloading pyreadstat-1.2.8-cp312-cp312-win_amd64.whl.metadata (1.1 kB)
-Collecting pandas&gt;=1.2.0 (from pyreadstat)
-  Downloading pandas-2.2.3-cp312-cp312-win_amd64.whl.metadata (19 kB)
-Collecting numpy&gt;=1.26.0 (from pandas&gt;=1.2.0-&gt;pyreadstat)
-  Downloading numpy-2.2.4-cp312-cp312-win_amd64.whl.metadata (60 kB)
-Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\henry\miniconda3\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2.9.0.post0)
-Requirement already satisfied: pytz&gt;=2020.1 in c:\users\henry\miniconda3\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2025.1)
-Collecting tzdata&gt;=2022.7 (from pandas&gt;=1.2.0-&gt;pyreadstat)
-  Downloading tzdata-2025.1-py2.py3-none-any.whl.metadata (1.4 kB)
-Requirement already satisfied: six&gt;=1.5 in c:\users\henry\miniconda3\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.2.0-&gt;pyreadstat) (1.17.0)
-Downloading pyreadstat-1.2.8-cp312-cp312-win_amd64.whl (2.4 MB)
-   ---------------------------------------- 0.0/2.4 MB ? eta -:--:--
-   ------------- -------------------------- 0.8/2.4 MB 4.8 MB/s eta 0:00:01
-   ------------------------------ --------- 1.8/2.4 MB 5.0 MB/s eta 0:00:01
-   ---------------------------------------- 2.4/2.4 MB 5.3 MB/s eta 0:00:00
-Downloading pandas-2.2.3-cp312-cp312-win_amd64.whl (11.5 MB)
-   ---------------------------------------- 0.0/11.5 MB ? eta -:--:--
-   --- ------------------------------------ 1.0/11.5 MB 8.4 MB/s eta 0:00:02
-   ------ --------------------------------- 1.8/11.5 MB 4.2 MB/s eta 0:00:03
-   ---------- ----------------------------- 3.1/11.5 MB 5.3 MB/s eta 0:00:02
-   ----------------- ---------------------- 5.0/11.5 MB 5.8 MB/s eta 0:00:02
-   -------------------- ------------------- 6.0/11.5 MB 6.1 MB/s eta 0:00:01
-   -------------------------- ------------- 7.6/11.5 MB 6.2 MB/s eta 0:00:01
-   ------------------------------ --------- 8.7/11.5 MB 5.9 MB/s eta 0:00:01
-   --------------------------------- ------ 9.7/11.5 MB 5.8 MB/s eta 0:00:01
-   -------------------------------------- - 11.0/11.5 MB 5.9 MB/s eta 0:00:01
-   ---------------------------------------- 11.5/11.5 MB 5.8 MB/s eta 0:00:00
-Downloading numpy-2.2.4-cp312-cp312-win_amd64.whl (12.6 MB)
-   ---------------------------------------- 0.0/12.6 MB ? eta -:--:--
-   ----- ---------------------------------- 1.8/12.6 MB 9.1 MB/s eta 0:00:02
-   ---------- ----------------------------- 3.4/12.6 MB 8.4 MB/s eta 0:00:02
-   -------------- ------------------------- 4.5/12.6 MB 7.3 MB/s eta 0:00:02
-   ------------------ --------------------- 5.8/12.6 MB 6.9 MB/s eta 0:00:01
-   --------------------- ------------------ 6.8/12.6 MB 6.7 MB/s eta 0:00:01
-   ------------------------- -------------- 8.1/12.6 MB 6.5 MB/s eta 0:00:01
-   --------------------------- ------------ 8.7/12.6 MB 6.4 MB/s eta 0:00:01
-   ----------------------------- ---------- 9.4/12.6 MB 5.7 MB/s eta 0:00:01
-   ---------------------------------- ----- 11.0/12.6 MB 5.8 MB/s eta 0:00:01
-   ---------------------------------------  12.6/12.6 MB 6.0 MB/s eta 0:00:01
-   ---------------------------------------- 12.6/12.6 MB 6.0 MB/s eta 0:00:00
-Downloading tzdata-2025.1-py2.py3-none-any.whl (346 kB)
-Installing collected packages: tzdata, numpy, pandas, pyreadstat
-Successfully installed numpy-2.2.4 pandas-2.2.3 pyreadstat-1.2.8 tzdata-2025.1
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pyreadstat in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (1.2.8)
+Requirement already satisfied: pandas&gt;=1.2.0 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pyreadstat) (2.2.3)
+Requirement already satisfied: numpy&gt;=1.22.4 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (1.25.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2025.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2025.1)
+Requirement already satisfied: six&gt;=1.5 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.2.0-&gt;pyreadstat) (1.17.0)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pyreadstat</span>
-<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyreadstat</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;seaborn&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\henry\AppData\Local\Temp\ipykernel_19696\1052872278.py:7: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
+  from IPython.core.display import display, HTML
 </pre></div>
 </div>
 </div>
@@ -1142,7 +1098,6 @@ Y dado que era int64 , se convirtió a string
       <th>MUERTEPORO</th>
       <th>SIMUERTEPO</th>
       <th>OCUPACION</th>
-      <th>MUNICIPIO</th>
     </tr>
   </thead>
   <tbody>
@@ -1150,7 +1105,7 @@ Y dado que era int64 , se convirtió a string
       <th>0</th>
       <td>11</td>
       <td>BOGOTÁ, D.C.</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1165,13 +1120,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>1</th>
       <td>76</td>
       <td>VALLE DEL CAUCA</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1186,13 +1140,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>2</th>
       <td>8</td>
       <td>ATLÁNTICO</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       <td></td>
@@ -1207,13 +1160,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>3</th>
       <td>15</td>
       <td>BOYACÁ</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       <td>1500100021</td>
@@ -1228,13 +1180,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>4</th>
       <td>76</td>
       <td>VALLE DEL CAUCA</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       <td>760010379901</td>
@@ -1249,13 +1200,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>5</th>
       <td>52</td>
       <td>NARIÑO</td>
-      <td>00287</td>
+      <td>287</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1270,13 +1220,12 @@ Y dado que era int64 , se convirtió a string
       <td>2</td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>6</th>
       <td>52</td>
       <td>NARIÑO</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1291,13 +1240,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>7</th>
       <td>68</td>
       <td>SANTANDER</td>
-      <td>00368</td>
+      <td>368</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1312,13 +1260,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>8</th>
       <td>76</td>
       <td>VALLE DEL CAUCA</td>
-      <td>00111</td>
+      <td>111</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1333,13 +1280,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>9</th>
       <td>17</td>
       <td>CALDAS</td>
-      <td>00042</td>
+      <td>42</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1354,7 +1300,6 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
   </tbody>
 </table></div></div>

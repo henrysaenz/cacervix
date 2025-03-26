@@ -1,0 +1,2163 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Contexto de Variables en el DataFrame df_juan &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'EDA_juan';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="SeminarioIvan.html" />
+    <link rel="prev" title="Análisis Exploratorio de las primeras 16 variables del conjunto de datos" href="EDA.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_uninorte.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo_uninorte.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Proyecto final - Seminario Investigativo
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="EDA.html">Análisis Exploratorio de las primeras 16 variables del conjunto de datos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FEDA_juan.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/EDA_juan.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Contexto de Variables en el DataFrame df_juan</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-dir12">Cada valor en C_DIR12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-c-ant1-c-ant2-c-ant3">Analisis de “C_ANT1”, “C_ANT2”, “C_ANT3”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant12">Cada valor en C_ANT12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant22">Cada valor en C_ANT22</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant32">Cada valor en C_ANT32</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-pat1">Cada valor en C_PAT1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-pat2">Cada valor en C_PAT2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-bas1">Cada valor en C_BAS1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-mcm1">Cada valor en C_MCM1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-idprofcer">Cada valor en IDPROFCER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-causa-666-667">Cada valor en CAUSA_666_667</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-edad2">Cada valor en EDAD2</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyreadstat</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">,</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">pyreadstat</span><span class="o">.</span><span class="n">read_sav</span><span class="p">(</span><span class="s2">&quot;/Users/juansebastianquintanacontreras/Desktop/Proyecto_seminario/CACU1985A2019.sav&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>  <span class="c1"># Ver las primeras filas del DataFrame</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">PyreadstatError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span><span class="p">,</span> <span class="n">meta</span> <span class="o">=</span> <span class="n">pyreadstat</span><span class="o">.</span><span class="n">read_sav</span><span class="p">(</span><span class="s2">&quot;/Users/juansebastianquintanacontreras/Desktop/Proyecto_seminario/CACU1985A2019.sav&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>  <span class="c1"># Ver las primeras filas del DataFrame</span>
+
+<span class="nn">File pyreadstat\\pyreadstat.pyx:389,</span> in <span class="ni">pyreadstat.pyreadstat.read_sav</span><span class="nt">()</span>
+
+<span class="nn">File pyreadstat\\_readstat_parser.pyx:1104,</span> in <span class="ni">pyreadstat._readstat_parser.run_conversion</span><span class="nt">()</span>
+
+<span class="ne">PyreadstatError</span>: File /Users/juansebastianquintanacontreras/Desktop/Proyecto_seminario/CACU1985A2019.sav does not exist!
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;ANO&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;ANO&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;ANO&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>COD_DPTO</th>
+      <th>COD_MUNIC</th>
+      <th>A_DEFUN</th>
+      <th>SIT_DEFUN</th>
+      <th>COD_INST</th>
+      <th>NOM_INST</th>
+      <th>ANO</th>
+      <th>MES</th>
+      <th>SEXO</th>
+      <th>EST_CIVIL</th>
+      <th>...</th>
+      <th>C_ANT32</th>
+      <th>C_PAT1</th>
+      <th>C_PAT2</th>
+      <th>C_BAS1</th>
+      <th>C_MCM1</th>
+      <th>IDPROFCER</th>
+      <th>CAUSA_666_667</th>
+      <th>CAU_HOMOL</th>
+      <th>QUINQ</th>
+      <th>EDAD2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>48930</th>
+      <td>76</td>
+      <td>001</td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>1985</td>
+      <td>07</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>85A89</td>
+      <td>85y+</td>
+    </tr>
+    <tr>
+      <th>17083</th>
+      <td>11</td>
+      <td>001</td>
+      <td>1</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>1985</td>
+      <td>05</td>
+      <td>2</td>
+      <td>3</td>
+      <td>...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>85A89</td>
+      <td>50a54</td>
+    </tr>
+    <tr>
+      <th>17084</th>
+      <td>11</td>
+      <td>001</td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>1985</td>
+      <td>05</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>85A89</td>
+      <td>50a54</td>
+    </tr>
+    <tr>
+      <th>17085</th>
+      <td>11</td>
+      <td>001</td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>1985</td>
+      <td>05</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>85A89</td>
+      <td>50a54</td>
+    </tr>
+    <tr>
+      <th>17086</th>
+      <td>11</td>
+      <td>001</td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>1985</td>
+      <td>07</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>85A89</td>
+      <td>50a54</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6785</th>
+      <td>47</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>2019</td>
+      <td></td>
+      <td>2</td>
+      <td>5</td>
+      <td>...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td>1</td>
+      <td>207</td>
+      <td>25</td>
+      <td>15A19</td>
+      <td>35a39</td>
+    </tr>
+    <tr>
+      <th>6784</th>
+      <td>47</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>2019</td>
+      <td></td>
+      <td>2</td>
+      <td>1</td>
+      <td>...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td>1</td>
+      <td>207</td>
+      <td>25</td>
+      <td>15A19</td>
+      <td>35a39</td>
+    </tr>
+    <tr>
+      <th>6783</th>
+      <td>47</td>
+      <td>720</td>
+      <td>1</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>2019</td>
+      <td></td>
+      <td>2</td>
+      <td>4</td>
+      <td>...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td>1</td>
+      <td>207</td>
+      <td>25</td>
+      <td>15A19</td>
+      <td>35a39</td>
+    </tr>
+    <tr>
+      <th>6797</th>
+      <td>63</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>2019</td>
+      <td></td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td>1</td>
+      <td>207</td>
+      <td>25</td>
+      <td>15A19</td>
+      <td>35a39</td>
+    </tr>
+    <tr>
+      <th>27855</th>
+      <td>81</td>
+      <td>794</td>
+      <td>2</td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>2019</td>
+      <td></td>
+      <td>2</td>
+      <td>4</td>
+      <td>...</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td>1</td>
+      <td>207</td>
+      <td>25</td>
+      <td>15A19</td>
+      <td>55a59</td>
+    </tr>
+  </tbody>
+</table>
+<p>51448 rows × 48 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conteo_valores</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;A_DEFUN&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conteo_valores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A_DEFUN
+1    46697
+2     4470
+3      281
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;COD_DPTO&#39;, &#39;COD_MUNIC&#39;, &#39;A_DEFUN&#39;, &#39;SIT_DEFUN&#39;, &#39;COD_INST&#39;, &#39;NOM_INST&#39;,
+       &#39;ANO&#39;, &#39;MES&#39;, &#39;SEXO&#39;, &#39;EST_CIVIL&#39;, &#39;gru_ed1&#39;, &#39;gru_ed2&#39;, &#39;NIVEL_EDU&#39;,
+       &#39;MUERTEPORO&#39;, &#39;SIMUERTEPO&#39;, &#39;OCUPACION&#39;, &#39;IDPERTET&#39;, &#39;CODPRES&#39;,
+       &#39;CODPTORE&#39;, &#39;CODMUNRE&#39;, &#39;AREA_RES&#39;, &#39;SEG_SOCIAL&#39;, &#39;IDADMISALU&#39;,
+       &#39;IDCLASADMI&#39;, &#39;pman_muer&#39;, &#39;CONS_EXP&#39;, &#39;CODOCUR&#39;, &#39;CODMUNOC&#39;,
+       &#39;c_muerte&#39;, &#39;ASIS_MED&#39;, &#39;CAUSA_MULT&#39;, &#39;C_DIR1&#39;, &#39;C_DIR12&#39;, &#39;C_ANT1&#39;,
+       &#39;C_ANT12&#39;, &#39;C_ANT2&#39;, &#39;C_ANT22&#39;, &#39;C_ANT3&#39;, &#39;C_ANT32&#39;, &#39;C_PAT1&#39;, &#39;C_PAT2&#39;,
+       &#39;C_BAS1&#39;, &#39;C_MCM1&#39;, &#39;IDPROFCER&#39;, &#39;CAUSA_666_667&#39;, &#39;CAU_HOMOL&#39;, &#39;QUINQ&#39;,
+       &#39;EDAD2&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_juan</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">16</span><span class="p">:]]</span>
+<span class="n">df_juan</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>C_DIR12</th>
+      <th>C_ANT1</th>
+      <th>C_ANT12</th>
+      <th>C_ANT2</th>
+      <th>C_ANT22</th>
+      <th>C_ANT3</th>
+      <th>C_ANT32</th>
+      <th>C_PAT1</th>
+      <th>C_PAT2</th>
+      <th>C_BAS1</th>
+      <th>C_MCM1</th>
+      <th>IDPROFCER</th>
+      <th>CAUSA_666_667</th>
+      <th>CAU_HOMOL</th>
+      <th>QUINQ</th>
+      <th>EDAD2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>48930</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>85A89</td>
+      <td>85y+</td>
+    </tr>
+    <tr>
+      <th>17083</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>85A89</td>
+      <td>50a54</td>
+    </tr>
+    <tr>
+      <th>17084</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>85A89</td>
+      <td>50a54</td>
+    </tr>
+    <tr>
+      <th>17085</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>85A89</td>
+      <td>50a54</td>
+    </tr>
+    <tr>
+      <th>17086</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1809</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>025</td>
+      <td>85A89</td>
+      <td>50a54</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>6785</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td>1</td>
+      <td>207</td>
+      <td>25</td>
+      <td>15A19</td>
+      <td>35a39</td>
+    </tr>
+    <tr>
+      <th>6784</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td>1</td>
+      <td>207</td>
+      <td>25</td>
+      <td>15A19</td>
+      <td>35a39</td>
+    </tr>
+    <tr>
+      <th>6783</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td>1</td>
+      <td>207</td>
+      <td>25</td>
+      <td>15A19</td>
+      <td>35a39</td>
+    </tr>
+    <tr>
+      <th>6797</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td>1</td>
+      <td>207</td>
+      <td>25</td>
+      <td>15A19</td>
+      <td>35a39</td>
+    </tr>
+    <tr>
+      <th>27855</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>C539</td>
+      <td></td>
+      <td>1</td>
+      <td>207</td>
+      <td>25</td>
+      <td>15A19</td>
+      <td>55a59</td>
+    </tr>
+  </tbody>
+</table>
+<p>51448 rows × 16 columns</p>
+</div></div></div>
+</div>
+<section id="contexto-de-variables-en-el-dataframe-df-juan">
+<h1>Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code><a class="headerlink" href="#contexto-de-variables-en-el-dataframe-df-juan" title="Link to this heading">#</a></h1>
+<p>A continuación, se describe el significado de cada variable en el DataFrame.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">C_DIR12</span></code></p></td>
+<td><p>Código de la segunda causa de defunción informada en el renglón a).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">C_ANT1</span></code></p></td>
+<td><p>Causas Antecedentes 1.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">C_ANT12</span></code></p></td>
+<td><p>Código de la segunda causa de defunción informada en el renglón b).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">C_ANT2</span></code></p></td>
+<td><p>Causas Antecedentes 2.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">C_ANT22</span></code></p></td>
+<td><p>Código de la segunda causa de defunción informada en el renglón c).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">C_ANT3</span></code></p></td>
+<td><p>Causas Antecedentes 3.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">C_ANT32</span></code></p></td>
+<td><p>Código de la segunda causa de defunción informada en el renglón d).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">C_PAT1</span></code></p></td>
+<td><p>Otros estados patológicos importantes.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">C_PAT2</span></code></p></td>
+<td><p>Código de la causa de defunción informada en otros estados patológicos importantes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">C_BAS1</span></code></p></td>
+<td><p>Código de la causa básica de la defunción.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">C_MCM1</span></code></p></td>
+<td><p>Código de la causa de defunción informada en muerte sin certificación médica.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">IDPROFCER</span></code></p></td>
+<td><p>Profesión de quien certifica la defunción. Posibles valores:</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CAUSA_666_667</span></code></p></td>
+<td><p>Causa agrupada con base en la Lista 6/67 de la OPS. Ejemplos:</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CAU_HOMOL</span></code></p></td>
+<td><p>Causa básica agrupada con base en la Lista 105 Colombia (No usar esta variable).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">QUINQ</span></code></p></td>
+<td><p>No usar esta variable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">EDAD2</span></code></p></td>
+<td><p>Edad en rangos quinquenales.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">IDPROFCER</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Médico</p></li>
+<li><p>Enfermero</p></li>
+<li><p>Auxiliar de enfermería</p></li>
+<li><p>Promotor(a) de salud</p></li>
+<li><p>Funcionario de registro civil</p></li>
+<li><p>Médico Legista</p></li>
+<li><p>Sin información</p></li>
+</ol>
+<hr class="docutils" />
+<p><code class="docutils literal notranslate"><span class="pre">CAUSA_666_667</span></code>:</p>
+<ul class="simple">
+<li><p>202 T. MALIGNO DEL COLON</p></li>
+<li><p>203 T. MALIGNO DE LOS ÓRGANOS DIGESTIVOS Y DEL PERITONEO, EXCLUYENDO ESTÓMAGO Y COLON</p></li>
+<li><p>210 T. MALIGNO DE LA PRÓSTATA</p></li>
+</ul>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info_df</span> <span class="o">=</span> <span class="n">df_juan</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">missing_values</span> <span class="o">=</span> <span class="n">df_juan</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+Index: 51448 entries, 48930 to 27855
+Data columns (total 16 columns):
+ #   Column         Non-Null Count  Dtype 
+---  ------         --------------  ----- 
+ 0   C_DIR12        51448 non-null  object
+ 1   C_ANT1         51448 non-null  object
+ 2   C_ANT12        51448 non-null  object
+ 3   C_ANT2         51448 non-null  object
+ 4   C_ANT22        51448 non-null  object
+ 5   C_ANT3         51448 non-null  object
+ 6   C_ANT32        51448 non-null  object
+ 7   C_PAT1         51448 non-null  object
+ 8   C_PAT2         51448 non-null  object
+ 9   C_BAS1         51448 non-null  object
+ 10  C_MCM1         51448 non-null  object
+ 11  IDPROFCER      51448 non-null  object
+ 12  CAUSA_666_667  51448 non-null  object
+ 13  CAU_HOMOL      51448 non-null  object
+ 14  QUINQ          51448 non-null  object
+ 15  EDAD2          51448 non-null  object
+dtypes: object(16)
+memory usage: 6.7+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># valores nulos </span>
+<span class="n">nulos</span> <span class="o">=</span> <span class="n">df_juan</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># valores que son solo espacios en blanco</span>
+<span class="n">espacios_blanco</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_juan</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># valores (&quot;)</span>
+<span class="n">comillas</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_juan</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">resumen_valores</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Columna&#39;</span><span class="p">:</span> <span class="n">df_juan</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> 
+    <span class="s1">&#39;Nulos&#39;</span><span class="p">:</span> <span class="n">nulos</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+    <span class="s1">&#39;Espacios en blanco&#39;</span><span class="p">:</span> <span class="n">espacios_blanco</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> 
+    <span class="s1">&#39;Solo comillas&#39;</span><span class="p">:</span> <span class="n">comillas</span><span class="o">.</span><span class="n">values</span>
+<span class="p">})</span>
+<span class="n">resumen_valores</span> <span class="o">=</span> <span class="n">resumen_valores</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Nulos&#39;</span><span class="p">,</span> <span class="s1">&#39;Espacios en blanco&#39;</span><span class="p">,</span> <span class="s1">&#39;Solo comillas&#39;</span><span class="p">],</span> 
+                                              <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">resumen_valores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Columna  Nulos  Espacios en blanco  Solo comillas
+6         C_ANT32      0               49563           1709
+10         C_MCM1      0               49524           1726
+0         C_DIR12      0               49490           1706
+4         C_ANT22      0               49386           1681
+2         C_ANT12      0               49317           1673
+8          C_PAT2      0               48968           1627
+5          C_ANT3      0               43272           1302
+7          C_PAT1      0               42527           1260
+3          C_ANT2      0               32175            630
+11      IDPROFCER      0               31757              0
+1          C_ANT1      0               22844            198
+12  CAUSA_666_667      0               15462              0
+15          EDAD2      0                 339              0
+9          C_BAS1      0                   0              0
+13      CAU_HOMOL      0                   0              0
+14          QUINQ      0                   0              0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variables categóricas a analizar</span>
+<span class="n">categorical_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C_DIR12&quot;</span><span class="p">,</span> <span class="s2">&quot;C_ANT1&quot;</span><span class="p">,</span> <span class="s2">&quot;C_ANT12&quot;</span><span class="p">,</span> <span class="s2">&quot;C_ANT2&quot;</span><span class="p">,</span> <span class="s2">&quot;C_ANT22&quot;</span><span class="p">,</span> <span class="s2">&quot;C_ANT3&quot;</span><span class="p">,</span> <span class="s2">&quot;C_ANT32&quot;</span><span class="p">]</span>
+
+<span class="c1"># Crear una función para calcular Cramér&#39;s V</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cramers_v</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">confusion_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">chi2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">chi2_contingency</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">chi2</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1"># Crear una matriz de correlación de Cramér&#39;s V</span>
+<span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">categorical_vars</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">categorical_vars</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">var1</span> <span class="ow">in</span> <span class="n">categorical_vars</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">var2</span> <span class="ow">in</span> <span class="n">categorical_vars</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">var1</span> <span class="o">==</span> <span class="n">var2</span><span class="p">:</span>
+            <span class="n">corr_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>  
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">corr_matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">]</span> <span class="o">=</span> <span class="n">cramers_v</span><span class="p">(</span><span class="n">df_juan</span><span class="p">[</span><span class="n">var1</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;missing&quot;</span><span class="p">),</span> <span class="n">df_juan</span><span class="p">[</span><span class="n">var2</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s2">&quot;missing&quot;</span><span class="p">))</span>
+
+<span class="c1"># Graficar el heatmap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.2f&quot;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Correlación de Cramér&#39;s V entre Variables Categóricas&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/a4c10239566b31f8feaea4460c7ae0334728d94c2d4dac1234a43c25e78d945d.png" src="_images/a4c10239566b31f8feaea4460c7ae0334728d94c2d4dac1234a43c25e78d945d.png" />
+</div>
+</div>
+<section id="cada-valor-en-c-dir12">
+<h2>Cada valor en C_DIR12<a class="headerlink" href="#cada-valor-en-c-dir12" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frecuencia</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_DIR12&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">frecuencia</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="c1"># Crear el gráfico de barras</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Spectral&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores de C_DIR12&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de valores en C_DIR12&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>  <span class="c1"># Alinea a la derecha</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.series.Series&#39;&gt;
+Index: 65 entries, N19 to J960
+Series name: count
+Non-Null Count  Dtype
+--------------  -----
+65 non-null     int64
+dtypes: int64(1)
+memory usage: 1.0+ KB
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/3179698443.py:6: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  ax = sns.barplot(x=frecuencia.index, y=frecuencia.values, palette=&quot;Spectral&quot;)
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/3179698443.py:10: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha=&quot;right&quot;)  # Alinea a la derecha
+</pre></div>
+</div>
+<img alt="_images/436fdfc6866d9aa144c182b93ed1fb0db78e01ae32314ef68ac8c0dede0c5079.png" src="_images/436fdfc6866d9aa144c182b93ed1fb0db78e01ae32314ef68ac8c0dede0c5079.png" />
+</div>
+</div>
+</section>
+<section id="analisis-de-c-ant1-c-ant2-c-ant3">
+<h2>Analisis de “C_ANT1”, “C_ANT2”, “C_ANT3”<a class="headerlink" href="#analisis-de-c-ant1-c-ant2-c-ant3" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C_ANT1&quot;</span><span class="p">,</span> <span class="s2">&quot;C_ANT2&quot;</span><span class="p">,</span> <span class="s2">&quot;C_ANT3&quot;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+    <span class="n">valores_unicos</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>  <span class="c1"># Elimina NaN</span>
+    <span class="n">valores_unicos</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">valores_unicos</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">]]</span>  <span class="c1"># Excluye vacíos y comillas</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valores únicos en </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">valores_unicos</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valores únicos en C_ANT1:
+[&#39;C539&#39;, &#39;I829&#39;, &#39;A419&#39;, &#39;G932&#39;, &#39;D649&#39;, &#39;I269&#39;, &#39;C780&#39;, &#39;C793&#39;, &#39;K566&#39;, &#39;C80X&#39;, &#39;I499&#39;, &#39;N179&#39;, &#39;J81X&#39;, &#39;J960&#39;, &#39;I469&#39;, &#39;R58K&#39;, &#39;N823&#39;, &#39;G934&#39;, &#39;J869&#39;, &#39;N19X&#39;, &#39;E46X&#39;, &#39;D696&#39;, &#39;E43X&#39;, &#39;I10X&#39;, &#39;J449&#39;, &#39;J969&#39;, &#39;C787&#39;, &#39;A09X&#39;, &#39;R571&#39;, &#39;C788&#39;, &#39;C798&#39;, &#39;I129&#39;, &#39;J181&#39;, &#39;N139&#39;, &#39;N939&#39;, &#39;J189&#39;, &#39;N189&#39;, &#39;C791&#39;, &#39;N159&#39;, &#39;I509&#39;, &#39;C783&#39;, &#39;C763&#39;, &#39;C482&#39;, &#39;E875&#39;, &#39;C786&#39;, &#39;C795&#39;, &#39;R568&#39;, &#39;E469&#39;, &#39;R688&#39;, &#39;K830&#39;, &#39;D539&#39;, &#39;K659&#39;, &#39;E878&#39;, &#39;R18X&#39;, &#39;K729&#39;, &#39;N133&#39;, &#39;C796&#39;, &#39;T794&#39;, &#39;I64X&#39;, &#39;N199&#39;, &#39;I420&#39;, &#39;I678&#39;, &#39;K929&#39;, &#39;K920&#39;, &#39;N10X&#39;, &#39;E86X&#39;, &#39;C530&#39;, &#39;J984&#39;, &#39;T678&#39;, &#39;J90X&#39;, &#39;I219&#39;, &#39;I517&#39;, &#39;I500&#39;, &#39;I270&#39;, &#39;J439&#39;, &#39;N361&#39;, &#39;C56X&#39;, &#39;R64X&#39;, &#39;I251&#39;, &#39;D62X&#39;, &#39;J180&#39;, &#39;N921&#39;, &#39;L022&#39;, &#39;G931&#39;, &#39;J80X&#39;, &#39;J980&#39;, &#39;E872&#39;, &#39;F835&#39;, &#39;N12X&#39;, &#39;R630&#39;, &#39;N399&#39;, &#39;N138&#39;, &#39;L905&#39;, &#39;K922&#39;, &#39;E119&#39;, &#39;I749&#39;, &#39;R092&#39;, &#39;N390&#39;, &#39;I279&#39;, &#39;R402&#39;, &#39;J398&#39;, &#39;I802&#39;, &#39;R58X&#39;, &#39;C785&#39;, &#39;C349&#39;, &#39;K650&#39;, &#39;J698&#39;, &#39;E149&#39;, &#39;M623&#39;, &#39;D70X&#39;, &#39;D509&#39;, &#39;I639&#39;, &#39;K520&#39;, &#39;I519&#39;, &#39;C790&#39;, &#39;I319&#39;, &#39;I730&#39;, &#39;K628&#39;, &#39;R99X&#39;, &#39;R100&#39;, &#39;C710&#39;, &#39;N288&#39;, &#39;A55X&#39;, &#39;I633&#39;, &#39;N135&#39;, &#39;K819&#39;, &#39;T730&#39;, &#39;C794&#39;, &#39;N180&#39;, &#39;J40X&#39;, &#39;L088&#39;, &#39;K550&#39;, &#39;E140&#39;, &#39;R570&#39;, &#39;C52X&#39;, &#39;R31X&#39;, &#39;K598&#39;, &#39;G910&#39;, &#39;I259&#39;, &#39;N949&#39;, &#39;I679&#39;, &#39;G936&#39;, &#39;E41X&#39;, &#39;J988&#39;, &#39;C792&#39;, &#39;L88X&#39;, &#39;R578&#39;, &#39;I490&#39;, &#39;I260&#39;, &#39;T817&#39;, &#39;I959&#39;, &#39;R33X&#39;, &#39;Y849&#39;, &#39;I619&#39;, &#39;A162&#39;, &#39;E889&#39;, &#39;K767&#39;, &#39;G039&#39;, &#39;C779&#39;, &#39;C784&#39;, &#39;K632&#39;, &#39;D65X&#39;, &#39;S062&#39;, &#39;J690&#39;, &#39;R601&#39;, &#39;N824&#39;, &#39;I99X&#39;, &#39;B222&#39;, &#39;N888&#39;, &#39;J841&#39;, &#39;C229&#39;, &#39;T179&#39;, &#39;K914&#39;, &#39;B029&#39;, &#39;K291&#39;, &#39;R298&#39;, &#39;I48X&#39;, &#39;N398&#39;, &#39;J709&#39;, &#39;X539&#39;, &#39;E785&#39;, &#39;L039&#39;, &#39;N309&#39;, &#39;S355&#39;, &#39;E45X&#39;, &#39;D489&#39;, &#39;C781&#39;, &#39;K631&#39;, &#39;Y838&#39;, &#39;K769&#39;, &#39;C189&#39;, &#39;C762&#39;, &#39;I501&#39;, &#39;D849&#39;, &#39;D648&#39;, &#39;L89X&#39;, &#39;N938&#39;, &#39;D619&#39;, &#39;C782&#39;, &#39;K604&#39;, &#39;N119&#39;, &#39;I801&#39;, &#39;K255&#39;, &#39;D259&#39;, &#39;Q419&#39;, &#39;G049&#39;, &#39;T792&#39;, &#39;K625&#39;, &#39;I510&#39;, &#39;R090&#39;, &#39;K269&#39;, &#39;J961&#39;, &#39;M725&#39;, &#39;T175&#39;, &#39;I674&#39;, &#39;C859&#39;, &#39;K802&#39;, &#39;S376&#39;, &#39;C509&#39;, &#39;N739&#39;, &#39;E440&#39;, &#39;K279&#39;, &#39;C348&#39;, &#39;L024&#39;, &#39;J386&#39;, &#39;G938&#39;, &#39;M939&#39;, &#39;C538&#39;, &#39;G935&#39;, &#39;I669&#39;, &#39;L031&#39;, &#39;Y950&#39;, &#39;K766&#39;, &#39;L97X&#39;, &#39;K627&#39;, &#39;J942&#39;, &#39;N820&#39;, &#39;J950&#39;, &#39;E500&#39;, &#39;Z436&#39;, &#39;E669&#39;, &#39;G629&#39;, &#39;C768&#39;, &#39;R02X&#39;, &#39;K768&#39;, &#39;N289&#39;, &#39;N879&#39;, &#39;C910&#39;, &#39;I442&#39;, &#39;I890&#39;, &#39;A499&#39;, &#39;J955&#39;, &#39;I120&#39;, &#39;N393&#39;, &#39;I850&#39;, &#39;I618&#39;, &#39;D689&#39;, &#39;I119&#39;, &#39;I871&#39;, &#39;R11X&#39;, &#39;R53X&#39;, &#39;L089&#39;, &#39;D410&#39;, &#39;R060&#39;, &#39;D500&#39;, &#39;T455&#39;, &#39;N719&#39;, &#39;C679&#39;, &#39;K746&#39;, &#39;G249&#39;, &#39;C180&#39;, &#39;J159&#39;, &#39;E42X&#39;, &#39;N920&#39;, &#39;I609&#39;, &#39;J82X&#39;, &#39;I891&#39;, &#39;A528&#39;, &#39;I710&#39;, &#39;T571&#39;, &#39;I498&#39;, &#39;I440&#39;, &#39;K578&#39;, &#39;J850&#39;, &#39;I820&#39;, &#39;L984&#39;, &#39;O649&#39;, &#39;E880&#39;, &#39;I471&#39;, &#39;Z510&#39;, &#39;M139&#39;, &#39;E782&#39;, &#39;E780&#39;, &#39;K904&#39;, &#39;N72X&#39;, &#39;E278&#39;, &#39;D694&#39;, &#39;N814&#39;, &#39;K833&#39;, &#39;R54X&#39;, &#39;A498&#39;, &#39;N948&#39;, &#39;D136&#39;, &#39;D383&#39;, &#39;G009&#39;, &#39;E778&#39;, &#39;A169&#39;, &#39;B370&#39;, &#39;I271&#39;, &#39;C97X&#39;, &#39;K529&#39;, &#39;G729&#39;, &#39;R609&#39;, &#39;F488&#39;, &#39;N858&#39;, &#39;N832&#39;, &#39;S720&#39;, &#39;R871&#39;, &#39;N328&#39;, &#39;I447&#39;, &#39;M844&#39;, &#39;D469&#39;, &#39;J981&#39;, &#39;M729&#39;, &#39;N132&#39;, &#39;I330&#39;, &#39;I899&#39;, &#39;E835&#39;, &#39;R579&#39;, &#39;A180&#39;, &#39;T981&#39;, &#39;N812&#39;, &#39;I209&#39;, &#39;K265&#39;, &#39;Q421&#39;, &#39;C531&#39;, &#39;I803&#39;, &#39;M009&#39;, &#39;N170&#39;, &#39;I698&#39;, &#39;R509&#39;, &#39;I879&#39;, &#39;K660&#39;, &#39;D381&#39;, &#39;E141&#39;, &#39;N822&#39;, &#39;Y95X&#39;, &#39;K909&#39;, &#39;N829&#39;, &#39;I256&#39;, &#39;M819&#39;, &#39;X189&#39;, &#39;N039&#39;, &#39;D061&#39;, &#39;N049&#39;, &#39;E877&#39;, &#39;R190&#39;, &#39;I634&#39;, &#39;D699&#39;, &#39;N760&#39;, &#39;J852&#39;, &#39;J182&#39;, &#39;G406&#39;, &#39;G939&#39;, &#39;A418&#39;, &#39;I313&#39;, &#39;T093&#39;, &#39;L029&#39;, &#39;J46X&#39;, &#39;E788&#39;, &#39;F03X&#39;, &#39;K560&#39;, &#39;Z936&#39;, &#39;E215&#39;, &#39;R34X&#39;, &#39;C64X&#39;, &#39;M726&#39;, &#39;I461&#39;, &#39;Z491&#39;, &#39;K661&#39;, &#39;E279&#39;, &#39;N764&#39;, &#39;E162&#39;, &#39;K831&#39;, &#39;N151&#39;, &#39;D430&#39;, &#39;B171&#39;, &#39;E873&#39;, &#39;R633&#39;, &#39;Z940&#39;, &#39;T652&#39;, &#39;K254&#39;, &#39;E539&#39;, &#39;N342&#39;, &#39;T813&#39;, &#39;I740&#39;, &#39;I694&#39;, &#39;J42X&#39;, &#39;E148&#39;, &#39;C55X&#39;, &#39;K350&#39;, &#39;J441&#39;, &#39;E876&#39;, &#39;K638&#39;, &#39;K624&#39;, &#39;K290&#39;, &#39;N130&#39;, &#39;N321&#39;, &#39;D281&#39;, &#39;T814&#39;, &#39;N280&#39;, &#39;E874&#39;, &#39;I248&#39;, &#39;A46X&#39;, &#39;R520&#39;, &#39;L929&#39;, &#39;M792&#39;, &#39;C399&#39;, &#39;Z512&#39;, &#39;E638&#39;, &#39;R91X&#39;, &#39;Z432&#39;, &#39;K639&#39;, &#39;N889&#39;, &#39;I878&#39;, &#39;M869&#39;, &#39;C689&#39;, &#39;C179&#39;, &#39;K319&#39;, &#39;C359&#39;, &#39;I822&#39;, &#39;I780&#39;, &#39;I709&#39;, &#39;B59X&#39;, &#39;C789&#39;, &#39;C499&#39;, &#39;I771&#39;, &#39;K089&#39;, &#39;I189&#39;, &#39;N360&#39;, &#39;R068&#39;, &#39;J939&#39;, &#39;N898&#39;, &#39;I741&#39;, &#39;I713&#39;, &#39;J440&#39;, &#39;R634&#39;, &#39;J81&#39;, &#39;D688&#39;, &#39;A09&#39;, &#39;C80&#39;, &#39;C390&#39;, &#39;N19&#39;, &#39;I255&#39;, &#39;E45&#39;, &#39;E86&#39;, &#39;D65&#39;, &#39;Z730&#39;, &#39;D390&#39;, &#39;J80&#39;, &#39;R11&#39;, &#39;J849&#39;, &#39;E40&#39;, &#39;K658&#39;, &#39;J90&#39;, &#39;D397&#39;, &#39;I772&#39;, &#39;T149&#39;, &#39;N12&#39;, &#39;C770&#39;, &#39;E43&#39;, &#39;R58&#39;, &#39;E46&#39;, &#39;I10&#39;, &#39;D508&#39;, &#39;R53&#39;, &#39;D62&#39;, &#39;J985&#39;, &#39;C750&#39;, &#39;L080&#39;, &#39;C55&#39;, &#39;R779&#39;, &#39;G952&#39;, &#39;R048&#39;, &#39;C775&#39;, &#39;L89&#39;, &#39;J47&#39;, &#39;R64&#39;, &#39;D70&#39;, &#39;R001&#39;, &#39;I64&#39;, &#39;G958&#39;, &#39;J158&#39;, &#39;R54&#39;, &#39;Z926&#39;, &#39;R031&#39;, &#39;C969&#39;, &#39;K822&#39;, &#39;E41&#39;, &#39;K559&#39;, &#39;N258&#39;, &#39;C718&#39;, &#39;S729&#39;, &#39;I828&#39;, &#39;I272&#39;, &#39;G410&#39;, &#39;R042&#39;, &#39;C771&#39;, &#39;B24&#39;, &#39;N735&#39;, &#39;N857&#39;, &#39;R000&#39;, &#39;C56&#39;, &#39;R960&#39;, &#39;G20&#39;, &#39;R02&#39;, &#39;R99&#39;, &#39;B379&#39;, &#39;D487&#39;, &#39;L023&#39;, &#39;N709&#39;, &#39;G409&#39;, &#39;Z988&#39;, &#39;R31&#39;, &#39;E870&#39;, &#39;C720&#39;, &#39;I823&#39;, &#39;I428&#39;, &#39;B99&#39;, &#39;I516&#39;, &#39;I518&#39;, &#39;D593&#39;, &#39;R34&#39;, &#39;C719&#39;, &#39;G911&#39;, &#39;R778&#39;, &#39;N270&#39;, &#39;D618&#39;, &#39;I48&#39;, &#39;N809&#39;, &#39;A411&#39;, &#39;T857&#39;, &#39;N758&#39;, &#39;R104&#39;, &#39;J152&#39;, &#39;N322&#39;, &#39;D399&#39;, &#39;N308&#39;, &#39;K572&#39;, &#39;I212&#39;, &#39;N10&#39;, &#39;J42&#39;, &#39;K579&#39;, &#39;D219&#39;, &#39;A410&#39;, &#39;I99&#39;, &#39;K295&#39;, &#39;R51&#39;, &#39;I249&#39;, &#39;S122&#39;, &#39;I889&#39;, &#39;K259&#39;, &#39;C797&#39;, &#39;D099&#39;, &#39;C809&#39;, &#39;D480&#39;, &#39;A188&#39;, &#39;K316&#39;, &#39;N872&#39;, &#39;N768&#39;, &#39;R200&#39;, &#39;L899&#39;, &#39;K20&#39;, &#39;D529&#39;, &#39;N368&#39;, &#39;D391&#39;, &#39;N131&#39;, &#39;A090&#39;, &#39;C227&#39;, &#39;C799&#39;, &#39;N185&#39;, &#39;R572&#39;, &#39;C412&#39;, &#39;I489&#39;, &#39;B977&#39;, &#39;Y95&#39;, &#39;I779&#39;, &#39;G319&#39;, &#39;I443&#39;, &#39;D483&#39;, &#39;A415&#39;, &#39;D369&#39;, &#39;R13&#39;, &#39;K528&#39;, &#39;A047&#39;, &#39;Z511&#39;, &#39;E340&#39;, &#39;C778&#39;, &#39;D479&#39;, &#39;Z433&#39;, &#39;I472&#39;, &#39;C20&#39;, &#39;N009&#39;, &#39;I872&#39;, &#39;D471&#39;, &#39;Z489&#39;, &#39;E639&#39;, &#39;A049&#39;, &#39;J22&#39;, &#39;R198&#39;, &#39;C449&#39;, &#39;R18&#39;, &#39;Z933&#39;, &#39;C959&#39;, &#39;E274&#39;, &#39;D464&#39;, &#39;J860&#39;, &#39;T888&#39;, &#39;I513&#39;, &#39;A099&#39;, &#39;N324&#39;, &#39;D376&#39;, &#39;R049&#39;, &#39;F069&#39;, &#39;K858&#39;, &#39;K296&#39;, &#39;C73&#39;, &#39;K274&#39;, &#39;N059&#39;, &#39;M600&#39;, &#39;N72&#39;, &#39;K921&#39;, &#39;N359&#39;, &#39;D728&#39;, &#39;N184&#39;, &#39;G969&#39;, &#39;I859&#39;, &#39;I427&#39;, &#39;D070&#39;, &#39;R32&#39;, &#39;R263&#39;, &#39;D060&#39;, &#39;A630&#39;, &#39;F03&#39;, &#39;T782&#39;, &#39;C819&#39;, &#39;K750&#39;, &#39;G301&#39;, &#39;T827&#39;, &#39;N730&#39;, &#39;C187&#39;, &#39;C579&#39;, &#39;E883&#39;, &#39;D414&#39;, &#39;J989&#39;, &#39;T829&#39;, &#39;J948&#39;, &#39;K859&#39;, &#39;J041&#39;, &#39;R33&#39;, &#39;K720&#39;, &#39;R418&#39;, &#39;T859&#39;, &#39;G834&#39;, &#39;C939&#39;]
+
+--------------------------------------------------
+
+Valores únicos en C_ANT2:
+[&#39;N289&#39;, &#39;C793&#39;, &#39;C539&#39;, &#39;C780&#39;, &#39;E43X&#39;, &#39;I219&#39;, &#39;N139&#39;, &#39;R601&#39;, &#39;C80X&#39;, &#39;R688&#39;, &#39;R64X&#39;, &#39;E46X&#39;, &#39;D64X&#39;, &#39;K631&#39;, &#39;I509&#39;, &#39;N179&#39;, &#39;E878&#39;, &#39;N189&#39;, &#39;N390&#39;, &#39;K920&#39;, &#39;C795&#39;, &#39;E86X&#39;, &#39;I749&#39;, &#39;E149&#39;, &#39;E872&#39;, &#39;J449&#39;, &#39;I10X&#39;, &#39;N939&#39;, &#39;J180&#39;, &#39;C530&#39;, &#39;D649&#39;, &#39;N19X&#39;, &#39;C790&#39;, &#39;I678&#39;, &#39;I609&#39;, &#39;J189&#39;, &#39;K566&#39;, &#39;C785&#39;, &#39;S321&#39;, &#39;R99X&#39;, &#39;C787&#39;, &#39;I829&#39;, &#39;J42X&#39;, &#39;C786&#39;, &#39;I270&#39;, &#39;I694&#39;, &#39;R18X&#39;, &#39;R570&#39;, &#39;A09X&#39;, &#39;K254&#39;, &#39;N821&#39;, &#39;E119&#39;, &#39;I500&#39;, &#39;C349&#39;, &#39;N133&#39;, &#39;J459&#39;, &#39;E110&#39;, &#39;C181&#39;, &#39;C538&#39;, &#39;R600&#39;, &#39;C788&#39;, &#39;K928&#39;, &#39;N180&#39;, &#39;G939&#39;, &#39;J960&#39;, &#39;I110&#39;, &#39;N739&#39;, &#39;I669&#39;, &#39;R31X&#39;, &#39;J969&#39;, &#39;I802&#39;, &#39;C798&#39;, &#39;L089&#39;, &#39;I517&#39;, &#39;A419&#39;, &#39;D759&#39;, &#39;C449&#39;, &#39;A418&#39;, &#39;L539&#39;, &#39;J81X&#39;, &#39;L023&#39;, &#39;K659&#39;, &#39;I469&#39;, &#39;L905&#39;, &#39;I709&#39;, &#39;I279&#39;, &#39;D65X&#39;, &#39;E147&#39;, &#39;K295&#39;, &#39;T941&#39;, &#39;R571&#39;, &#39;G935&#39;, &#39;K650&#39;, &#39;D849&#39;, &#39;I269&#39;, &#39;C797&#39;, &#39;N824&#39;, &#39;K578&#39;, &#39;J90X&#39;, &#39;I698&#39;, &#39;D62X&#39;, &#39;N72X&#39;, &#39;R100&#39;, &#39;K550&#39;, &#39;I420&#39;, &#39;C791&#39;, &#39;I313&#39;, &#39;C750&#39;, &#39;I119&#39;, &#39;X539&#39;, &#39;R922&#39;, &#39;C55X&#39;, &#39;N879&#39;, &#39;I679&#39;, &#39;I64X&#39;, &#39;E789&#39;, &#39;K922&#39;, &#39;K265&#39;, &#39;R02X&#39;, &#39;N823&#39;, &#39;B570&#39;, &#39;N938&#39;, &#39;N131&#39;, &#39;D281&#39;, &#39;K604&#39;, &#39;K529&#39;, &#39;J860&#39;, &#39;I501&#39;, &#39;K520&#39;, &#39;K669&#39;, &#39;N138&#39;, &#39;Z436&#39;, &#39;D689&#39;, &#39;K275&#39;, &#39;L903&#39;, &#39;Y95X&#39;, &#39;I48X&#39;, &#39;J980&#39;, &#39;R54X&#39;, &#39;M819&#39;, &#39;C782&#39;, &#39;N829&#39;, &#39;I519&#39;, &#39;D539&#39;, &#39;R58X&#39;, &#39;N12X&#39;, &#39;G936&#39;, &#39;C482&#39;, &#39;D619&#39;, &#39;N321&#39;, &#39;K628&#39;, &#39;R568&#39;, &#39;S328&#39;, &#39;C762&#39;, &#39;C740&#39;, &#39;I99X&#39;, &#39;K638&#39;, &#39;Y838&#39;, &#39;D489&#39;, &#39;D696&#39;, &#39;K560&#39;, &#39;A169&#39;, &#39;B977&#39;, &#39;X795&#39;, &#39;D372&#39;, &#39;Z932&#39;, &#39;C189&#39;, &#39;R092&#39;, &#39;K37X&#39;, &#39;J690&#39;, &#39;C783&#39;, &#39;C794&#39;, &#39;A162&#39;, &#39;A630&#39;, &#39;K729&#39;, &#39;E42X&#39;, &#39;I674&#39;, &#39;T730&#39;, &#39;O96X&#39;, &#39;I890&#39;, &#39;J80X&#39;, &#39;N361&#39;, &#39;N399&#39;, &#39;K661&#39;, &#39;D509&#39;, &#39;N888&#39;, &#39;N859&#39;, &#39;C56X&#39;, &#39;K515&#39;, &#39;R090&#39;, &#39;C679&#39;, &#39;I891&#39;, &#39;N393&#39;, &#39;L89X&#39;, &#39;J181&#39;, &#39;S318&#39;, &#39;L984&#39;, &#39;I809&#39;, &#39;R190&#39;, &#39;K746&#39;, &#39;J984&#39;, &#39;D440&#39;, &#39;I059&#39;, &#39;D694&#39;, &#39;E142&#39;, &#39;C65X&#39;, &#39;T455&#39;, &#39;Z988&#39;, &#39;N719&#39;, &#39;G931&#39;, &#39;E875&#39;, &#39;R402&#39;, &#39;G241&#39;, &#39;I251&#39;, &#39;J439&#39;, &#39;T175&#39;, &#39;R048&#39;, &#39;D487&#39;, &#39;C509&#39;, &#39;W939&#39;, &#39;I620&#39;, &#39;N921&#39;, &#39;A499&#39;, &#39;N930&#39;, &#39;F329&#39;, &#39;Y189&#39;, &#39;M623&#39;, &#39;K639&#39;, &#39;C419&#39;, &#39;I499&#39;, &#39;K766&#39;, &#39;E162&#39;, &#39;F03X&#39;, &#39;S379&#39;, &#39;D70X&#39;, &#39;N119&#39;, &#39;K802&#39;, &#39;D500&#39;, &#39;D699&#39;, &#39;J700&#39;, &#39;J941&#39;, &#39;L988&#39;, &#39;R630&#39;, &#39;K251&#39;, &#39;E340&#39;, &#39;R33X&#39;, &#39;C439&#39;, &#39;R609&#39;, &#39;K625&#39;, &#39;K921&#39;, &#39;N209&#39;, &#39;D683&#39;, &#39;R80X&#39;, &#39;N820&#39;, &#39;S469&#39;, &#39;N760&#39;, &#39;R060&#39;, &#39;A480&#39;, &#39;K904&#39;, &#39;M339&#39;, &#39;C499&#39;, &#39;E148&#39;, &#39;I200&#39;, &#39;R34X&#39;, &#39;I820&#39;, &#39;D369&#39;, &#39;I801&#39;, &#39;E835&#39;, &#39;S720&#39;, &#39;K627&#39;, &#39;C531&#39;, &#39;I248&#39;, &#39;E778&#39;, &#39;M189&#39;, &#39;A049&#39;, &#39;G932&#39;, &#39;D260&#39;, &#39;C709&#39;, &#39;E871&#39;, &#39;N322&#39;, &#39;D377&#39;, &#39;T353&#39;, &#39;I803&#39;, &#39;E45X&#39;, &#39;N391&#39;, &#39;K805&#39;, &#39;D688&#39;, &#39;R53X&#39;, &#39;K632&#39;, &#39;G060&#39;, &#39;K750&#39;, &#39;J209&#39;, &#39;C859&#39;, &#39;N135&#39;, &#39;G934&#39;, &#39;I471&#39;, &#39;C763&#39;, &#39;K703&#39;, &#39;R11X&#39;, &#39;T092&#39;, &#39;R221&#39;, &#39;C792&#39;, &#39;E41X&#39;, &#39;R068&#39;, &#39;D469&#39;, &#39;T179&#39;, &#39;N825&#39;, &#39;J988&#39;, &#39;N059&#39;, &#39;N159&#39;, &#39;E785&#39;, &#39;K564&#39;, &#39;R578&#39;, &#39;R633&#39;, &#39;K259&#39;, &#39;Z936&#39;, &#39;K279&#39;, &#39;I771&#39;, &#39;N039&#39;, &#39;C778&#39;, &#39;C781&#39;, &#39;F209&#39;, &#39;M844&#39;, &#39;D479&#39;, &#39;N819&#39;, &#39;I742&#39;, &#39;J689&#39;, &#39;M869&#39;, &#39;Z511&#39;, &#39;Z512&#39;, &#39;E638&#39;, &#39;N178&#39;, &#39;R579&#39;, &#39;C639&#39;, &#39;K565&#39;, &#39;C819&#39;, &#39;N309&#39;, &#39;Z491&#39;, &#39;K831&#39;, &#39;N304&#39;, &#39;E440&#39;, &#39;J82X&#39;, &#39;G20X&#39;, &#39;E874&#39;, &#39;E889&#39;, &#39;N111&#39;, &#39;A199&#39;, &#39;K291&#39;, &#39;R55X&#39;, &#39;T814&#39;, &#39;G919&#39;, &#39;E870&#39;, &#39;R042&#39;, &#39;E876&#39;, &#39;K859&#39;, &#39;Z923&#39;, &#39;J869&#39;, &#39;F059&#39;, &#39;L029&#39;, &#39;I319&#39;, &#39;N822&#39;, &#39;M726&#39;, &#39;K439&#39;, &#39;K658&#39;, &#39;D419&#39;, &#39;K851&#39;, &#39;N857&#39;, &#39;C80&#39;, &#39;K769&#39;, &#39;J81&#39;, &#39;E43&#39;, &#39;J939&#39;, &#39;N19&#39;, &#39;C55&#39;, &#39;I10&#39;, &#39;R960&#39;, &#39;N72&#39;, &#39;K222&#39;, &#39;L89&#39;, &#39;I959&#39;, &#39;J80&#39;, &#39;E45&#39;, &#39;E86&#39;, &#39;K318&#39;, &#39;R31&#39;, &#39;E46&#39;, &#39;N290&#39;, &#39;R54&#39;, &#39;G938&#39;, &#39;A09&#39;, &#39;E41&#39;, &#39;E880&#39;, &#39;J90&#39;, &#39;C229&#39;, &#39;K767&#39;, &#39;R53&#39;, &#39;Y95&#39;, &#39;Z730&#39;, &#39;L039&#39;, &#39;R11&#39;, &#39;B379&#39;, &#39;T857&#39;, &#39;I259&#39;, &#39;R58&#39;, &#39;L080&#39;, &#39;G98&#39;, &#39;X936&#39;, &#39;N736&#39;, &#39;Z933&#39;, &#39;Z938&#39;, &#39;C739&#39;, &#39;I260&#39;, &#39;J441&#39;, &#39;I99&#39;, &#39;M069&#39;, &#39;I209&#39;, &#39;R18&#39;, &#39;R529&#39;, &#39;N12&#39;, &#39;R599&#39;, &#39;J940&#39;, &#39;D019&#39;, &#39;N308&#39;, &#39;C220&#39;, &#39;C348&#39;, &#39;N858&#39;, &#39;R02&#39;, &#39;Z907&#39;, &#39;K296&#39;, &#39;J852&#39;, &#39;G629&#39;, &#39;I822&#39;, &#39;R98&#39;, &#39;R160&#39;, &#39;D62&#39;, &#39;N328&#39;, &#39;N732&#39;, &#39;T810&#39;, &#39;K719&#39;, &#39;I516&#39;, &#39;T66&#39;, &#39;C341&#39;, &#39;I249&#39;, &#39;K611&#39;, &#39;I714&#39;, &#39;J150&#39;, &#39;G409&#39;, &#39;D66&#39;, &#39;I48&#39;, &#39;E782&#39;, &#39;I879&#39;, &#39;I878&#39;, &#39;D060&#39;, &#39;C412&#39;, &#39;J159&#39;, &#39;D391&#39;, &#39;I64&#39;, &#39;R224&#39;, &#39;R509&#39;, &#39;K811&#39;, &#39;I619&#39;, &#39;R418&#39;, &#39;T889&#39;, &#39;C779&#39;, &#39;D374&#39;, &#39;I490&#39;, &#39;Z930&#39;, &#39;C770&#39;, &#39;G959&#39;, &#39;A409&#39;, &#39;E40&#39;, &#39;E144&#39;, &#39;N301&#39;, &#39;A412&#39;, &#39;R001&#39;, &#39;N10&#39;, &#39;Z966&#39;, &#39;I978&#39;, &#39;D70&#39;, &#39;B24&#39;, &#39;I498&#39;, &#39;A165&#39;, &#39;N170&#39;, &#39;N735&#39;, &#39;F069&#39;, &#39;R13&#39;, &#39;D441&#39;, &#39;I312&#39;, &#39;J042&#39;, &#39;C784&#39;, &#39;D529&#39;, &#39;M866&#39;, &#39;K823&#39;, &#39;N136&#39;, &#39;N132&#39;, &#39;B370&#39;, &#39;D069&#39;, &#39;J841&#39;, &#39;C809&#39;, &#39;A090&#39;, &#39;D483&#39;, &#39;A498&#39;, &#39;Z978&#39;, &#39;N288&#39;, &#39;L899&#39;, &#39;R104&#39;, &#39;D381&#39;, &#39;K909&#39;, &#39;D591&#39;, &#39;K579&#39;, &#39;C772&#39;, &#39;D648&#39;, &#39;N185&#39;, &#39;R572&#39;, &#39;C799&#39;, &#39;A099&#39;, &#39;N359&#39;, &#39;R263&#39;, &#39;I482&#39;, &#39;R99&#39;, &#39;E883&#39;, &#39;T888&#39;, &#39;I739&#39;, &#39;J851&#39;, &#39;D383&#39;, &#39;G589&#39;, &#39;Z982&#39;, &#39;F29&#39;, &#39;M868&#39;, &#39;D65&#39;, &#39;N26&#39;, &#39;N948&#39;, &#39;M139&#39;, &#39;Z510&#39;, &#39;M541&#39;, &#39;L033&#39;, &#39;C710&#39;, &#39;R64&#39;, &#39;C487&#39;, &#39;C480&#39;, &#39;N009&#39;, &#39;S729&#39;, &#39;G301&#39;, &#39;N733&#39;, &#39;R634&#39;, &#39;C164&#39;, &#39;C259&#39;, &#39;D329&#39;, &#39;B169&#39;, &#39;C921&#39;, &#39;J961&#39;, &#39;E039&#39;, &#39;N319&#39;, &#39;I743&#39;, &#39;G309&#39;, &#39;L893&#39;, &#39;K221&#39;, &#39;K660&#39;, &#39;C929&#39;, &#39;D27&#39;, &#39;C20&#39;, &#39;Z492&#39;, &#39;N151&#39;, &#39;G969&#39;, &#39;G009&#39;, &#39;N200&#39;, &#39;K280&#39;, &#39;N312&#39;, &#39;K20&#39;, &#39;K633&#39;, &#39;K830&#39;, &#39;I859&#39;, &#39;N324&#39;, &#39;G92&#39;, &#39;C900&#39;, &#39;G122&#39;, &#39;G08&#39;, &#39;N710&#39;, &#39;E15&#39;, &#39;R17&#39;, &#39;D610&#39;, &#39;B029&#39;, &#39;C519&#39;, &#39;N130&#39;, &#39;M199&#39;, &#39;A415&#39;, &#39;I871&#39;, &#39;K269&#39;, &#39;L022&#39;, &#39;R32&#39;, &#39;C800&#39;, &#39;K521&#39;, &#39;T859&#39;, &#39;R522&#39;, &#39;N762&#39;, &#39;B572&#39;, &#39;B49&#39;, &#39;C56&#39;]
+
+--------------------------------------------------
+
+Valores únicos en C_ANT3:
+[&#39;C539&#39;, &#39;E059&#39;, &#39;C780&#39;, &#39;N19X&#39;, &#39;C80X&#39;, &#39;I509&#39;, &#39;N189&#39;, &#39;E440&#39;, &#39;I469&#39;, &#39;E149&#39;, &#39;C787&#39;, &#39;J81X&#39;, &#39;E878&#39;, &#39;D649&#39;, &#39;E43X&#39;, &#39;T658&#39;, &#39;J689&#39;, &#39;I48X&#39;, &#39;C783&#39;, &#39;J449&#39;, &#39;E46X&#39;, &#39;E86X&#39;, &#39;N321&#39;, &#39;R578&#39;, &#39;A419&#39;, &#39;I64X&#39;, &#39;J969&#39;, &#39;L905&#39;, &#39;J698&#39;, &#39;N138&#39;, &#39;C785&#39;, &#39;J180&#39;, &#39;C786&#39;, &#39;R02X&#39;, &#39;K922&#39;, &#39;I10X&#39;, &#39;N133&#39;, &#39;N739&#39;, &#39;I500&#39;, &#39;E119&#39;, &#39;I709&#39;, &#39;K631&#39;, &#39;K920&#39;, &#39;T451&#39;, &#39;T730&#39;, &#39;N390&#39;, &#39;I803&#39;, &#39;B977&#39;, &#39;J189&#39;, &#39;C795&#39;, &#39;N823&#39;, &#39;R092&#39;, &#39;R53X&#39;, &#39;I829&#39;, &#39;D539&#39;, &#39;N879&#39;, &#39;A09X&#39;, &#39;I219&#39;, &#39;N049&#39;, &#39;K638&#39;, &#39;G039&#39;, &#39;K566&#39;, &#39;C793&#39;, &#39;I259&#39;, &#39;C798&#39;, &#39;D70X&#39;, &#39;K729&#39;, &#39;C790&#39;, &#39;J90X&#39;, &#39;D487&#39;, &#39;J439&#39;, &#39;C788&#39;, &#39;R568&#39;, &#39;R64X&#39;, &#39;C55X&#39;, &#39;C538&#39;, &#39;N732&#39;, &#39;J960&#39;, &#39;N329&#39;, &#39;N179&#39;, &#39;E42X&#39;, &#39;T652&#39;, &#39;C796&#39;, &#39;N139&#39;, &#39;N939&#39;, &#39;R090&#39;, &#39;X539&#39;, &#39;D689&#39;, &#39;I802&#39;, &#39;D619&#39;, &#39;J329&#39;, &#39;D849&#39;, &#39;K297&#39;, &#39;L89X&#39;, &#39;J984&#39;, &#39;R31X&#39;, &#39;C530&#39;, &#39;K550&#39;, &#39;R18X&#39;, &#39;K579&#39;, &#39;Y95X&#39;, &#39;C20X&#39;, &#39;J159&#39;, &#39;C419&#39;, &#39;N135&#39;, &#39;C794&#39;, &#39;E871&#39;, &#39;Z988&#39;, &#39;I420&#39;, &#39;E669&#39;, &#39;C792&#39;, &#39;A162&#39;, &#39;R630&#39;, &#39;C779&#39;, &#39;R571&#39;, &#39;N821&#39;, &#39;I269&#39;, &#39;N72X&#39;, &#39;I878&#39;, &#39;G20X&#39;, &#39;I749&#39;, &#39;G934&#39;, &#39;C791&#39;, &#39;I251&#39;, &#39;K625&#39;, &#39;C349&#39;, &#39;M844&#39;, &#39;I349&#39;, &#39;I519&#39;, &#39;D489&#39;, &#39;K85X&#39;, &#39;T819&#39;, &#39;E539&#39;, &#39;C710&#39;, &#39;I99X&#39;, &#39;K589&#39;, &#39;N180&#39;, &#39;R17X&#39;, &#39;C531&#39;, &#39;M189&#39;, &#39;E668&#39;, &#39;E45X&#39;, &#39;D62X&#39;, &#39;S720&#39;, &#39;K431&#39;, &#39;C762&#39;, &#39;E143&#39;, &#39;A169&#39;, &#39;N829&#39;, &#39;E41X&#39;, &#39;K767&#39;, &#39;D259&#39;, &#39;D464&#39;, &#39;R54X&#39;, &#39;R570&#39;, &#39;D414&#39;, &#39;N131&#39;, &#39;I19X&#39;, &#39;D469&#39;, &#39;I110&#39;, &#39;J181&#39;, &#39;Z907&#39;, &#39;N188&#39;, &#39;Z510&#39;, &#39;C439&#39;, &#39;N132&#39;, &#39;M199&#39;, &#39;I678&#39;, &#39;N949&#39;, &#39;K604&#39;, &#39;I694&#39;, &#39;I313&#39;, &#39;K659&#39;, &#39;J939&#39;, &#39;R688&#39;, &#39;Z511&#39;, &#39;I119&#39;, &#39;N289&#39;, &#39;E142&#39;, &#39;E161&#39;, &#39;I514&#39;, &#39;E43&#39;, &#39;K766&#39;, &#39;G919&#39;, &#39;R739&#39;, &#39;I10&#39;, &#39;T175&#39;, &#39;C80&#39;, &#39;R31&#39;, &#39;K632&#39;, &#39;C56&#39;, &#39;I429&#39;, &#39;E46&#39;, &#39;N398&#39;, &#39;R074&#39;, &#39;N039&#39;, &#39;D688&#39;, &#39;C782&#39;, &#39;C449&#39;, &#39;D483&#39;, &#39;Y95&#39;, &#39;K564&#39;, &#39;Z936&#39;, &#39;E45&#39;, &#39;C55&#39;, &#39;N888&#39;, &#39;N828&#39;, &#39;K627&#39;, &#39;N19&#39;, &#39;Z512&#39;, &#39;K639&#39;, &#39;N308&#39;, &#39;B978&#39;, &#39;N709&#39;, &#39;D260&#39;, &#39;N361&#39;, &#39;A09&#39;, &#39;L511&#39;, &#39;D390&#39;, &#39;D376&#39;, &#39;J80&#39;, &#39;L984&#39;, &#39;R02&#39;, &#39;D62&#39;, &#39;L089&#39;, &#39;D430&#39;, &#39;I64&#39;, &#39;E340&#39;, &#39;M339&#39;, &#39;K900&#39;, &#39;B344&#39;, &#39;E41&#39;, &#39;S097&#39;, &#39;D369&#39;, &#39;N320&#39;, &#39;K912&#39;, &#39;D27&#39;, &#39;N322&#39;, &#39;R100&#39;, &#39;E875&#39;, &#39;A499&#39;, &#39;Z730&#39;, &#39;R54&#39;, &#39;R18&#39;, &#39;I879&#39;, &#39;Z933&#39;, &#39;J81&#39;, &#39;K746&#39;, &#39;N159&#39;, &#39;I518&#39;, &#39;R600&#39;, &#39;K269&#39;, &#39;G724&#39;, &#39;C763&#39;, &#39;R53&#39;, &#39;C383&#39;, &#39;R99&#39;, &#39;S721&#39;, &#39;D648&#39;, &#39;K265&#39;, &#39;H913&#39;, &#39;I743&#39;, &#39;C579&#39;, &#39;I679&#39;, &#39;C809&#39;, &#39;D759&#39;, &#39;A090&#39;, &#39;I771&#39;, &#39;A498&#39;, &#39;G938&#39;, &#39;M069&#39;, &#39;K650&#39;, &#39;G936&#39;, &#39;K529&#39;, &#39;E872&#39;, &#39;C509&#39;, &#39;C799&#39;, &#39;N72&#39;, &#39;D70&#39;, &#39;J929&#39;, &#39;M600&#39;, &#39;R572&#39;, &#39;G911&#39;, &#39;Z433&#39;, &#39;C169&#39;, &#39;I482&#39;, &#39;E039&#39;, &#39;J690&#39;, &#39;N185&#39;, &#39;L899&#39;, &#39;C541&#39;, &#39;B99&#39;, &#39;R104&#39;, &#39;I46&#39;, &#39;Z491&#39;, &#39;K805&#39;, &#39;I809&#39;, &#39;C20&#39;, &#39;I739&#39;, &#39;I489&#39;, &#39;E162&#39;, &#39;R33&#39;, &#39;M519&#39;, &#39;D072&#39;, &#39;E876&#39;, &#39;L031&#39;, &#39;I959&#39;, &#39;R55&#39;, &#39;F179&#39;, &#39;K318&#39;, &#39;D696&#39;, &#39;C259&#39;, &#39;I99&#39;, &#39;D693&#39;, &#39;N824&#39;, &#39;I629&#39;, &#39;K520&#39;, &#39;B370&#39;, &#39;A099&#39;, &#39;R17&#39;, &#39;R609&#39;, &#39;C800&#39;, &#39;N719&#39;, &#39;I872&#39;, &#39;H269&#39;, &#39;D374&#39;, &#39;R522&#39;, &#39;E778&#39;, &#39;K565&#39;, &#39;C189&#39;, &#39;I340&#39;, &#39;R64&#39;, &#39;F058&#39;, &#39;R060&#39;, &#39;E86&#39;, &#39;C781&#39;, &#39;R98&#39;, &#39;E789&#39;, &#39;Z436&#39;, &#39;I742&#39;, &#39;Z541&#39;]
+
+--------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frecuencia_total</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+    <span class="n">frecuencia</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> 
+    <span class="n">frecuencia</span> <span class="o">=</span> <span class="n">frecuencia</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>  <span class="c1"># Excluye vacíos y comillas</span>
+    <span class="n">frecuencia_total</span><span class="p">[</span><span class="n">var</span><span class="p">]</span> <span class="o">=</span> <span class="n">frecuencia</span>  
+
+<span class="c1"># Crear un DataFrame combinando las frecuencias de cada variable</span>
+<span class="n">tabla_frecuencia</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">frecuencia_total</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">tabla_frecuencia</span><span class="p">[</span><span class="s2">&quot;Total&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tabla_frecuencia</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">tabla_frecuencia</span> <span class="o">=</span> <span class="n">tabla_frecuencia</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Total&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabla_frecuencia</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      C_ANT1  C_ANT2  C_ANT3  Total
+C539    8976    9664    4788  23428
+C780    1708     705      88   2501
+C80X    1079     375      41   1495
+D649     881     422     103   1406
+N189     736     437      73   1246
+...      ...     ...     ...    ...
+I780       1       0       0      1
+I779       1       0       0      1
+I772       1       0       0      1
+I741       1       0       0      1
+J42        1       0       0      1
+
+[896 rows x 4 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">variables</span><span class="p">:</span>
+    <span class="n">frecuencia</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> 
+    <span class="n">frecuencia</span> <span class="o">=</span> <span class="n">frecuencia</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>  <span class="c1"># Excluye vacíos y comillas</span>
+    <span class="n">frecuencia</span> <span class="o">=</span> <span class="n">frecuencia</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>  
+    <span class="n">frecuencia</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="p">,</span> <span class="s2">&quot;Frecuencia&quot;</span><span class="p">]</span>  
+    <span class="n">frecuencia</span> <span class="o">=</span> <span class="n">frecuencia</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Ordena de mayor a menor</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Tabla de frecuencia para </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tabla de frecuencia para C_ANT1:
+
+  C_ANT1  Frecuencia
+0   C539        8976
+1   C780        1708
+2   C80X        1079
+3   R688         906
+4   D649         881
+5   N390         770
+6   N189         736
+7   J969         538
+8   A419         513
+9   I469         429
+
+--------------------------------------------------
+
+
+Tabla de frecuencia para C_ANT2:
+
+  C_ANT2  Frecuencia
+0   C539        9664
+1   C780         705
+2   N189         437
+3   D649         422
+4   C80X         375
+5   C798         296
+6   N390         288
+7   N139         261
+8    C80         177
+9   N939         172
+
+--------------------------------------------------
+
+
+Tabla de frecuencia para C_ANT3:
+
+  C_ANT3  Frecuencia
+0   C539        4788
+1   D649         103
+2   C798          98
+3   I469          96
+4   C780          88
+5   N189          73
+6   C530          73
+7    I10          55
+8   N390          50
+9   C531          45
+
+--------------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> 
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">frecuencia</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="n">var</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Excluye vacíos y comillas</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>  <span class="c1"># Crea subgráficos (1 fila, 3 columnas)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Spectral&quot;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Top 10 valores en </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># Ajusta para que no se solapen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/213850231.py:7: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=frecuencia.values, y=frecuencia.index, palette=&quot;Spectral&quot;)
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/213850231.py:7: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=frecuencia.values, y=frecuencia.index, palette=&quot;Spectral&quot;)
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/213850231.py:7: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=frecuencia.values, y=frecuencia.index, palette=&quot;Spectral&quot;)
+</pre></div>
+</div>
+<img alt="_images/81484b12ec866a0d45e7296b22a7bef755ac2b3dcbe65c83b31decd08e7f91d3.png" src="_images/81484b12ec866a0d45e7296b22a7bef755ac2b3dcbe65c83b31decd08e7f91d3.png" />
+</div>
+</div>
+</section>
+<section id="cada-valor-en-c-ant12">
+<h2>Cada valor en C_ANT12<a class="headerlink" href="#cada-valor-en-c-ant12" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> 
+<span class="n">frecuencia</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_ANT12&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">frecuencia</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="c1"># Crear el gráfico de barras</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Spectral&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores de C_ANT12&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de valores en C_ANT12&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>  <span class="c1"># Alinea a la derecha</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.series.Series&#39;&gt;
+Index: 103 entries, C780 to E889
+Series name: count
+Non-Null Count  Dtype
+--------------  -----
+103 non-null    int64
+dtypes: int64(1)
+memory usage: 1.6+ KB
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/380555095.py:6: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  ax = sns.barplot(x=frecuencia.index, y=frecuencia.values, palette=&quot;Spectral&quot;)
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/380555095.py:10: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha=&quot;right&quot;)  # Alinea a la derecha
+</pre></div>
+</div>
+<img alt="_images/78597b58c547d0b49b635e56bab985b38370a15fddd0f2193e6e20c216a3aecc.png" src="_images/78597b58c547d0b49b635e56bab985b38370a15fddd0f2193e6e20c216a3aecc.png" />
+</div>
+</div>
+</section>
+<section id="cada-valor-en-c-ant22">
+<h2>Cada valor en C_ANT22<a class="headerlink" href="#cada-valor-en-c-ant22" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> 
+<span class="n">frecuencia</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_ANT22&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">frecuencia</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="c1"># Crear el gráfico de barras</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Spectral&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores de C_ANT22&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de valores en C_ANT22&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>  <span class="c1"># Alinea a la derecha</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.series.Series&#39;&gt;
+Index: 98 entries, C780 to Z940
+Series name: count
+Non-Null Count  Dtype
+--------------  -----
+98 non-null     int64
+dtypes: int64(1)
+memory usage: 1.5+ KB
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/766218196.py:6: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  ax = sns.barplot(x=frecuencia.index, y=frecuencia.values, palette=&quot;Spectral&quot;)
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/766218196.py:10: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha=&quot;right&quot;)  # Alinea a la derecha
+</pre></div>
+</div>
+<img alt="_images/48333ed66163d476aea875720077e3c9066ffb5a1920fd80e6078fc5bbdf2393.png" src="_images/48333ed66163d476aea875720077e3c9066ffb5a1920fd80e6078fc5bbdf2393.png" />
+</div>
+</div>
+</section>
+<section id="cada-valor-en-c-ant32">
+<h2>Cada valor en C_ANT32<a class="headerlink" href="#cada-valor-en-c-ant32" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frecuencia</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_ANT32&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">frecuencia</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+<span class="c1"># Crear el gráfico de barras</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Spectral&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores de C_ANT32&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de valores en C_ANT32&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>  <span class="c1"># Alinea a la derecha</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.series.Series&#39;&gt;
+Index: 66 entries, C539 to Z515
+Series name: count
+Non-Null Count  Dtype
+--------------  -----
+66 non-null     int64
+dtypes: int64(1)
+memory usage: 1.0+ KB
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/3534065957.py:6: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  ax = sns.barplot(x=frecuencia.index, y=frecuencia.values, palette=&quot;Spectral&quot;)
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/3534065957.py:10: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha=&quot;right&quot;)  # Alinea a la derecha
+</pre></div>
+</div>
+<img alt="_images/f2fb29d2765da8cbf1589814c53c4e8bf97521a9709f37a0ee82518d9fe9541b.png" src="_images/f2fb29d2765da8cbf1589814c53c4e8bf97521a9709f37a0ee82518d9fe9541b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tabla_frecuencia</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_ANT32&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">tabla_frecuencia</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Valor&#39;</span><span class="p">,</span> <span class="s1">&#39;Frecuencia&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tabla_frecuencia</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Valor  Frecuencia
+0   C539          21
+1   C780          19
+2   C799          13
+3    C80          10
+4   C787           9
+5   C798           9
+6   C791           8
+7   C795           6
+8   Z511           4
+9   C790           4
+10  C785           4
+11  C189           4
+12   I10           3
+13  C786           3
+14  C793           2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cada-valor-en-c-pat1">
+<h2>Cada valor en C_PAT1<a class="headerlink" href="#cada-valor-en-c-pat1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contar la frecuencia de los valores en C_PAT1, excluyendo valores vacíos y comillas</span>
+<span class="n">frecuencia_pat1</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_PAT1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">frecuencia_pat1</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Spectral&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores de C_PAT1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de valores en C_PAT1&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.series.Series&#39;&gt;
+Index: 519 entries, C539 to J42
+Series name: count
+Non-Null Count  Dtype
+--------------  -----
+519 non-null    int64
+dtypes: int64(1)
+memory usage: 8.1+ KB
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/3272095474.py:5: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  ax = sns.barplot(x=frecuencia.index, y=frecuencia.values, palette=&quot;Spectral&quot;)
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/3272095474.py:9: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha=&quot;right&quot;)
+</pre></div>
+</div>
+<img alt="_images/5bf3f5a4bc559850926baae78a543b5fffa1fee53ade53a29b35a00fde3808f4.png" src="_images/5bf3f5a4bc559850926baae78a543b5fffa1fee53ade53a29b35a00fde3808f4.png" />
+</div>
+</div>
+</section>
+<section id="cada-valor-en-c-pat2">
+<h2>Cada valor en C_PAT2<a class="headerlink" href="#cada-valor-en-c-pat2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frecuencia_pat2</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_PAT2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frecuencia_pat2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Spectral&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores de C_PAT2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de valores en C_PAT2&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C_PAT2
+C539    72
+I10     64
+D649    48
+E149    36
+N189    33
+        ..
+D689     1
+S129     1
+N859     1
+K769     1
+A499     1
+Name: count, Length: 199, dtype: int64
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/2189661696.py:4: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  ax = sns.barplot(x=frecuencia.index, y=frecuencia.values, palette=&quot;Spectral&quot;)
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/2189661696.py:8: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha=&quot;right&quot;)
+</pre></div>
+</div>
+<img alt="_images/0b8c5da126978049b6b1d382b5fa92384cd38748b0089d9588025b51bbfe6334.png" src="_images/0b8c5da126978049b6b1d382b5fa92384cd38748b0089d9588025b51bbfe6334.png" />
+</div>
+</div>
+</section>
+<section id="cada-valor-en-c-bas1">
+<h2>Cada valor en C_BAS1<a class="headerlink" href="#cada-valor-en-c-bas1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contar la frecuencia de valores en C_BAS1, excluyendo vacíos y comillas</span>
+<span class="n">frecuencia_bas1</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_BAS1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frecuencia_bas1</span><span class="p">)</span>
+<span class="c1"># Crear el gráfico de barras</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia_bas1</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia_bas1</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>  <span class="c1"># Top 20 valores más comunes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores de C_BAS1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de valores en C_BAS1&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C_BAS1
+C539    36382
+1809    13858
+C530      631
+C531      365
+1800      137
+C538       56
+1808       12
+1801        7
+Name: count, dtype: int64
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/750162914.py:6: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  ax = sns.barplot(x=frecuencia_bas1.index[:20], y=frecuencia_bas1.values[:20], palette=&quot;coolwarm&quot;)  # Top 20 valores más comunes
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/750162914.py:10: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha=&quot;right&quot;)
+</pre></div>
+</div>
+<img alt="_images/58ce5527c80728bf804fb020ba724ef0e76f20cbbaa931ea47d4b10ec415b91a.png" src="_images/58ce5527c80728bf804fb020ba724ef0e76f20cbbaa931ea47d4b10ec415b91a.png" />
+</div>
+</div>
+</section>
+<section id="cada-valor-en-c-mcm1">
+<h2>Cada valor en C_MCM1<a class="headerlink" href="#cada-valor-en-c-mcm1" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contar la frecuencia de valores en C_MCM1, excluyendo vacíos y comillas</span>
+<span class="n">frecuencia_mcm1</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_MCM1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frecuencia_mcm1</span><span class="p">)</span>
+
+<span class="c1"># Crear el gráfico de barras</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia_mcm1</span><span class="o">.</span><span class="n">index</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia_mcm1</span><span class="o">.</span><span class="n">values</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;magma&quot;</span><span class="p">)</span>  <span class="c1"># Top 20 valores más comunes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Valores de C_MCM1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de valores en C_MCM1&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C_MCM1
+C539    196
+C538      1
+C530      1
+Name: count, dtype: int64
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/1462346214.py:7: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  ax = sns.barplot(x=frecuencia_mcm1.index[:20], y=frecuencia_mcm1.values[:20], palette=&quot;magma&quot;)  # Top 20 valores más comunes
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/1462346214.py:11: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_xticklabels(ax.get_xticklabels(), rotation=90, ha=&quot;right&quot;)
+</pre></div>
+</div>
+<img alt="_images/ac546be0f60434911d7247195bdf4e71b7c2ba4a4bc56f8b4b27579fd0f3a1aa.png" src="_images/ac546be0f60434911d7247195bdf4e71b7c2ba4a4bc56f8b4b27579fd0f3a1aa.png" />
+</div>
+</div>
+</section>
+<section id="cada-valor-en-idprofcer">
+<h2>Cada valor en IDPROFCER<a class="headerlink" href="#cada-valor-en-idprofcer" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">crear_tabla_frecuencia</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columna</span><span class="o">=</span><span class="s1">&#39;IDPROFCER&#39;</span><span class="p">,</span> <span class="n">excluir_valores</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">]):</span>
+    <span class="n">mapeo_categorias</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Médico&#39;</span><span class="p">,</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Enfermero&#39;</span><span class="p">,</span>
+        <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Auxiliar de enfermería&#39;</span><span class="p">,</span>
+        <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Promotor(a) de salud&#39;</span><span class="p">,</span>
+        <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Funcionario de registro civil&#39;</span><span class="p">,</span>
+        <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Médico Legista&#39;</span>
+    <span class="p">}</span>
+    <span class="n">valores_validos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">mapeo_categorias</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">+</span> <span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">columna</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">columna</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+    <span class="n">df_filtrado</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">columna</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">valores_validos</span><span class="p">)]</span>
+
+    <span class="c1"># Contar frecuencias y excluir valores no deseados</span>
+    <span class="n">frecuencia</span> <span class="o">=</span> <span class="p">(</span><span class="n">df_filtrado</span><span class="p">[</span><span class="n">columna</span><span class="p">]</span>
+                 <span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+                 <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">excluir_valores</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df_filtrado</span><span class="p">[</span><span class="n">columna</span><span class="p">]],</span> 
+                       <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">))</span>
+
+    <span class="n">tabla</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s1">&#39;Valor&#39;</span><span class="p">:</span> <span class="n">frecuencia</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+        <span class="s1">&#39;Frecuencia&#39;</span><span class="p">:</span> <span class="n">frecuencia</span><span class="o">.</span><span class="n">values</span>
+    <span class="p">})</span>
+    <span class="n">tabla</span><span class="p">[</span><span class="s1">&#39;Valor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tabla</span><span class="p">[</span><span class="s1">&#39;Valor&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">9</span> <span class="k">else</span> <span class="n">mapeo_categorias</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notna</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">frecuencia</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">tabla</span><span class="p">[</span><span class="s1">&#39;Porcentaje&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">tabla</span><span class="p">[</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">total</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># Ordenar por frecuencia descendente y resetear índice</span>
+    <span class="n">tabla</span> <span class="o">=</span> <span class="n">tabla</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tabla</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">tabla_frecuencia</span> <span class="o">=</span> <span class="n">crear_tabla_frecuencia</span><span class="p">(</span><span class="n">df_juan</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tabla_frecuencia</span><span class="p">)</span>
+    
+<span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: El DataFrame &#39;df_juan&#39; no está definido&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error inesperado: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                           Valor  Frecuencia  Porcentaje
+0                         Médico       19637       99.73
+1         Auxiliar de enfermería          21        0.11
+2           Promotor(a) de salud          14        0.07
+3                      Enfermero          11        0.06
+4                            9.0           7        0.04
+5  Funcionario de registro civil           1        0.01
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/2249799884.py:11: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+  df[columna] = pd.to_numeric(df[columna], errors=&#39;coerce&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cada-valor-en-causa-666-667">
+<h2>Cada valor en CAUSA_666_667<a class="headerlink" href="#cada-valor-en-causa-666-667" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frecuencia_causa</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;CAUSA_666_667&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frecuencia_causa</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia_causa</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia_causa</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Spectral&quot;</span><span class="p">)</span>
+
+<span class="c1"># Configurar etiquetas y título</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Valores de CAUSA_666_667&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de valores en CAUSA_666_667&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CAUSA_666_667
+209    32460
+207     3526
+Name: count, dtype: int64
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/1135136611.py:9: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `y` variable to `hue` and set `legend=False` for the same effect.
+
+  ax = sns.barplot(x=frecuencia_causa.values, y=frecuencia_causa.index, palette=&quot;Spectral&quot;)
+/var/folders/ny/8v26_xzn60v_q_s1s3xc8wkm0000gn/T/ipykernel_33356/1135136611.py:17: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
+  ax.set_yticklabels(ax.get_yticklabels(), rotation=0, ha=&quot;right&quot;)
+</pre></div>
+</div>
+<img alt="_images/57b9031785693fb93c284a420c9b7eea15ee1af56786e3c28bc49bd4a2d0d4ec.png" src="_images/57b9031785693fb93c284a420c9b7eea15ee1af56786e3c28bc49bd4a2d0d4ec.png" />
+</div>
+</div>
+</section>
+<section id="cada-valor-en-edad2">
+<h2>Cada valor en EDAD2<a class="headerlink" href="#cada-valor-en-edad2" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcular la frecuencia de EDAD2</span>
+<span class="n">frecuencia_edad</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;EDAD2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="c1"># Estandarizar los nombres de los rangos y ordenarlos</span>
+<span class="n">mapeo_rangos</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;0A4&#39;</span><span class="p">:</span> <span class="s1">&#39;0-4&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;5a9&#39;</span><span class="p">:</span> <span class="s1">&#39;5-9&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;10a14&#39;</span><span class="p">:</span> <span class="s1">&#39;10-14&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;15a19&#39;</span><span class="p">:</span> <span class="s1">&#39;15-19&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;20a24&#39;</span><span class="p">:</span> <span class="s1">&#39;20-24&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;25a29&#39;</span><span class="p">:</span> <span class="s1">&#39;25-29&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;30a34&#39;</span><span class="p">:</span> <span class="s1">&#39;30-34&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;35a39&#39;</span><span class="p">:</span> <span class="s1">&#39;35-39&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;40a44&#39;</span><span class="p">:</span> <span class="s1">&#39;40-44&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;45a49&#39;</span><span class="p">:</span> <span class="s1">&#39;45-49&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;50a54&#39;</span><span class="p">:</span> <span class="s1">&#39;50-54&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;55a59&#39;</span><span class="p">:</span> <span class="s1">&#39;55-59&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;6064&#39;</span><span class="p">:</span> <span class="s1">&#39;60-64&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;65a69&#39;</span><span class="p">:</span> <span class="s1">&#39;65-69&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;70a74&#39;</span><span class="p">:</span> <span class="s1">&#39;70-74&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;75a79&#39;</span><span class="p">:</span> <span class="s1">&#39;75-79&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;80a84&#39;</span><span class="p">:</span> <span class="s1">&#39;80-84&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;85y+&#39;</span><span class="p">:</span> <span class="s1">&#39;85+&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Mapear los valores en la serie de frecuencias</span>
+<span class="n">frecuencia_edad</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">frecuencia_edad</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapeo_rangos</span><span class="p">)</span>
+<span class="n">orden_rangos</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0-4&#39;</span><span class="p">,</span> <span class="s1">&#39;5-9&#39;</span><span class="p">,</span> <span class="s1">&#39;10-14&#39;</span><span class="p">,</span> <span class="s1">&#39;15-19&#39;</span><span class="p">,</span> <span class="s1">&#39;20-24&#39;</span><span class="p">,</span> <span class="s1">&#39;25-29&#39;</span><span class="p">,</span> <span class="s1">&#39;30-34&#39;</span><span class="p">,</span> <span class="s1">&#39;35-39&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;40-44&#39;</span><span class="p">,</span> <span class="s1">&#39;45-49&#39;</span><span class="p">,</span> <span class="s1">&#39;50-54&#39;</span><span class="p">,</span> <span class="s1">&#39;55-59&#39;</span><span class="p">,</span> <span class="s1">&#39;60-64&#39;</span><span class="p">,</span> <span class="s1">&#39;65-69&#39;</span><span class="p">,</span> <span class="s1">&#39;70-74&#39;</span><span class="p">,</span> <span class="s1">&#39;75-79&#39;</span><span class="p">,</span> 
+                <span class="s1">&#39;80-84&#39;</span><span class="p">,</span> <span class="s1">&#39;85+&#39;</span><span class="p">]</span>
+<span class="n">frecuencia_edad</span> <span class="o">=</span> <span class="n">frecuencia_edad</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">orden_rangos</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tabla de frecuencias para EDAD2 (Edad en rangos quinquenales):&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">frecuencia_edad</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Tabla de frecuencias para EDAD2 (Edad en rangos quinquenales):
+EDAD2
+0-4         1
+5-9         1
+10-14       4
+15-19    5213
+20-24     197
+25-29     868
+30-34    2199
+35-39    3555
+40-44    4682
+45-49    5532
+50-54    4089
+55-59    3926
+60-64    3697
+65-69    4683
+70-74    4246
+75-79    3522
+80-84    2504
+85+      2190
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Crear el gráfico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">frecuencia_edad</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">frecuencia_edad</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="n">frecuencia_edad</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+                 <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Configurar etiquetas y título</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Frecuencia&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Rango de Edad (Quinquenal)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de Edad en Rangos Quinquenales (EDAD2)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Personalizar las etiquetas de los ejes</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Agregar etiquetas de datos en las barras</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">frecuencia_edad</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">v</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">frecuencia_edad</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> 
+            <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1"># Ajustar el diseño y mostrar el gráfico</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/18df9dd4f1eac5b10f4775270ddd4b865966ff900d0e39b1eff8395c1678fc91.png" src="_images/18df9dd4f1eac5b10f4775270ddd4b865966ff900d0e39b1eff8395c1678fc91.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="EDA.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Análisis Exploratorio de las primeras 16 variables del conjunto de datos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="SeminarioIvan.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-dir12">Cada valor en C_DIR12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-c-ant1-c-ant2-c-ant3">Analisis de “C_ANT1”, “C_ANT2”, “C_ANT3”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant12">Cada valor en C_ANT12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant22">Cada valor en C_ANT22</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant32">Cada valor en C_ANT32</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-pat1">Cada valor en C_PAT1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-pat2">Cada valor en C_PAT2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-bas1">Cada valor en C_BAS1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-mcm1">Cada valor en C_MCM1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-idprofcer">Cada valor en IDPROFCER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-causa-666-667">Cada valor en CAUSA_666_667</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-edad2">Cada valor en EDAD2</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
