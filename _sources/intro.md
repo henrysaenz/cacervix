@@ -1,11 +1,11 @@
 # Proyecto final - Seminario Investigativo
-## Análisis de mortalidad y factores de riesgo en población padeciente de Cáncer de Cervix en Colombia en el periodo 1985 - 2019 
+## Modelación geo-espacial de factores de riesgo asociados a muertes por cáncer de cervix en el periodo 1985 - 2019 en Colombia 
 ### **Miembros**
 - Henry David Saenz Valverde
 - Juan Sebastián Quintana Contreras
-- Iván Ramírez
+- Iván Alejandro Ramírez Mejía
 
-### **Professor**
+### **Profesora**
 - Karen Flórez Lozano
 
 
