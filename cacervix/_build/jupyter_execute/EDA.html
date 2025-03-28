@@ -2,13 +2,13 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="./" >
+<html lang="en" data-content_root="../../../" >
 
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Análisis Exploratorio de las primeras 16 variables del conjunto de datos &#8212; Proyecto seminario Investigativo</title>
+    <title>Análisis Exploratorio de las primeras 16 variables del conjunto de datos &#8212; My sample book</title>
   
   
   
@@ -18,50 +18,48 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'EDA';</script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contexto de Variables en el DataFrame df_juan" href="EDA_juan.html" />
-    <link rel="prev" title="Proyecto final - Seminario Investigativo" href="intro.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'cacervix/_build/jupyter_execute/EDA';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -93,7 +91,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="search.html"
+      action="../../../search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -124,6 +122,8 @@
       
       
       
+        
+      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -142,7 +142,7 @@
     
   
 
-<a class="navbar-brand logo" href="intro.html">
+<a class="navbar-brand logo" href="../../../intro.html">
   
   
   
@@ -153,8 +153,8 @@
       
     
     
-    <img src="_static/logo_uninorte.png" class="logo__image only-light" alt="Proyecto seminario Investigativo - Home"/>
-    <script>document.write(`<img src="_static/logo_uninorte.png" class="logo__image only-dark" alt="Proyecto seminario Investigativo - Home"/>`);</script>
+    <img src="../../../_static/logo_uninorte.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../../../_static/logo_uninorte.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
   
   
 </a></div>
@@ -174,14 +174,14 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="intro.html">
+                <a class="reference internal" href="../../../intro.html">
                     Proyecto final - Seminario Investigativo
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis Exploratorio de las primeras 16 variables del conjunto de datos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="EDA_juan.html">Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code></a></li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../EDA.html">Análisis Exploratorio de las primeras 16 variables del conjunto de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../EDA_juan.html">Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code></a></li>
 </ul>
 
     </div>
@@ -253,7 +253,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FEDA.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcacervix/_build/jupyter_execute/EDA.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -283,7 +283,7 @@
       
       
       
-      <li><a href="_sources/EDA.ipynb" target="_blank"
+      <li><a href="../../../_sources/cacervix/_build/jupyter_execute/EDA.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -400,6 +400,17 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pyreadstat in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (1.2.8)
+Requirement already satisfied: pandas&gt;=1.2.0 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pyreadstat) (2.2.3)
+Requirement already satisfied: numpy&gt;=1.22.4 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (1.25.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2025.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2025.1)
+Requirement already satisfied: six&gt;=1.5 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.2.0-&gt;pyreadstat) (1.17.0)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -412,6 +423,12 @@ document.write(`
 <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\henry\AppData\Local\Temp\ipykernel_26556\1052872278.py:7: DeprecationWarning: Importing display from IPython.core.display is deprecated since IPython 7.14, please import from IPython display
+  from IPython.core.display import display, HTML
 </pre></div>
 </div>
 </div>
@@ -1081,7 +1098,6 @@ Y dado que era int64 , se convirtió a string
       <th>MUERTEPORO</th>
       <th>SIMUERTEPO</th>
       <th>OCUPACION</th>
-      <th>MUNICIPIO</th>
     </tr>
   </thead>
   <tbody>
@@ -1089,7 +1105,7 @@ Y dado que era int64 , se convirtió a string
       <th>0</th>
       <td>11</td>
       <td>BOGOTÁ, D.C.</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1104,13 +1120,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>1</th>
       <td>76</td>
       <td>VALLE DEL CAUCA</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1125,13 +1140,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>2</th>
       <td>8</td>
       <td>ATLÁNTICO</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       <td></td>
@@ -1146,13 +1160,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>3</th>
       <td>15</td>
       <td>BOYACÁ</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       <td>1500100021</td>
@@ -1167,13 +1180,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>4</th>
       <td>76</td>
       <td>VALLE DEL CAUCA</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>1</td>
       <td>760010379901</td>
@@ -1188,13 +1200,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>5</th>
       <td>52</td>
       <td>NARIÑO</td>
-      <td>00287</td>
+      <td>287</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1209,13 +1220,12 @@ Y dado que era int64 , se convirtió a string
       <td>2</td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>6</th>
       <td>52</td>
       <td>NARIÑO</td>
-      <td>00001</td>
+      <td>1</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1230,13 +1240,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>7</th>
       <td>68</td>
       <td>SANTANDER</td>
-      <td>00368</td>
+      <td>368</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1251,13 +1260,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>8</th>
       <td>76</td>
       <td>VALLE DEL CAUCA</td>
-      <td>00111</td>
+      <td>111</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1272,13 +1280,12 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
     <tr>
       <th>9</th>
       <td>17</td>
       <td>CALDAS</td>
-      <td>00042</td>
+      <td>42</td>
       <td>1</td>
       <td>2</td>
       <td></td>
@@ -1293,7 +1300,6 @@ Y dado que era int64 , se convirtió a string
       <td></td>
       <td></td>
       <td></td>
-      <td>NaN</td>
     </tr>
   </tbody>
 </table></div></div>
@@ -1352,7 +1358,9 @@ Existen  1122  Municipios en el conjunto de datos.
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Teniendo en cuenta que la variable codigo es de tipo object, se agregará cero a los códigos que lo requieran
-Valores únicos después de la transformación:
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valores únicos después de la transformación:
 [&#39;11&#39; &#39;76&#39; &#39;08&#39; &#39;15&#39; &#39;52&#39; &#39;68&#39; &#39;17&#39; &#39;63&#39; &#39;05&#39; &#39;41&#39; &#39;13&#39; &#39;86&#39; &#39;25&#39; &#39;66&#39;
  &#39;23&#39; &#39;70&#39; &#39;18&#39; &#39;47&#39; &#39;54&#39; &#39;20&#39; &#39;27&#39; &#39;19&#39; &#39;73&#39; &#39;44&#39; &#39;50&#39; &#39;85&#39; &#39;95&#39; &#39;88&#39;
  &#39;81&#39; &#39;91&#39; &#39;99&#39; &#39;94&#39; &#39;97&#39;]
@@ -2015,7 +2023,7 @@ Sitios de defunción únicos:  [2 1 3 4]
         },
         kernelOptions: {
             name: "python3",
-            path: "./."
+            path: "./cacervix\_build\jupyter_execute"
         },
         predefinedOutput: true
     }
@@ -2032,24 +2040,6 @@ Sitios de defunción únicos:  [2 1 3 4]
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Proyecto final - Seminario Investigativo</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="EDA_juan.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code></p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -2084,7 +2074,7 @@ Sitios de defunción únicos:  [2 1 3 4]
   <div class="footer-item">
     
 <p class="component-author">
-By Henry Saenz Valverde
+By The Jupyter Book Community
 </p>
 
   </div>
@@ -2118,8 +2108,8 @@ By Henry Saenz Valverde
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
