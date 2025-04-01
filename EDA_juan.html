@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Contexto de Variables en el DataFrame df_juan &#8212; Proyecto seminario Investigativo</title>
+    <title>Análisis exploratorio de datos en las variables 17 - 32 &#8212; Proyecto seminario Investigativo</title>
   
   
   
@@ -181,21 +181,7 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="EDA.html">Análisis Exploratorio de las primeras 16 variables del conjunto de datos</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code></a></li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis exploratorio de datos en las variables 17 - 32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="EDA_Ivan.html">Análisis Exploratorio de variables geoespaciales</a></li>
 </ul>
 
@@ -382,7 +368,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Contexto de Variables en el DataFrame df_juan</h1>
+    <h1>Análisis exploratorio de datos en las variables 17 - 32</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -392,63 +378,62 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-general-del-dataset">Descripción General del Dataset</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-de-datos-faltantes">Analisi de datos faltantes</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-resultados">Interpretación de Resultados</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-dir12">Cada valor en C_DIR12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-variables-en-el-dataframe-df-juan">Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-general-del-dataset">Descripción General del Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-de-datos-faltantes">Analisi de datos faltantes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-resultados">Interpretación de Resultados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-dir12">Cada valor en C_DIR12</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-distribucion-de-valores-en-c-dir12">Análisis de la distribución de valores en C_DIR12</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-c-ant1-c-ant2-c-ant3">Analisis de “C_ANT1”, “C_ANT2”, “C_ANT3”</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant1">1. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT1</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant2">2. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT2</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant3">3. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT3</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-general">Distribución General</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#patrones-observados">Patrones Observados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concentracion-de-datos">Concentración de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-distribucion-de-valores-en-c-dir12">Análisis de la distribución de valores en C_DIR12</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-c-ant1-c-ant2-c-ant3">Analisis de “C_ANT1”, “C_ANT2”, “C_ANT3”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant1">1. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT1</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant2">2. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT2</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant3">3. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT3</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-general">Distribución General</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patrones-observados">Patrones Observados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concentracion-de-datos">Concentración de Datos</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-distribuccion-de-los-top-10">Análisis Distribucción de los top 10</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant12">Cada valor en C_ANT12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-distribuccion-de-los-top-10">Análisis Distribucción de los top 10</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant12">Cada valor en C_ANT12</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant12">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT12</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant22">Cada valor en C_ANT22</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant12">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT12</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant22">Cada valor en C_ANT22</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant22">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT22</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant32">Cada valor en C_ANT32</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant22">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT22</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant32">Cada valor en C_ANT32</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant32">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT32</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-para-c-pat1-y-c-pat2">Analisi para C_PAT1 y C_PAT2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant32">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT32</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-para-c-pat1-y-c-pat2">Analisi para C_PAT1 y C_PAT2</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-pat1-y-c-pat2">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_PAT1</span></code> y <code class="docutils literal notranslate"><span class="pre">C_PAT2</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-bas1">Cada valor en C_BAS1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-pat1-y-c-pat2">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_PAT1</span></code> y <code class="docutils literal notranslate"><span class="pre">C_PAT2</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-bas1">Cada valor en C_BAS1</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-bas1">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_BAS1</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-mcm1">Cada valor en C_MCM1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-bas1">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_BAS1</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-mcm1">Cada valor en C_MCM1</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-mcm1">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_MCM1</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-idprofcer">Cada valor en IDPROFCER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-mcm1">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_MCM1</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-idprofcer">Cada valor en IDPROFCER</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-distribucion-de-profesiones-que-determinaron-la-muerte-por-cancer-de-cervix-idprofcer">Análisis de la distribución de profesiones que determinaron la muerte por cáncer de cérvix (<code class="docutils literal notranslate"><span class="pre">IDPROFCER</span></code>)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-causa-666-667">Cada valor en CAUSA_666_667</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-distribucion-de-profesiones-que-determinaron-la-muerte-por-cancer-de-cervix-idprofcer">Análisis de la distribución de profesiones que determinaron la muerte por cáncer de cérvix (<code class="docutils literal notranslate"><span class="pre">IDPROFCER</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-causa-666-667">Cada valor en CAUSA_666_667</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-causa-666-667">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">CAUSA_666_667</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Distribución General</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-edad2">Cada valor en EDAD2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-causa-666-667">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">CAUSA_666_667</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Distribución General</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-edad2">Cada valor en EDAD2</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-edad2-edad-en-rangos-quinquenales">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">EDAD2</span></code> (Edad en Rangos Quinquenales)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-edad2-edad-en-rangos-quinquenales">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">EDAD2</span></code> (Edad en Rangos Quinquenales)</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -459,7 +444,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-exploratorio-de-datos-en-las-variables-17-32">
+<h1>Análisis exploratorio de datos en las variables 17 - 32<a class="headerlink" href="#analisis-exploratorio-de-datos-en-las-variables-17-32" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pyreadstat</span>
@@ -1137,7 +1124,7 @@ Name: count, dtype: int64
 </div></div></div>
 </div>
 <section id="contexto-de-variables-en-el-dataframe-df-juan">
-<h1>Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code><a class="headerlink" href="#contexto-de-variables-en-el-dataframe-df-juan" title="Link to this heading">#</a></h1>
+<h2>Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code><a class="headerlink" href="#contexto-de-variables-en-el-dataframe-df-juan" title="Link to this heading">#</a></h2>
 <p>A continuación, se describe el significado de cada variable en el DataFrame.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1252,7 +1239,7 @@ memory usage: 6.7+ MB
 </div>
 </section>
 <section id="descripcion-general-del-dataset">
-<h1>Descripción General del Dataset<a class="headerlink" href="#descripcion-general-del-dataset" title="Link to this heading">#</a></h1>
+<h2>Descripción General del Dataset<a class="headerlink" href="#descripcion-general-del-dataset" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Total de registros</strong>: 51,448</p></li>
 <li><p><strong>Número de variables</strong>: 16</p></li>
@@ -1344,7 +1331,7 @@ memory usage: 6.7+ MB
 </div>
 </section>
 <section id="analisi-de-datos-faltantes">
-<h1>Analisi de datos faltantes<a class="headerlink" href="#analisi-de-datos-faltantes" title="Link to this heading">#</a></h1>
+<h2>Analisi de datos faltantes<a class="headerlink" href="#analisi-de-datos-faltantes" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Variables C_ANT</strong>*:</p>
 <ul class="simple">
@@ -1405,7 +1392,7 @@ memory usage: 6.7+ MB
 </div>
 </section>
 <section id="interpretacion-de-resultados">
-<h1>Interpretación de Resultados<a class="headerlink" href="#interpretacion-de-resultados" title="Link to this heading">#</a></h1>
+<h2>Interpretación de Resultados<a class="headerlink" href="#interpretacion-de-resultados" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p><strong>Asociaciones Notables</strong>:</p>
 <ul class="simple">
@@ -1425,7 +1412,7 @@ memory usage: 6.7+ MB
 </li>
 </ol>
 <section id="cada-valor-en-c-dir12">
-<h2>Cada valor en C_DIR12<a class="headerlink" href="#cada-valor-en-c-dir12" title="Link to this heading">#</a></h2>
+<h3>Cada valor en C_DIR12<a class="headerlink" href="#cada-valor-en-c-dir12" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frecuencia</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_DIR12&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -1470,14 +1457,14 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </section>
 </section>
 <section id="analisis-de-la-distribucion-de-valores-en-c-dir12">
-<h1>Análisis de la distribución de valores en C_DIR12<a class="headerlink" href="#analisis-de-la-distribucion-de-valores-en-c-dir12" title="Link to this heading">#</a></h1>
+<h2>Análisis de la distribución de valores en C_DIR12<a class="headerlink" href="#analisis-de-la-distribucion-de-valores-en-c-dir12" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>El valor <code class="docutils literal notranslate"><span class="pre">N19</span></code> tiene la mayor frecuencia, superando las 40 ocurrencias.</p></li>
 <li><p>Los siguientes valores con alta frecuencia son <code class="docutils literal notranslate"><span class="pre">C780</span></code>, <code class="docutils literal notranslate"><span class="pre">C787</span></code>, y <code class="docutils literal notranslate"><span class="pre">R090</span></code>, aunque con una diferencia notable respecto al primero.</p></li>
 <li><p>La mayoría de los valores presentan una frecuencia baja.</p></li>
 </ul>
 <section id="analisis-de-c-ant1-c-ant2-c-ant3">
-<h2>Analisis de “C_ANT1”, “C_ANT2”, “C_ANT3”<a class="headerlink" href="#analisis-de-c-ant1-c-ant2-c-ant3" title="Link to this heading">#</a></h2>
+<h3>Analisis de “C_ANT1”, “C_ANT2”, “C_ANT3”<a class="headerlink" href="#analisis-de-c-ant1-c-ant2-c-ant3" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C_ANT1&quot;</span><span class="p">,</span> <span class="s2">&quot;C_ANT2&quot;</span><span class="p">,</span> <span class="s2">&quot;C_ANT3&quot;</span><span class="p">]</span>
@@ -1603,7 +1590,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </div>
 </section>
 <section id="distribucion-en-c-ant1">
-<h2>1. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT1</span></code><a class="headerlink" href="#distribucion-en-c-ant1" title="Link to this heading">#</a></h2>
+<h3>1. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT1</span></code><a class="headerlink" href="#distribucion-en-c-ant1" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El valor <code class="docutils literal notranslate"><span class="pre">C539</span></code> es el más frecuente con 31.6% de los casos.</p></li>
 <li><p>Otros valores como <code class="docutils literal notranslate"><span class="pre">C780</span></code> (6.01%) y <code class="docutils literal notranslate"><span class="pre">C80X</span></code> (3.8%) tienen una frecuencia significativa, pero mucho menor en comparación con <code class="docutils literal notranslate"><span class="pre">C539</span></code>.</p></li>
@@ -1611,7 +1598,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </ul>
 </section>
 <section id="distribucion-en-c-ant2">
-<h2>2. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT2</span></code><a class="headerlink" href="#distribucion-en-c-ant2" title="Link to this heading">#</a></h2>
+<h3>2. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT2</span></code><a class="headerlink" href="#distribucion-en-c-ant2" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>En esta variable, <code class="docutils literal notranslate"><span class="pre">C539</span></code> tiene aún más predominancia con un 51.84%, representando más de la mitad de los casos.</p></li>
 <li><p>El segundo valor más frecuente, <code class="docutils literal notranslate"><span class="pre">C780</span></code>, apenas alcanza el 3.78%, lo que refuerza la concentración en <code class="docutils literal notranslate"><span class="pre">C539</span></code>.</p></li>
@@ -1619,7 +1606,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </ul>
 </section>
 <section id="distribucion-en-c-ant3">
-<h2>3. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT3</span></code><a class="headerlink" href="#distribucion-en-c-ant3" title="Link to this heading">#</a></h2>
+<h3>3. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT3</span></code><a class="headerlink" href="#distribucion-en-c-ant3" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">C539</span></code> vuelve a ser el valor más frecuente, con una presencia del 69.65%, consolidando su dominancia en la variable.</p></li>
 <li><p>Los demás valores presentan frecuencias considerablemente bajas, con el segundo (<code class="docutils literal notranslate"><span class="pre">D649</span></code>) alcanzando solo el 1.5%.</p></li>
@@ -1668,7 +1655,7 @@ J42        1       0       0      1         0.00
 </div>
 </section>
 <section id="distribucion-general">
-<h2>Distribución General<a class="headerlink" href="#distribucion-general" title="Link to this heading">#</a></h2>
+<h3>Distribución General<a class="headerlink" href="#distribucion-general" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">C539</span></code></strong> es el valor más frecuente en todas las categorías, con <strong>23,428 apariciones</strong>, representando <strong>43.45%</strong> del total.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">C780</span></code></strong> y <strong><code class="docutils literal notranslate"><span class="pre">C80X</span></code></strong> siguen en frecuencia con <strong>4.64%</strong> y <strong>2.77%</strong>, respectivamente.</p></li>
@@ -1676,14 +1663,14 @@ J42        1       0       0      1         0.00
 </ul>
 </section>
 <section id="patrones-observados">
-<h2>Patrones Observados<a class="headerlink" href="#patrones-observados" title="Link to this heading">#</a></h2>
+<h3>Patrones Observados<a class="headerlink" href="#patrones-observados" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Valores predominantes en todas las columnas:</strong> Algunos códigos como <code class="docutils literal notranslate"><span class="pre">C539</span></code>, <code class="docutils literal notranslate"><span class="pre">C780</span></code> y <code class="docutils literal notranslate"><span class="pre">C80X</span></code> tienen presencia significativa en las tres variables (<code class="docutils literal notranslate"><span class="pre">C_ANT1</span></code>, <code class="docutils literal notranslate"><span class="pre">C_ANT2</span></code>, <code class="docutils literal notranslate"><span class="pre">C_ANT3</span></code>).</p></li>
 <li><p><strong>Valores con aparición única:</strong> Se encuentran valores como <code class="docutils literal notranslate"><span class="pre">I780</span></code>, <code class="docutils literal notranslate"><span class="pre">I779</span></code>, <code class="docutils literal notranslate"><span class="pre">I772</span></code> y <code class="docutils literal notranslate"><span class="pre">I741</span></code>, que aparecen una sola vez en <code class="docutils literal notranslate"><span class="pre">C_ANT1</span></code> y no están presentes en <code class="docutils literal notranslate"><span class="pre">C_ANT2</span></code> ni <code class="docutils literal notranslate"><span class="pre">C_ANT3</span></code>.</p></li>
 </ul>
 </section>
 <section id="concentracion-de-datos">
-<h2>Concentración de Datos<a class="headerlink" href="#concentracion-de-datos" title="Link to this heading">#</a></h2>
+<h3>Concentración de Datos<a class="headerlink" href="#concentracion-de-datos" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>Alta concentración en pocos valores:</strong> Los primeros 5 valores (<code class="docutils literal notranslate"><span class="pre">C539</span></code>, <code class="docutils literal notranslate"><span class="pre">C780</span></code>, <code class="docutils literal notranslate"><span class="pre">C80X</span></code>, <code class="docutils literal notranslate"><span class="pre">D649</span></code>, <code class="docutils literal notranslate"><span class="pre">N189</span></code>) suman más del <strong>56%</strong> del total de registros.</p></li>
 </ul>
@@ -1730,11 +1717,11 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </section>
 </section>
 <section id="analisis-distribuccion-de-los-top-10">
-<h1>Análisis Distribucción de los top 10<a class="headerlink" href="#analisis-distribuccion-de-los-top-10" title="Link to this heading">#</a></h1>
+<h2>Análisis Distribucción de los top 10<a class="headerlink" href="#analisis-distribuccion-de-los-top-10" title="Link to this heading">#</a></h2>
 <p>En <code class="docutils literal notranslate"><span class="pre">C_ANT1</span></code>, el valor más frecuente es <code class="docutils literal notranslate"><span class="pre">C539</span></code> (alrededor de 9000 casos), seguido de <code class="docutils literal notranslate"><span class="pre">C80X</span></code> (cerca de 3000) y <code class="docutils literal notranslate"><span class="pre">R688</span></code> (alrededor de 2000). En <code class="docutils literal notranslate"><span class="pre">C_ANT2</span></code>, <code class="docutils literal notranslate"><span class="pre">C539</span></code> también domina con más de 9000 casos, seguido de <code class="docutils literal notranslate"><span class="pre">N189</span></code> (cerca de 2000) y <code class="docutils literal notranslate"><span class="pre">D649</span></code> (alrededor de 1500). Para <code class="docutils literal notranslate"><span class="pre">C_ANT3</span></code>, <code class="docutils literal notranslate"><span class="pre">C539</span></code> sigue siendo el más común (cerca de 5000 casos), seguido de <code class="docutils literal notranslate"><span class="pre">D649</span></code> (alrededor de 2000) y <code class="docutils literal notranslate"><span class="pre">C798</span></code> (cerca de 1500).</p>
 <p>Se observa que <code class="docutils literal notranslate"><span class="pre">C539</span></code> es consistentemente el valor más frecuente en las tres columnas, lo que sugiere que esta condición o antecedente es predominante en el conjunto de datos.</p>
 <section id="cada-valor-en-c-ant12">
-<h2>Cada valor en C_ANT12<a class="headerlink" href="#cada-valor-en-c-ant12" title="Link to this heading">#</a></h2>
+<h3>Cada valor en C_ANT12<a class="headerlink" href="#cada-valor-en-c-ant12" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> 
@@ -1780,11 +1767,11 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </section>
 </section>
 <section id="analisis-del-grafico-de-distribuccion-c-ant12">
-<h1>Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT12</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribuccion-c-ant12" title="Link to this heading">#</a></h1>
+<h2>Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT12</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribuccion-c-ant12" title="Link to this heading">#</a></h2>
 <p>La distribución es altamente dominada con un valor que representa más del 60% de los casos (etiquetado como “C539”).</p>
 <p>A partir de este valor, las frecuencias disminuyen drásticamente, formando una cola larga con muchos valores que tienen frecuencias muy bajas (menores al 5%). Esto indica que <code class="docutils literal notranslate"><span class="pre">C539</span></code> es la condición o antecedente más común en los datos.</p>
 <section id="cada-valor-en-c-ant22">
-<h2>Cada valor en C_ANT22<a class="headerlink" href="#cada-valor-en-c-ant22" title="Link to this heading">#</a></h2>
+<h3>Cada valor en C_ANT22<a class="headerlink" href="#cada-valor-en-c-ant22" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> 
@@ -1830,11 +1817,11 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </section>
 </section>
 <section id="analisis-del-grafico-de-distribuccion-c-ant22">
-<h1>Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT22</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribuccion-c-ant22" title="Link to this heading">#</a></h1>
+<h2>Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT22</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribuccion-c-ant22" title="Link to this heading">#</a></h2>
 <p>La distribución es altamente dominada con un valor (etiquetado como “C539”) que representa más del 50% de los casos.</p>
 <p>Después de este valor, las frecuencias caen rápidamente, formando una cola larga con numerosos valores que tienen frecuencias muy bajas (generalmente por debajo del 5%). Esto indica que <code class="docutils literal notranslate"><span class="pre">C539</span></code> es la condición más común en los datos.</p>
 <section id="cada-valor-en-c-ant32">
-<h2>Cada valor en C_ANT32<a class="headerlink" href="#cada-valor-en-c-ant32" title="Link to this heading">#</a></h2>
+<h3>Cada valor en C_ANT32<a class="headerlink" href="#cada-valor-en-c-ant32" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frecuencia</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;C_ANT32&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -1879,11 +1866,11 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </section>
 </section>
 <section id="analisis-del-grafico-de-distribuccion-c-ant32">
-<h1>Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT32</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribuccion-c-ant32" title="Link to this heading">#</a></h1>
+<h2>Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT32</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribuccion-c-ant32" title="Link to this heading">#</a></h2>
 <p>La distribución es altamente dominada con un valor (<code class="docutils literal notranslate"><span class="pre">C539</span></code>) que representa aproximadamente el 20% de los casos.</p>
 <p>A partir de este valor, las frecuencias disminuyen rápidamente, formando una cola larga con muchos valores que tienen frecuencias bajas (generalmente por debajo del 2.5%). Esto indica que <code class="docutils literal notranslate"><span class="pre">C539</span></code> es la condición más común.</p>
 <section id="analisi-para-c-pat1-y-c-pat2">
-<h2>Analisi para C_PAT1 y C_PAT2<a class="headerlink" href="#analisi-para-c-pat1-y-c-pat2" title="Link to this heading">#</a></h2>
+<h3>Analisi para C_PAT1 y C_PAT2<a class="headerlink" href="#analisi-para-c-pat1-y-c-pat2" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8&#39;</span><span class="p">)</span>  
@@ -1935,7 +1922,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </section>
 </section>
 <section id="analisis-del-grafico-de-distribucion-de-c-pat1-y-c-pat2">
-<h1>Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_PAT1</span></code> y <code class="docutils literal notranslate"><span class="pre">C_PAT2</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribucion-de-c-pat1-y-c-pat2" title="Link to this heading">#</a></h1>
+<h2>Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_PAT1</span></code> y <code class="docutils literal notranslate"><span class="pre">C_PAT2</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribucion-de-c-pat1-y-c-pat2" title="Link to this heading">#</a></h2>
 <p>Distribución General</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">C539</span></code></strong> es el valor más frecuente en ambas columnas. En <code class="docutils literal notranslate"><span class="pre">C_PAT1</span></code> tiene alrededor de <strong>1750 apariciones</strong>, representando aproximadamente <strong>30%</strong> del total, mientras que en <code class="docutils literal notranslate"><span class="pre">C_PAT2</span></code> tiene cerca de <strong>70%</strong> de las apariciones (alrededor de 1400 casos).</p></li>
@@ -1947,7 +1934,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <li><p><strong>Valores con menor frecuencia:</strong> En <code class="docutils literal notranslate"><span class="pre">C_PAT1</span></code>, valores como <code class="docutils literal notranslate"><span class="pre">K830</span></code>, <code class="docutils literal notranslate"><span class="pre">E46</span></code>, y <code class="docutils literal notranslate"><span class="pre">E11</span></code> tienen frecuencias muy bajas (menores a 100). En <code class="docutils literal notranslate"><span class="pre">C_PAT2</span></code>, valores como <code class="docutils literal notranslate"><span class="pre">E46</span></code>, <code class="docutils literal notranslate"><span class="pre">E13</span></code>, y <code class="docutils literal notranslate"><span class="pre">N189</span></code> también tienen baja representación.</p></li>
 </ul>
 <section id="cada-valor-en-c-bas1">
-<h2>Cada valor en C_BAS1<a class="headerlink" href="#cada-valor-en-c-bas1" title="Link to this heading">#</a></h2>
+<h3>Cada valor en C_BAS1<a class="headerlink" href="#cada-valor-en-c-bas1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contar la frecuencia de valores en C_BAS1, excluyendo vacíos y comillas</span>
@@ -1994,7 +1981,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </section>
 </section>
 <section id="analisis-del-grafico-de-distribucion-de-c-bas1">
-<h1>Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_BAS1</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribucion-de-c-bas1" title="Link to this heading">#</a></h1>
+<h2>Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_BAS1</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribucion-de-c-bas1" title="Link to this heading">#</a></h2>
 <p>Distribución General</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">C539</span></code></strong> es el valor más frecuente en <code class="docutils literal notranslate"><span class="pre">C_BAS1</span></code>, con aproximadamente <strong>35,000 apariciones</strong>, representando más del <strong>60%</strong> del total de casos.</p></li>
@@ -2007,7 +1994,7 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 <li><p><strong>Valores con baja frecuencia:</strong> Códigos como <code class="docutils literal notranslate"><span class="pre">C530</span></code>, <code class="docutils literal notranslate"><span class="pre">C531</span></code>, <code class="docutils literal notranslate"><span class="pre">1800</span></code>, <code class="docutils literal notranslate"><span class="pre">C858</span></code>, <code class="docutils literal notranslate"><span class="pre">1898</span></code>, y <code class="docutils literal notranslate"><span class="pre">1801</span></code> tienen una representación mínima, con frecuencias cercanas a 0.</p></li>
 </ul>
 <section id="cada-valor-en-c-mcm1">
-<h2>Cada valor en C_MCM1<a class="headerlink" href="#cada-valor-en-c-mcm1" title="Link to this heading">#</a></h2>
+<h3>Cada valor en C_MCM1<a class="headerlink" href="#cada-valor-en-c-mcm1" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contar la frecuencia de valores en C_MCM1, excluyendo vacíos y comillas</span>
@@ -2050,14 +2037,14 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </section>
 </section>
 <section id="analisis-del-grafico-de-distribucion-de-c-mcm1">
-<h1>Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_MCM1</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribucion-de-c-mcm1" title="Link to this heading">#</a></h1>
+<h2>Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_MCM1</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribucion-de-c-mcm1" title="Link to this heading">#</a></h2>
 <p>Distribución General</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">C539</span></code></strong> es el valor más frecuente en <code class="docutils literal notranslate"><span class="pre">C_MCM1</span></code>, con aproximadamente <strong>200 apariciones</strong>, representando más del <strong>95%</strong> del total de casos.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">C858</span></code></strong> y <strong><code class="docutils literal notranslate"><span class="pre">C530</span></code></strong> tienen frecuencias mucho menores, con menos de <strong>5 apariciones</strong> cada uno, representando menos del <strong>2%</strong> del total.</p></li>
 </ul>
 <section id="cada-valor-en-idprofcer">
-<h2>Cada valor en IDPROFCER<a class="headerlink" href="#cada-valor-en-idprofcer" title="Link to this heading">#</a></h2>
+<h3>Cada valor en IDPROFCER<a class="headerlink" href="#cada-valor-en-idprofcer" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">crear_tabla_frecuencia</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columna</span><span class="o">=</span><span class="s1">&#39;IDPROFCER&#39;</span><span class="p">,</span> <span class="n">excluir_valores</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">]):</span>
@@ -2132,7 +2119,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </section>
 </section>
 <section id="analisis-de-la-distribucion-de-profesiones-que-determinaron-la-muerte-por-cancer-de-cervix-idprofcer">
-<h1>Análisis de la distribución de profesiones que determinaron la muerte por cáncer de cérvix (<code class="docutils literal notranslate"><span class="pre">IDPROFCER</span></code>)<a class="headerlink" href="#analisis-de-la-distribucion-de-profesiones-que-determinaron-la-muerte-por-cancer-de-cervix-idprofcer" title="Link to this heading">#</a></h1>
+<h2>Análisis de la distribución de profesiones que determinaron la muerte por cáncer de cérvix (<code class="docutils literal notranslate"><span class="pre">IDPROFCER</span></code>)<a class="headerlink" href="#analisis-de-la-distribucion-de-profesiones-que-determinaron-la-muerte-por-cancer-de-cervix-idprofcer" title="Link to this heading">#</a></h2>
 <p>Distribución General</p>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">Médico</span></code></strong> es la profesión más frecuente, con <strong>19,637 casos</strong>, representando el <strong>99.73%</strong> del total de determinaciones de muerte por cáncer de cérvix.</p></li>
@@ -2146,7 +2133,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <li><p><strong>Casos sin información clara:</strong> El valor 9.0 indica una pequeña proporción de casos donde no se especifica la profesión, lo que podría señalar datos incompletos.</p></li>
 </ul>
 <section id="cada-valor-en-causa-666-667">
-<h2>Cada valor en CAUSA_666_667<a class="headerlink" href="#cada-valor-en-causa-666-667" title="Link to this heading">#</a></h2>
+<h3>Cada valor en CAUSA_666_667<a class="headerlink" href="#cada-valor-en-causa-666-667" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frecuencia_causa</span> <span class="o">=</span> <span class="n">df_juan</span><span class="p">[</span><span class="s1">&#39;CAUSA_666_667&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -2186,16 +2173,16 @@ Passing `palette` without assigning `hue` is deprecated and will be removed in v
 </section>
 </section>
 <section id="analisis-del-grafico-de-distribucion-de-causa-666-667">
-<h1>Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">CAUSA_666_667</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribucion-de-causa-666-667" title="Link to this heading">#</a></h1>
+<h2>Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">CAUSA_666_667</span></code><a class="headerlink" href="#analisis-del-grafico-de-distribucion-de-causa-666-667" title="Link to this heading">#</a></h2>
 <section id="id1">
-<h2>Distribución General<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h3>Distribución General<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>El valor <strong>209</strong> es el más frecuente en <code class="docutils literal notranslate"><span class="pre">CAUSA_666_667</span></code>, con aproximadamente <strong>30,000 apariciones</strong>, representando más del <strong>90%</strong> del total de casos.</p></li>
 <li><p>El valor <strong>207</strong> tiene una frecuencia mucho menor, con cerca de <strong>5,000 apariciones</strong>, lo que equivale a aproximadamente <strong>10%</strong> del total.</p></li>
 </ul>
 </section>
 <section id="cada-valor-en-edad2">
-<h2>Cada valor en EDAD2<a class="headerlink" href="#cada-valor-en-edad2" title="Link to this heading">#</a></h2>
+<h3>Cada valor en EDAD2<a class="headerlink" href="#cada-valor-en-edad2" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calcular la frecuencia de EDAD2</span>
@@ -2294,7 +2281,7 @@ Name: count, dtype: int64
 </section>
 </section>
 <section id="analisis-del-grafico-de-distribucion-de-edad2-edad-en-rangos-quinquenales">
-<h1>Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">EDAD2</span></code> (Edad en Rangos Quinquenales)<a class="headerlink" href="#analisis-del-grafico-de-distribucion-de-edad2-edad-en-rangos-quinquenales" title="Link to this heading">#</a></h1>
+<h2>Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">EDAD2</span></code> (Edad en Rangos Quinquenales)<a class="headerlink" href="#analisis-del-grafico-de-distribucion-de-edad2-edad-en-rangos-quinquenales" title="Link to this heading">#</a></h2>
 <p>Distribución General</p>
 <ul class="simple">
 <li><p>El rango <strong>15-19</strong> es el más frecuente, con <strong>5,213 casos</strong>, representando aproximadamente el <strong>26%</strong> del total.</p></li>
@@ -2308,6 +2295,7 @@ Name: count, dtype: int64
 <li><p><strong>Baja representación en menores:</strong> Los rangos de 0-14 años tienen una presencia mínima, sugiriendo que los casos en estas edades son extremadamente raros.</p></li>
 <li><p><strong>Distribución en edades avanzadas:</strong> A partir de los 65 años, las frecuencias disminuyen gradualmente, con una caída notable después de los 80 años.</p></li>
 </ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2374,63 +2362,62 @@ Name: count, dtype: int64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code></a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-general-del-dataset">Descripción General del Dataset</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-de-datos-faltantes">Analisi de datos faltantes</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-resultados">Interpretación de Resultados</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-dir12">Cada valor en C_DIR12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto-de-variables-en-el-dataframe-df-juan">Contexto de Variables en el DataFrame <code class="docutils literal notranslate"><span class="pre">df_juan</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion-general-del-dataset">Descripción General del Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-de-datos-faltantes">Analisi de datos faltantes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-resultados">Interpretación de Resultados</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-dir12">Cada valor en C_DIR12</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-distribucion-de-valores-en-c-dir12">Análisis de la distribución de valores en C_DIR12</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-c-ant1-c-ant2-c-ant3">Analisis de “C_ANT1”, “C_ANT2”, “C_ANT3”</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant1">1. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT1</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant2">2. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT2</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant3">3. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT3</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-general">Distribución General</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#patrones-observados">Patrones Observados</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concentracion-de-datos">Concentración de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-distribucion-de-valores-en-c-dir12">Análisis de la distribución de valores en C_DIR12</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-c-ant1-c-ant2-c-ant3">Analisis de “C_ANT1”, “C_ANT2”, “C_ANT3”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant1">1. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT1</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant2">2. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT2</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-en-c-ant3">3. Distribución en <code class="docutils literal notranslate"><span class="pre">C_ANT3</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribucion-general">Distribución General</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#patrones-observados">Patrones Observados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concentracion-de-datos">Concentración de Datos</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-distribuccion-de-los-top-10">Análisis Distribucción de los top 10</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant12">Cada valor en C_ANT12</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-distribuccion-de-los-top-10">Análisis Distribucción de los top 10</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant12">Cada valor en C_ANT12</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant12">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT12</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant22">Cada valor en C_ANT22</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant12">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT12</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant22">Cada valor en C_ANT22</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant22">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT22</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant32">Cada valor en C_ANT32</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant22">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT22</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-ant32">Cada valor en C_ANT32</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant32">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT32</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-para-c-pat1-y-c-pat2">Analisi para C_PAT1 y C_PAT2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribuccion-c-ant32">Análisis del gráfico de distribucción <code class="docutils literal notranslate"><span class="pre">C_ANT32</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisi-para-c-pat1-y-c-pat2">Analisi para C_PAT1 y C_PAT2</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-pat1-y-c-pat2">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_PAT1</span></code> y <code class="docutils literal notranslate"><span class="pre">C_PAT2</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-bas1">Cada valor en C_BAS1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-pat1-y-c-pat2">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_PAT1</span></code> y <code class="docutils literal notranslate"><span class="pre">C_PAT2</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-bas1">Cada valor en C_BAS1</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-bas1">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_BAS1</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-mcm1">Cada valor en C_MCM1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-bas1">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_BAS1</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-c-mcm1">Cada valor en C_MCM1</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-mcm1">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_MCM1</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-idprofcer">Cada valor en IDPROFCER</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-c-mcm1">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">C_MCM1</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-idprofcer">Cada valor en IDPROFCER</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-distribucion-de-profesiones-que-determinaron-la-muerte-por-cancer-de-cervix-idprofcer">Análisis de la distribución de profesiones que determinaron la muerte por cáncer de cérvix (<code class="docutils literal notranslate"><span class="pre">IDPROFCER</span></code>)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-causa-666-667">Cada valor en CAUSA_666_667</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-la-distribucion-de-profesiones-que-determinaron-la-muerte-por-cancer-de-cervix-idprofcer">Análisis de la distribución de profesiones que determinaron la muerte por cáncer de cérvix (<code class="docutils literal notranslate"><span class="pre">IDPROFCER</span></code>)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-causa-666-667">Cada valor en CAUSA_666_667</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-causa-666-667">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">CAUSA_666_667</span></code></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Distribución General</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-edad2">Cada valor en EDAD2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-causa-666-667">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">CAUSA_666_667</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Distribución General</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cada-valor-en-edad2">Cada valor en EDAD2</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-edad2-edad-en-rangos-quinquenales">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">EDAD2</span></code> (Edad en Rangos Quinquenales)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-del-grafico-de-distribucion-de-edad2-edad-en-rangos-quinquenales">Análisis del gráfico de distribución de <code class="docutils literal notranslate"><span class="pre">EDAD2</span></code> (Edad en Rangos Quinquenales)</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
