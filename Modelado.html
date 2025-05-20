@@ -384,6 +384,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-agrupacion-de-los-clusteres-rurales">Resumen y agrupación de los clusteres rurales</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubicacion-geografica-de-cada-cluster">Ubicación geográfica de cada cluster</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-para-zona-urbana">Cluster para zona urbana</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-resultados-entre-clusteres">Comparación de resultados entre clusteres</a></li>
 </ul>
 </li>
 </ul>
@@ -428,6 +429,7 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\henry\miniconda3\envs\ml_
 <span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.cm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cm</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">go</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">plotly.subplots</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_subplots</span>
@@ -2421,6 +2423,653 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 </div>
 <p>Mostrar los clusteres en el mapa de colombia</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Normalización como en el caso rural</span>
+<span class="n">urbana_data</span><span class="p">[</span><span class="s2">&quot;MUNICIPIO DE RESIDENCIA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">urbana_data</span><span class="p">[</span><span class="s2">&quot;MUNICIPIO DE RESIDENCIA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">normalizar</span><span class="p">)</span>
+<span class="n">colombia</span><span class="p">[</span><span class="s2">&quot;MPIO_CNMBR&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">colombia</span><span class="p">[</span><span class="s2">&quot;MPIO_CNMBR&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">normalizar</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\henry\AppData\Local\Temp\ipykernel_40100\3403225806.py:2: SettingWithCopyWarning:
+
+
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Agrupar por municipio y obtener el cluster dominante</span>
+<span class="n">cluster_urbano_por_mpio</span> <span class="o">=</span> <span class="n">urbana_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;MUNICIPIO DE RESIDENCIA&quot;</span><span class="p">)[</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">]</span> \
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">idxmax</span><span class="p">())</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Renombrar para que coincida con shapefile</span>
+<span class="n">cluster_urbano_por_mpio</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;MUNICIPIO DE RESIDENCIA&quot;</span><span class="p">:</span> <span class="s2">&quot;MPIO_CNMBR&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colombia_urbana</span> <span class="o">=</span> <span class="n">colombia</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">cluster_urbano_por_mpio</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;MPIO_CNMBR&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">colombia_urbana</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Set3&quot;</span><span class="p">,</span>
+    <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Distribución de Clusters por Municipio (Zona Urbana)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/79fb653a229f38813bac02746d67238c2b3b42d7fd923b633a37c7d9d94b0053.png" src="_images/79fb653a229f38813bac02746d67238c2b3b42d7fd923b633a37c7d9d94b0053.png" />
+</div>
+</div>
+</section>
+<section id="comparacion-de-resultados-entre-clusteres">
+<h3>Comparación de resultados entre clusteres<a class="headerlink" href="#comparacion-de-resultados-entre-clusteres" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_data</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;RURAL&quot;</span>
+<span class="n">urbana_data</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;URBANA&quot;</span>
+
+<span class="c1"># Unir ambos datasets</span>
+<span class="n">comparacion_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">rural_data</span><span class="p">,</span> <span class="n">urbana_data</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\henry\AppData\Local\Temp\ipykernel_40100\1432694004.py:1: SettingWithCopyWarning:
+
+
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+
+C:\Users\henry\AppData\Local\Temp\ipykernel_40100\1432694004.py:2: SettingWithCopyWarning:
+
+
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Promedios numéricos</span>
+<span class="n">summary_num</span> <span class="o">=</span> <span class="n">comparacion_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span> <span class="s2">&quot;CLUSTER&quot;</span><span class="p">])[[</span><span class="s2">&quot;PIB&quot;</span><span class="p">,</span> <span class="s2">&quot;NUM_COMORBILIDADES&quot;</span><span class="p">,</span> <span class="s2">&quot;TIENE_COMORBILIDAD&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Categorías más comunes</span>
+<span class="n">summary_cat</span> <span class="o">=</span> <span class="n">comparacion_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span> <span class="s2">&quot;CLUSTER&quot;</span><span class="p">])[[</span><span class="s2">&quot;NIVEL_EDUCACION&quot;</span><span class="p">,</span> <span class="s2">&quot;ESTADO_CIVIL&quot;</span><span class="p">,</span> <span class="s2">&quot;ETNIA&quot;</span><span class="p">,</span> <span class="s2">&quot;SEGURIDAD SOCIAL&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_num</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>PIB</th>
+      <th>NUM_COMORBILIDADES</th>
+      <th>TIENE_COMORBILIDAD</th>
+    </tr>
+    <tr>
+      <th>ZONA</th>
+      <th>CLUSTER</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">RURAL</th>
+      <th>0</th>
+      <td>24737.945138</td>
+      <td>2.486524</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>221513.898662</td>
+      <td>0.873805</td>
+      <td>0.338432</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>16047.992037</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">URBANA</th>
+      <th>0</th>
+      <td>45890.203780</td>
+      <td>2.565926</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>44287.857854</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_cat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>NIVEL_EDUCACION</th>
+      <th>ESTADO_CIVIL</th>
+      <th>ETNIA</th>
+      <th>SEGURIDAD SOCIAL</th>
+    </tr>
+    <tr>
+      <th>ZONA</th>
+      <th>CLUSTER</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">RURAL</th>
+      <th>0</th>
+      <td>Primaria</td>
+      <td>Soltero</td>
+      <td>Ninguno de las anteriores</td>
+      <td>Subsidiado</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Primaria</td>
+      <td>Soltero</td>
+      <td>Ninguno de las anteriores</td>
+      <td>Subsidiado</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Primaria</td>
+      <td>Soltero</td>
+      <td>Ninguno de las anteriores</td>
+      <td>Subsidiado</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">URBANA</th>
+      <th>0</th>
+      <td>Primaria</td>
+      <td>Soltero</td>
+      <td>Ninguno de las anteriores</td>
+      <td>Subsidiado</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Primaria</td>
+      <td>Soltero</td>
+      <td>Ninguno de las anteriores</td>
+      <td>Subsidiado</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conteo de observaciones por cluster en cada zona</span>
+<span class="n">conteos</span> <span class="o">=</span> <span class="n">comparacion_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span> <span class="s2">&quot;CLUSTER&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;CUENTAS&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conteos</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>CLUSTER</th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+    </tr>
+    <tr>
+      <th>ZONA</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>RURAL</th>
+      <td>5751</td>
+      <td>523</td>
+      <td>3250</td>
+    </tr>
+    <tr>
+      <th>URBANA</th>
+      <td>28039</td>
+      <td>21372</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtener zonas únicas</span>
+<span class="n">zonas</span> <span class="o">=</span> <span class="n">conteos</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">zonas</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># Crear colores azules monocromáticos</span>
+<span class="n">num_clusters</span> <span class="o">=</span> <span class="n">conteos</span><span class="p">[</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">Blues</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="n">num_clusters</span><span class="p">))</span>  <span class="c1"># Tonos intermedios a oscuros</span>
+
+<span class="c1"># Crear pie chart por zona</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">zona</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">zonas</span><span class="p">):</span>
+    <span class="n">data_zona</span> <span class="o">=</span> <span class="n">conteos</span><span class="p">[</span><span class="n">conteos</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">zona</span><span class="p">]</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span>
+        <span class="n">data_zona</span><span class="p">[</span><span class="s2">&quot;CUENTAS&quot;</span><span class="p">],</span>
+        <span class="n">labels</span><span class="o">=</span><span class="n">data_zona</span><span class="p">[</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">],</span>
+        <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">startangle</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+        <span class="n">colors</span><span class="o">=</span><span class="n">colors</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">data_zona</span><span class="p">)]</span>  <span class="c1"># Asignar colores a los clusters presentes</span>
+    <span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribución de Clusters - Zona </span><span class="si">{</span><span class="n">zona</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/cd69827c03a4afe7020aa86e42f511873cef8d4cf7e7bd936b7ab746f2f03e52.png" src="_images/cd69827c03a4afe7020aa86e42f511873cef8d4cf7e7bd936b7ab746f2f03e52.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparación de nivel educativo por zona con escalas propias</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">comparacion_data</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;NIVEL_EDUCACION&quot;</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">,</span>
+    <span class="n">col_wrap</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># ← esto permite escalas independientes</span>
+<span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Distribución de Nivel Educativo por Zona y Cluster (Escala independiente)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4435242827a36408d3c2cca5a58b97014d589de72c2632a43c4f3efd271ce0c6.png" src="_images/4435242827a36408d3c2cca5a58b97014d589de72c2632a43c4f3efd271ce0c6.png" />
+</div>
+</div>
+<p>Comparara seguridad social entre clusteres</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resumen_seguridad</span> <span class="o">=</span> <span class="n">comparacion_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span> <span class="s2">&quot;CLUSTER&quot;</span><span class="p">])[</span><span class="s2">&quot;SEGURIDAD SOCIAL&quot;</span><span class="p">]</span> \
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resumen_seguridad</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ZONA</th>
+      <th>CLUSTER</th>
+      <th>SEGURIDAD SOCIAL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RURAL</td>
+      <td>0</td>
+      <td>Subsidiado</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RURAL</td>
+      <td>1</td>
+      <td>Subsidiado</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>RURAL</td>
+      <td>2</td>
+      <td>Subsidiado</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>URBANA</td>
+      <td>0</td>
+      <td>Subsidiado</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>URBANA</td>
+      <td>1</td>
+      <td>Subsidiado</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">comparacion_data</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;SEGURIDAD SOCIAL&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span>
+<span class="p">)</span>
+
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Distribución de Seguridad Social por Zona y Cluster&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7af1b14b7b84ed6fa79c9dbfeafe04d221baf37cadd1f8157174ef3a07d40c71.png" src="_images/7af1b14b7b84ed6fa79c9dbfeafe04d221baf37cadd1f8157174ef3a07d40c71.png" />
+</div>
+</div>
+<p>Comparación de estado civil y etnia</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resumen_etnia</span> <span class="o">=</span> <span class="n">comparacion_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span> <span class="s2">&quot;CLUSTER&quot;</span><span class="p">])[</span><span class="s2">&quot;ETNIA&quot;</span><span class="p">]</span> \
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ETNIA_DOMINANTE&quot;</span><span class="p">)</span>
+
+<span class="n">resumen_estado_civil</span> <span class="o">=</span> <span class="n">comparacion_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span> <span class="s2">&quot;CLUSTER&quot;</span><span class="p">])[</span><span class="s2">&quot;ESTADO_CIVIL&quot;</span><span class="p">]</span> \
+    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;ESTADO_CIVIL_DOMINANTE&quot;</span><span class="p">)</span>
+
+<span class="c1"># Unir ambas</span>
+<span class="n">resumen_categorico</span> <span class="o">=</span> <span class="n">resumen_etnia</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">resumen_estado_civil</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span> <span class="s2">&quot;CLUSTER&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resumen_categorico</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ZONA</th>
+      <th>CLUSTER</th>
+      <th>ETNIA_DOMINANTE</th>
+      <th>ESTADO_CIVIL_DOMINANTE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>RURAL</td>
+      <td>0</td>
+      <td>Ninguno de las anteriores</td>
+      <td>Soltero</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>RURAL</td>
+      <td>1</td>
+      <td>Ninguno de las anteriores</td>
+      <td>Soltero</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>RURAL</td>
+      <td>2</td>
+      <td>Ninguno de las anteriores</td>
+      <td>Soltero</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>URBANA</td>
+      <td>0</td>
+      <td>Ninguno de las anteriores</td>
+      <td>Soltero</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>URBANA</td>
+      <td>1</td>
+      <td>Ninguno de las anteriores</td>
+      <td>Soltero</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tabla_etnia</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">comparacion_data</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">],</span> <span class="n">comparacion_data</span><span class="p">[</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">]],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">comparacion_data</span><span class="p">[</span><span class="s2">&quot;ETNIA&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Conteo de estado civil por cluster y zona</span>
+<span class="n">tabla_estado_civil</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="n">comparacion_data</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">],</span> <span class="n">comparacion_data</span><span class="p">[</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">]],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">comparacion_data</span><span class="p">[</span><span class="s2">&quot;ESTADO_CIVIL&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">comparacion_data</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;ETNIA&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span>
+<span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Distribución de ETNIA por Zona y Cluster&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3c4158ab4637a1594a9572fd14b729a1f3f3da72202885e00e07da0bc625776d.png" src="_images/3c4158ab4637a1594a9572fd14b729a1f3f3da72202885e00e07da0bc625776d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">comparacion_data</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;ESTADO_CIVIL&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span>
+<span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Distribución de Estado Civil por Zona y Cluster&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6d4a12e327e3be7f69455d9453d09ec0a700da57a4682f5988f2a9f9e8fc9fb4.png" src="_images/6d4a12e327e3be7f69455d9453d09ec0a700da57a4682f5988f2a9f9e8fc9fb4.png" />
+</div>
+</div>
+<p>Comorbilidades</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">comparacion_data</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;CLUSTER&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;NUM_COMORBILIDADES&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;ZONA&quot;</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Set2&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Número de Comorbilidades por Cluster y Zona&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ad5a32825c96eb5e89618425d7e6f25c09d9f148175c8ef9c777005fe070ad94.png" src="_images/ad5a32825c96eb5e89618425d7e6f25c09d9f148175c8ef9c777005fe070ad94.png" />
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -2486,6 +3135,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resumen-y-agrupacion-de-los-clusteres-rurales">Resumen y agrupación de los clusteres rurales</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ubicacion-geografica-de-cada-cluster">Ubicación geográfica de cada cluster</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cluster-para-zona-urbana">Cluster para zona urbana</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparacion-de-resultados-entre-clusteres">Comparación de resultados entre clusteres</a></li>
 </ul>
 </li>
 </ul>
