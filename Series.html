@@ -1,0 +1,2285 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Modelo de Predicción Para Tasa de Mortalidad Estandarizada Rurales vs Urbanas &#8212; Proyecto seminario Investigativo</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Series';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_uninorte.png" class="logo__image only-light" alt="Proyecto seminario Investigativo - Home"/>
+    <script>document.write(`<img src="_static/logo_uninorte.png" class="logo__image only-dark" alt="Proyecto seminario Investigativo - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Proyecto final - Seminario Investigativo
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="EDA.html">Cargue y Limpieza de los datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnivariadoBivariado.html">Análisis Univariado Y Bivariado los Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tasas.html">Tasas de riesgo y mortalidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelado.html">Análisis y modelamiento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Predicciones.html">Análisis de Componentes Principales Para Clusteres</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FSeries.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Series.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Modelo de Predicción Para Tasa de Mortalidad Estandarizada Rurales vs Urbanas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-prediccion-de-la-tasa-de-mortalidad-estandarizada-por-zona-rural-vs-urbana">Modelo de predicción de la tasa de mortalidad estandarizada por zona (Rural vs Urbana)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-y-entrenamiento-del-modelo">Definición y Entrenamiento del Modelo</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="modelo-de-prediccion-para-tasa-de-mortalidad-estandarizada-rurales-vs-urbanas">
+<h1>Modelo de Predicción Para Tasa de Mortalidad Estandarizada Rurales vs Urbanas<a class="headerlink" href="#modelo-de-prediccion-para-tasa-de-mortalidad-estandarizada-rurales-vs-urbanas" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pyreadstat
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: pyreadstat in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (1.2.8)
+Requirement already satisfied: pandas&gt;=1.2.0 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pyreadstat) (2.2.3)
+Requirement already satisfied: numpy&gt;=1.22.4 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (1.26.4)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2025.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from pandas&gt;=1.2.0-&gt;pyreadstat) (2025.1)
+Requirement already satisfied: six&gt;=1.5 in c:\users\henry\miniconda3\envs\ml_venv\lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.2.0-&gt;pyreadstat) (1.17.0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.0.1 -&gt; 25.1.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">VotingRegressor</span><span class="p">,</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xgb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/henry/Documents/jbook/Cacervix/datos/&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;data_final_corregido.xlsx&#39;</span><span class="p">)</span>
+<span class="c1"># rural_data_cluster = pd.read_excel(data_path + &quot;rural_data_cluster_general_k3.xlsx&quot;)</span>
+<span class="c1"># urbana_data_cluster = pd.read_excel(data_path + &quot;urban_data_cluster_general_k2.xlsx&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;AREA DE RESIDENCIA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Cabecera municipal&#39;,
+       &#39;Centro poblado (Inspección, corregimiento o caserío)&#39;,
+       &#39;Rural disperso&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_raw</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;AREA DE RESIDENCIA&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Cabecera municipal&quot;</span><span class="p">]</span>
+<span class="n">urbana_raw</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;AREA DE RESIDENCIA&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Cabecera municipal&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;AÑO&#39;</span><span class="p">,</span> <span class="s1">&#39;DEPARTAMENTO&#39;</span><span class="p">,</span> <span class="s1">&#39;Total Mujeres&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AÑO</th>
+      <th>DEPARTAMENTO</th>
+      <th>Total Mujeres</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1985</td>
+      <td>META</td>
+      <td>192905</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1985</td>
+      <td>BOYACÁ</td>
+      <td>546762</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1985</td>
+      <td>META</td>
+      <td>192905</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1985</td>
+      <td>HUILA</td>
+      <td>345484</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1985</td>
+      <td>HUILA</td>
+      <td>345484</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>58930</th>
+      <td>2023</td>
+      <td>RISARALDA</td>
+      <td>508237</td>
+    </tr>
+    <tr>
+      <th>58931</th>
+      <td>2023</td>
+      <td>AMAZONAS</td>
+      <td>41524</td>
+    </tr>
+    <tr>
+      <th>58932</th>
+      <td>2023</td>
+      <td>META</td>
+      <td>562262</td>
+    </tr>
+    <tr>
+      <th>58933</th>
+      <td>2023</td>
+      <td>VALLE DEL CAUCA</td>
+      <td>2436310</td>
+    </tr>
+    <tr>
+      <th>58934</th>
+      <td>2023</td>
+      <td>BOGOTÁ, D.C.</td>
+      <td>4120589</td>
+    </tr>
+  </tbody>
+</table>
+<p>58935 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calcular_tasas</span><span class="p">(</span><span class="n">df_zona</span><span class="p">,</span> <span class="n">nombre_zona</span><span class="p">):</span>
+    <span class="n">resumen</span> <span class="o">=</span> <span class="n">df_zona</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;AÑO&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPARTAMENTO DE RESIDENCIA&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">DEFUNCIONES</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;AÑO&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">),</span>
+        <span class="n">TOTAL_MUJERES</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Total Mujeres&quot;</span><span class="p">,</span> <span class="s2">&quot;first&quot;</span><span class="p">)</span>  <span class="c1"># tomar solo una por grupo</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+    <span class="n">resumen</span><span class="p">[</span><span class="s2">&quot;TASA_MORTALIDAD&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">resumen</span><span class="p">[</span><span class="s2">&quot;DEFUNCIONES&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">resumen</span><span class="p">[</span><span class="s2">&quot;TOTAL_MUJERES&quot;</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100000</span>
+    <span class="n">resumen</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nombre_zona</span>
+    <span class="k">return</span> <span class="n">resumen</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tasas_rural</span> <span class="o">=</span> <span class="n">calcular_tasas</span><span class="p">(</span><span class="n">rural_raw</span><span class="p">,</span> <span class="s2">&quot;RURAL&quot;</span><span class="p">)</span>
+<span class="n">tasas_urbana</span> <span class="o">=</span> <span class="n">calcular_tasas</span><span class="p">(</span><span class="n">urbana_raw</span><span class="p">,</span> <span class="s2">&quot;URBANA&quot;</span><span class="p">)</span>
+<span class="n">tasas_mortalidad</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tasas_rural</span><span class="p">,</span> <span class="n">tasas_urbana</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">tasas_unicas</span> <span class="o">=</span> <span class="n">tasas_mortalidad</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AÑO&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPARTAMENTO DE RESIDENCIA&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span>
+    <span class="n">tasas_unicas</span><span class="p">[[</span><span class="s2">&quot;AÑO&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPARTAMENTO DE RESIDENCIA&quot;</span><span class="p">,</span> <span class="s2">&quot;TASA_MORTALIDAD&quot;</span><span class="p">]],</span>
+    <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AÑO&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPARTAMENTO DE RESIDENCIA&quot;</span><span class="p">],</span>
+    <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;AREA DE RESIDENCIA&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Cabecera municipal&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">urbana_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;AREA DE RESIDENCIA&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Cabecera municipal&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_data</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">33</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DEPARTAMENTO</th>
+      <th>DEPARTAMENTO DE RESIDENCIA</th>
+      <th>MUNICIPIO</th>
+      <th>MUNICIPIO DE RESIDENCIA</th>
+      <th>AÑO</th>
+      <th>MES</th>
+      <th>SEX</th>
+      <th>ESTADO_CIVIL</th>
+      <th>NIVEL_EDUCACION</th>
+      <th>GRUPO_ETARIO</th>
+      <th>...</th>
+      <th>C_ANT3_DESCRIPCION</th>
+      <th>C_ANT2_DESCRIPCION</th>
+      <th>C_ANT1_DESCRIPCION</th>
+      <th>C_DIR1_DESCRIPCION</th>
+      <th>AÑO.1</th>
+      <th>PIB</th>
+      <th>Total Mujeres</th>
+      <th>TIENE_COMORBILIDAD</th>
+      <th>NUM_COMORBILIDADES</th>
+      <th>TASA_MORTALIDAD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>58773</th>
+      <td>SUCRE</td>
+      <td>SUCRE</td>
+      <td>SINCELEJO</td>
+      <td>SINCELEJO</td>
+      <td>2023</td>
+      <td>10</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>55-59</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>12705.0</td>
+      <td>495605</td>
+      <td>False</td>
+      <td>0</td>
+      <td>2.219509</td>
+    </tr>
+    <tr>
+      <th>58775</th>
+      <td>NARIÑO</td>
+      <td>NARIÑO</td>
+      <td>PASTO</td>
+      <td>PASTO</td>
+      <td>2023</td>
+      <td>10</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Primaria</td>
+      <td>80-84</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>23455.0</td>
+      <td>871313</td>
+      <td>False</td>
+      <td>0</td>
+      <td>2.754464</td>
+    </tr>
+    <tr>
+      <th>58780</th>
+      <td>CÓRDOBA</td>
+      <td>CÓRDOBA</td>
+      <td>MONTERÍA</td>
+      <td>MONTERÍA</td>
+      <td>2023</td>
+      <td>10</td>
+      <td>Femenino</td>
+      <td>Viudo</td>
+      <td>Primaria</td>
+      <td>65-69</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>28303.0</td>
+      <td>955208</td>
+      <td>False</td>
+      <td>0</td>
+      <td>5.339151</td>
+    </tr>
+    <tr>
+      <th>58782</th>
+      <td>BOGOTÁ, D.C.</td>
+      <td>BOYACÁ</td>
+      <td>BOGOTÁ D.C.</td>
+      <td>BOGOTÁ D.C.</td>
+      <td>2023</td>
+      <td>2</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>45-49</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>395438.0</td>
+      <td>4120589</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.975564</td>
+    </tr>
+    <tr>
+      <th>58784</th>
+      <td>NARIÑO</td>
+      <td>NARIÑO</td>
+      <td>PASTO</td>
+      <td>PASTO</td>
+      <td>2023</td>
+      <td>11</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Ninguno</td>
+      <td>75-79</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>23455.0</td>
+      <td>871313</td>
+      <td>False</td>
+      <td>0</td>
+      <td>2.754464</td>
+    </tr>
+    <tr>
+      <th>58786</th>
+      <td>ATLÁNTICO</td>
+      <td>ATLÁNTICO</td>
+      <td>BARRANQUILLA</td>
+      <td>BARRANQUILLA</td>
+      <td>2023</td>
+      <td>11</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>50-54</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>70862.0</td>
+      <td>1435050</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.766524</td>
+    </tr>
+    <tr>
+      <th>58787</th>
+      <td>ARAUCA</td>
+      <td>ARAUCA</td>
+      <td>ARAUCA</td>
+      <td>ARAUCA</td>
+      <td>2023</td>
+      <td>11</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Secundaria</td>
+      <td>65-69</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>8743.0</td>
+      <td>156828</td>
+      <td>False</td>
+      <td>0</td>
+      <td>3.825847</td>
+    </tr>
+    <tr>
+      <th>58790</th>
+      <td>PUTUMAYO</td>
+      <td>PUTUMAYO</td>
+      <td>MOCOA</td>
+      <td>MOCOA</td>
+      <td>2023</td>
+      <td>11</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Superior</td>
+      <td>55-59</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>5834.0</td>
+      <td>191824</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.688616</td>
+    </tr>
+    <tr>
+      <th>58793</th>
+      <td>RISARALDA</td>
+      <td>RISARALDA</td>
+      <td>PEREIRA</td>
+      <td>PEREIRA</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Viudo</td>
+      <td>Primaria</td>
+      <td>55-59</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>26404.0</td>
+      <td>508237</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.574069</td>
+    </tr>
+    <tr>
+      <th>58794</th>
+      <td>SANTANDER</td>
+      <td>SANTANDER</td>
+      <td>BUCARAMANGA</td>
+      <td>BUCARAMANGA</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Secundaria</td>
+      <td>45-49</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>101446.0</td>
+      <td>1204067</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.830519</td>
+    </tr>
+    <tr>
+      <th>58796</th>
+      <td>ATLÁNTICO</td>
+      <td>ATLÁNTICO</td>
+      <td>BARRANQUILLA</td>
+      <td>BARRANQUILLA</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Secundaria</td>
+      <td>45-49</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>70862.0</td>
+      <td>1435050</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.766524</td>
+    </tr>
+    <tr>
+      <th>58802</th>
+      <td>QUINDÍO</td>
+      <td>QUINDÍO</td>
+      <td>ARMENIA</td>
+      <td>ARMENIA</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Secundaria</td>
+      <td>65-69</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>13317.0</td>
+      <td>291824</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.685345</td>
+    </tr>
+    <tr>
+      <th>58812</th>
+      <td>MAGDALENA</td>
+      <td>BOLÍVAR</td>
+      <td>SANTA MARTA</td>
+      <td>SANTA MARTA</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Primaria</td>
+      <td>50-54</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>21914.0</td>
+      <td>748597</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.971598</td>
+    </tr>
+    <tr>
+      <th>58817</th>
+      <td>CUNDINAMARCA</td>
+      <td>CUNDINAMARCA</td>
+      <td>BOGOTÁ</td>
+      <td>BOGOTÁ</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Primaria</td>
+      <td>70-74</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>99945.0</td>
+      <td>1745031</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.432639</td>
+    </tr>
+    <tr>
+      <th>58822</th>
+      <td>VALLE DEL CAUCA</td>
+      <td>VALLE DEL CAUCA</td>
+      <td>CALI</td>
+      <td>CALI</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Secundaria</td>
+      <td>50-54</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>153564.0</td>
+      <td>2436310</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.944051</td>
+    </tr>
+    <tr>
+      <th>58823</th>
+      <td>VALLE DEL CAUCA</td>
+      <td>VALLE DEL CAUCA</td>
+      <td>CALI</td>
+      <td>CALI</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>55-59</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>153564.0</td>
+      <td>2436310</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.944051</td>
+    </tr>
+    <tr>
+      <th>58828</th>
+      <td>LA GUAJIRA</td>
+      <td>LA GUAJIRA</td>
+      <td>RIOHACHA</td>
+      <td>RIOHACHA</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>35-39</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>20346.0</td>
+      <td>528588</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.135100</td>
+    </tr>
+    <tr>
+      <th>58830</th>
+      <td>ANTIOQUIA</td>
+      <td>ANTIOQUIA</td>
+      <td>MEDELLÍN</td>
+      <td>MEDELLÍN</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>60-64</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>231122.0</td>
+      <td>3543877</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.987619</td>
+    </tr>
+    <tr>
+      <th>58833</th>
+      <td>BOYACÁ</td>
+      <td>BOYACÁ</td>
+      <td>TUNJA</td>
+      <td>TUNJA</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Primaria</td>
+      <td>80-84</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>42277.0</td>
+      <td>658040</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.975564</td>
+    </tr>
+    <tr>
+      <th>58834</th>
+      <td>BOYACÁ</td>
+      <td>BOYACÁ</td>
+      <td>TUNJA</td>
+      <td>TUNJA</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Casado</td>
+      <td>Primaria</td>
+      <td>70-74</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>42277.0</td>
+      <td>658040</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.975564</td>
+    </tr>
+    <tr>
+      <th>58836</th>
+      <td>BOYACÁ</td>
+      <td>BOYACÁ</td>
+      <td>TUNJA</td>
+      <td>TUNJA</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Secundaria</td>
+      <td>60-64</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>42277.0</td>
+      <td>658040</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.975564</td>
+    </tr>
+    <tr>
+      <th>58838</th>
+      <td>CASANARE</td>
+      <td>CASANARE</td>
+      <td>YOPAL</td>
+      <td>YOPAL</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Primaria</td>
+      <td>50-54</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>23082.0</td>
+      <td>232999</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.355706</td>
+    </tr>
+    <tr>
+      <th>58845</th>
+      <td>CUNDINAMARCA</td>
+      <td>CUNDINAMARCA</td>
+      <td>BOGOTÁ</td>
+      <td>BOGOTÁ</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>45-49</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>99945.0</td>
+      <td>1745031</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.432639</td>
+    </tr>
+    <tr>
+      <th>58847</th>
+      <td>HUILA</td>
+      <td>HUILA</td>
+      <td>NEIVA</td>
+      <td>NEIVA</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Secundaria</td>
+      <td>45-49</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>26533.0</td>
+      <td>592307</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.181820</td>
+    </tr>
+    <tr>
+      <th>58848</th>
+      <td>NARIÑO</td>
+      <td>NARIÑO</td>
+      <td>PASTO</td>
+      <td>PASTO</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Primaria</td>
+      <td>80-84</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>23455.0</td>
+      <td>871313</td>
+      <td>False</td>
+      <td>0</td>
+      <td>2.754464</td>
+    </tr>
+    <tr>
+      <th>58853</th>
+      <td>BOGOTÁ, D.C.</td>
+      <td>AMAZONAS</td>
+      <td>BOGOTÁ D.C.</td>
+      <td>BOGOTÁ D.C.</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>45-49</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>395438.0</td>
+      <td>4120589</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.072805</td>
+    </tr>
+    <tr>
+      <th>58855</th>
+      <td>NARIÑO</td>
+      <td>NARIÑO</td>
+      <td>PASTO</td>
+      <td>PASTO</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Primaria</td>
+      <td>55-59</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>23455.0</td>
+      <td>871313</td>
+      <td>False</td>
+      <td>0</td>
+      <td>2.754464</td>
+    </tr>
+    <tr>
+      <th>58878</th>
+      <td>NARIÑO</td>
+      <td>NARIÑO</td>
+      <td>PASTO</td>
+      <td>PASTO</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>40-44</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>23455.0</td>
+      <td>871313</td>
+      <td>False</td>
+      <td>0</td>
+      <td>2.754464</td>
+    </tr>
+    <tr>
+      <th>58881</th>
+      <td>CAUCA</td>
+      <td>CAUCA</td>
+      <td>POPAYÁN</td>
+      <td>POPAYÁN</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>65-69</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>28537.0</td>
+      <td>788691</td>
+      <td>False</td>
+      <td>0</td>
+      <td>3.676979</td>
+    </tr>
+    <tr>
+      <th>58883</th>
+      <td>ANTIOQUIA</td>
+      <td>ANTIOQUIA</td>
+      <td>MEDELLÍN</td>
+      <td>MEDELLÍN</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>75-79</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>231122.0</td>
+      <td>3543877</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.987619</td>
+    </tr>
+    <tr>
+      <th>58912</th>
+      <td>CÓRDOBA</td>
+      <td>CÓRDOBA</td>
+      <td>MONTERÍA</td>
+      <td>MONTERÍA</td>
+      <td>2023</td>
+      <td>11</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>85 y más</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>28303.0</td>
+      <td>955208</td>
+      <td>False</td>
+      <td>0</td>
+      <td>5.339151</td>
+    </tr>
+    <tr>
+      <th>58917</th>
+      <td>CÓRDOBA</td>
+      <td>CÓRDOBA</td>
+      <td>MONTERÍA</td>
+      <td>MONTERÍA</td>
+      <td>2023</td>
+      <td>12</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Primaria</td>
+      <td>85 y más</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>28303.0</td>
+      <td>955208</td>
+      <td>False</td>
+      <td>0</td>
+      <td>5.339151</td>
+    </tr>
+    <tr>
+      <th>58922</th>
+      <td>META</td>
+      <td>META</td>
+      <td>VILLAVICENCIO</td>
+      <td>VILLAVICENCIO</td>
+      <td>2023</td>
+      <td>12</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>60-64</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>53797.0</td>
+      <td>562262</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.956383</td>
+    </tr>
+  </tbody>
+</table>
+<p>33 rows × 27 columns</p>
+</div></div></div>
+</div>
+<section id="modelo-de-prediccion-de-la-tasa-de-mortalidad-estandarizada-por-zona-rural-vs-urbana">
+<h2>Modelo de predicción de la tasa de mortalidad estandarizada por zona (Rural vs Urbana)<a class="headerlink" href="#modelo-de-prediccion-de-la-tasa-de-mortalidad-estandarizada-por-zona-rural-vs-urbana" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_data</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;DEPARTAMENTO&#39;,
+ &#39;DEPARTAMENTO DE RESIDENCIA&#39;,
+ &#39;MUNICIPIO&#39;,
+ &#39;MUNICIPIO DE RESIDENCIA&#39;,
+ &#39;AÑO&#39;,
+ &#39;MES&#39;,
+ &#39;SEX&#39;,
+ &#39;ESTADO_CIVIL&#39;,
+ &#39;NIVEL_EDUCACION&#39;,
+ &#39;GRUPO_ETARIO&#39;,
+ &#39;FECHA&#39;,
+ &#39;AREA_DEFUN&#39;,
+ &#39;SITIO_DEFUN&#39;,
+ &#39;ETNIA&#39;,
+ &#39;AREA DE RESIDENCIA&#39;,
+ &#39;SEGURIDAD SOCIAL&#39;,
+ &#39;C_PAT1_DESCRIPCION&#39;,
+ &#39;C_ANT3_DESCRIPCION&#39;,
+ &#39;C_ANT2_DESCRIPCION&#39;,
+ &#39;C_ANT1_DESCRIPCION&#39;,
+ &#39;C_DIR1_DESCRIPCION&#39;,
+ &#39;AÑO.1&#39;,
+ &#39;PIB&#39;,
+ &#39;Total Mujeres&#39;,
+ &#39;TIENE_COMORBILIDAD&#39;,
+ &#39;NUM_COMORBILIDADES&#39;,
+ &#39;TASA_MORTALIDAD&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MUNICIPIO DE RESIDENCIA&quot;</span><span class="p">,</span> <span class="s2">&quot;ESTADO_CIVIL&quot;</span><span class="p">,</span> <span class="s2">&quot;GRUPO_ETARIO&quot;</span><span class="p">,</span> <span class="s2">&quot;ETNIA&quot;</span><span class="p">,</span> <span class="s2">&quot;SEGURIDAD SOCIAL&quot;</span><span class="p">,</span> <span class="s2">&quot;TIENE_COMORBILIDAD&quot;</span><span class="p">]</span>
+<span class="n">num_features</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PIB&quot;</span><span class="p">,</span> <span class="s2">&quot;Total Mujeres&quot;</span><span class="p">,</span> <span class="s2">&quot;NUM_COMORBILIDADES&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">cat_features</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">num_features</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="definicion-y-entrenamiento-del-modelo">
+<h3>Definición y Entrenamiento del Modelo<a class="headerlink" href="#definicion-y-entrenamiento-del-modelo" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Modeos base</span>
+<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Ensemble</span>
+<span class="n">ensemble</span> <span class="o">=</span> <span class="n">VotingRegressor</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;rf&quot;</span><span class="p">,</span> <span class="n">rf</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;xgb&quot;</span><span class="p">,</span> <span class="n">xgb_model</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">ensemble</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">entrenar_y_evaluar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">zona</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- ZONA: </span><span class="si">{</span><span class="n">zona</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> ---&quot;</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;AÑO&quot;</span><span class="p">)</span>
+
+    <span class="c1"># X e y</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">cat_features</span> <span class="o">+</span> <span class="n">num_features</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;TASA_MORTALIDAD&quot;</span><span class="p">]</span>
+
+    <span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tscv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+
+        <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Split </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> → MAE: </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R²: </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9524, 27)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DEPARTAMENTO</th>
+      <th>DEPARTAMENTO DE RESIDENCIA</th>
+      <th>MUNICIPIO</th>
+      <th>MUNICIPIO DE RESIDENCIA</th>
+      <th>AÑO</th>
+      <th>MES</th>
+      <th>SEX</th>
+      <th>ESTADO_CIVIL</th>
+      <th>NIVEL_EDUCACION</th>
+      <th>GRUPO_ETARIO</th>
+      <th>...</th>
+      <th>C_ANT3_DESCRIPCION</th>
+      <th>C_ANT2_DESCRIPCION</th>
+      <th>C_ANT1_DESCRIPCION</th>
+      <th>C_DIR1_DESCRIPCION</th>
+      <th>AÑO.1</th>
+      <th>PIB</th>
+      <th>Total Mujeres</th>
+      <th>TIENE_COMORBILIDAD</th>
+      <th>NUM_COMORBILIDADES</th>
+      <th>TASA_MORTALIDAD</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>META</td>
+      <td>META</td>
+      <td>RESTREPO</td>
+      <td>RESTREPO</td>
+      <td>1985</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Casado</td>
+      <td>Primaria</td>
+      <td>55-59</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>1985</td>
+      <td>74.126</td>
+      <td>192905</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.036780</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>CUNDINAMARCA</td>
+      <td>CUNDINAMARCA</td>
+      <td>TOCAIMA</td>
+      <td>TOCAIMA</td>
+      <td>1985</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Viudo</td>
+      <td>Superior</td>
+      <td>75-79</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>1985</td>
+      <td>311.571</td>
+      <td>1014646</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.379792</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>HUILA</td>
+      <td>HUILA</td>
+      <td>GARZÓN</td>
+      <td>GARZÓN</td>
+      <td>1985</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Casado</td>
+      <td>Primaria</td>
+      <td>50-54</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>1985</td>
+      <td>120.326</td>
+      <td>345484</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.736694</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>HUILA</td>
+      <td>HUILA</td>
+      <td>SAN AGUSTÍN</td>
+      <td>SAN AGUSTÍN</td>
+      <td>1985</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>60-64</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>1985</td>
+      <td>120.326</td>
+      <td>345484</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.736694</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>CUNDINAMARCA</td>
+      <td>CUNDINAMARCA</td>
+      <td>GUACHETÁ</td>
+      <td>GUACHETÁ</td>
+      <td>1985</td>
+      <td>3</td>
+      <td>Femenino</td>
+      <td>Casado</td>
+      <td>Ninguno</td>
+      <td>65-69</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>1985</td>
+      <td>311.571</td>
+      <td>1014646</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.379792</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>58881</th>
+      <td>CAUCA</td>
+      <td>CAUCA</td>
+      <td>POPAYÁN</td>
+      <td>POPAYÁN</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>65-69</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>28537.000</td>
+      <td>788691</td>
+      <td>False</td>
+      <td>0</td>
+      <td>3.676979</td>
+    </tr>
+    <tr>
+      <th>58883</th>
+      <td>ANTIOQUIA</td>
+      <td>ANTIOQUIA</td>
+      <td>MEDELLÍN</td>
+      <td>MEDELLÍN</td>
+      <td>2023</td>
+      <td>1</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>75-79</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>231122.000</td>
+      <td>3543877</td>
+      <td>False</td>
+      <td>0</td>
+      <td>0.987619</td>
+    </tr>
+    <tr>
+      <th>58912</th>
+      <td>CÓRDOBA</td>
+      <td>CÓRDOBA</td>
+      <td>MONTERÍA</td>
+      <td>MONTERÍA</td>
+      <td>2023</td>
+      <td>11</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>85 y más</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>28303.000</td>
+      <td>955208</td>
+      <td>False</td>
+      <td>0</td>
+      <td>5.339151</td>
+    </tr>
+    <tr>
+      <th>58917</th>
+      <td>CÓRDOBA</td>
+      <td>CÓRDOBA</td>
+      <td>MONTERÍA</td>
+      <td>MONTERÍA</td>
+      <td>2023</td>
+      <td>12</td>
+      <td>Femenino</td>
+      <td>Unión Libre, divorciado, otro</td>
+      <td>Primaria</td>
+      <td>85 y más</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>28303.000</td>
+      <td>955208</td>
+      <td>False</td>
+      <td>0</td>
+      <td>5.339151</td>
+    </tr>
+    <tr>
+      <th>58922</th>
+      <td>META</td>
+      <td>META</td>
+      <td>VILLAVICENCIO</td>
+      <td>VILLAVICENCIO</td>
+      <td>2023</td>
+      <td>12</td>
+      <td>Femenino</td>
+      <td>Soltero</td>
+      <td>Primaria</td>
+      <td>60-64</td>
+      <td>...</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>No patología</td>
+      <td>2023</td>
+      <td>53797.000</td>
+      <td>562262</td>
+      <td>False</td>
+      <td>0</td>
+      <td>1.956383</td>
+    </tr>
+  </tbody>
+</table>
+<p>9524 rows × 27 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar</span><span class="p">(</span><span class="n">rural_data</span><span class="p">,</span> <span class="s2">&quot;rural&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ZONA: RURAL ---
+Split 1 → MAE: 1.2975, R²: -0.4381
+Split 2 → MAE: 1.2442, R²: -0.1959
+Split 3 → MAE: 0.9616, R²: -0.2975
+Split 4 → MAE: 0.9787, R²: 0.1006
+Split 5 → MAE: 0.9343, R²: 0.0646
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar</span><span class="p">(</span><span class="n">urbana_data</span><span class="p">,</span> <span class="s2">&quot;urbana&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;DEPARTAMENTO DE RESIDENCIA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ESTADO_CIVIL&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GRUPO_ETARIO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ETNIA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SEGURIDAD SOCIAL&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TIENE_COMORBILIDAD&quot;</span>
+<span class="p">]</span>
+
+<span class="n">num_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;PIB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Total Mujeres&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NUM_COMORBILIDADES&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">cat_features</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">num_features</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xgb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">xgb_model</span><span class="p">)</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">entrenar_y_evaluar_xgb</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">zona</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- ZONA: </span><span class="si">{</span><span class="n">zona</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> ---&quot;</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;AÑO&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">cat_features</span> <span class="o">+</span> <span class="n">num_features</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;TASA_MORTALIDAD&quot;</span><span class="p">]</span>
+
+    <span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tscv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+
+        <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Split </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> → MAE: </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R²: </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar_xgb</span><span class="p">(</span><span class="n">rural_data</span><span class="p">,</span> <span class="s2">&quot;rural&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ZONA: RURAL ---
+Split 1 → MAE: 1.1244, R²: 0.0105
+Split 2 → MAE: 0.8652, R²: 0.4128
+Split 3 → MAE: 0.7282, R²: 0.2287
+Split 4 → MAE: 0.8878, R²: 0.2699
+Split 5 → MAE: 0.6626, R²: 0.3629
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar_xgb</span><span class="p">(</span><span class="n">urbana_data</span><span class="p">,</span> <span class="s2">&quot;urbana&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ZONA: URBANA ---
+Split 1 → MAE: 0.7923, R²: -0.0869
+Split 2 → MAE: 0.8856, R²: 0.0151
+Split 3 → MAE: 0.6711, R²: 0.0783
+Split 4 → MAE: 1.3595, R²: -0.6401
+Split 5 → MAE: 1.9312, R²: -4.5884
+</pre></div>
+</div>
+</div>
+</div>
+<p>Escala logarirmimca</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_features</span> <span class="o">=</span> <span class="p">[</span> 
+    <span class="s2">&quot;DEPARTAMENTO DE RESIDENCIA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ESTADO_CIVIL&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;GRUPO_ETARIO&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ETNIA&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SEGURIDAD SOCIAL&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;TIENE_COMORBILIDAD&quot;</span>
+<span class="p">]</span>
+
+<span class="n">num_features</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;AÑO&quot;</span><span class="p">,</span>                <span class="c1"># 🆕 Año como variable predictora</span>
+    <span class="s2">&quot;PIB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Total Mujeres&quot;</span><span class="p">,</span>      <span class="c1"># corregido: usar el mismo nombre que tu DataFrame</span>
+    <span class="s2">&quot;NUM_COMORBILIDADES&quot;</span>
+<span class="p">]</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">cat_features</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">num_features</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xgb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">xgb_model</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xgb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+
+<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">xgb_model</span><span class="p">)</span>
+<span class="p">])</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">entrenar_y_evaluar_xgb_log</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">zona</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- ZONA: </span><span class="si">{</span><span class="n">zona</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> (log TASA_MORTALIDAD) ---&quot;</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;AÑO&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">cat_features</span> <span class="o">+</span> <span class="n">num_features</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TASA_MORTALIDAD&quot;</span><span class="p">])</span>  <span class="c1"># ← transformación logarítmica</span>
+
+    <span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tscv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+
+        <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">y_pred_log</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        
+        <span class="c1"># Volver al espacio original para evaluar</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">y_pred_log</span><span class="p">)</span>
+        <span class="n">y_test_original</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Split </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> → MAE: </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test_original</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R²: </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test_original</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar_xgb</span><span class="p">(</span><span class="n">rural_data</span><span class="p">,</span> <span class="s2">&quot;rural&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ZONA: RURAL ---
+Split 1 → MAE: 1.0643, R²: 0.0989
+Split 2 → MAE: 0.8735, R²: 0.3953
+Split 3 → MAE: 0.7203, R²: 0.2097
+Split 4 → MAE: 0.9094, R²: 0.2062
+Split 5 → MAE: 0.6086, R²: 0.5037
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar_xgb</span><span class="p">(</span><span class="n">urbana_data</span><span class="p">,</span> <span class="s2">&quot;urbana&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ZONA: URBANA ---
+Split 1 → MAE: 0.7368, R²: 0.0433
+Split 2 → MAE: 0.8965, R²: 0.0666
+Split 3 → MAE: 0.6378, R²: 0.1554
+Split 4 → MAE: 1.3775, R²: -0.6404
+Split 5 → MAE: 2.1024, R²: -5.3751
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-prediccion-de-la-tasa-de-mortalidad-estandarizada-por-zona-rural-vs-urbana">Modelo de predicción de la tasa de mortalidad estandarizada por zona (Rural vs Urbana)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-y-entrenamiento-del-modelo">Definición y Entrenamiento del Modelo</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Henry Saenz Valverde
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
