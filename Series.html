@@ -380,10 +380,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-prediccion-de-la-tasa-de-mortalidad-estandarizada-por-zona-rural-vs-urbana">Modelo de predicción de la tasa de mortalidad estandarizada por zona (Rural vs Urbana)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-y-entrenamiento-del-modelo">Definición y Entrenamiento del Modelo</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-prediccion-de-la-tasa-de-mortalidad-estandarizada-por-zona-rural-vs-urbana">Modelo de predicción de la tasa de mortalidad estandarizada por zona (Rural vs Urbana)</a></li>
 </ul>
             </nav>
         </div>
@@ -1520,24 +1517,17 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\henry\miniconda3\envs\ml_
 </div>
 </div>
 </div>
-<section id="definicion-y-entrenamiento-del-modelo">
-<h3>Definición y Entrenamiento del Modelo<a class="headerlink" href="#definicion-y-entrenamiento-del-modelo" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Modeos base</span>
-<span class="n">rf</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Ensemble</span>
-<span class="n">ensemble</span> <span class="o">=</span> <span class="n">VotingRegressor</span><span class="p">(</span><span class="n">estimators</span><span class="o">=</span><span class="p">[</span>
-    <span class="p">(</span><span class="s2">&quot;rf&quot;</span><span class="p">,</span> <span class="n">rf</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;xgb&quot;</span><span class="p">,</span> <span class="n">xgb_model</span><span class="p">)</span>
-<span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1546,7 +1536,7 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\henry\miniconda3\envs\ml_
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
     <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">ensemble</span><span class="p">)</span>
+    <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
 <span class="p">])</span>
 </pre></div>
 </div>
@@ -1554,627 +1544,297 @@ Requirement already satisfied: six&gt;=1.5 in c:\users\henry\miniconda3\envs\ml_
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">entrenar_y_evaluar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">zona</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- ZONA: </span><span class="si">{</span><span class="n">zona</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> ---&quot;</span><span class="p">)</span>
-
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;AÑO&quot;</span><span class="p">)</span>
-
-    <span class="c1"># X e y</span>
-    <span class="n">features</span> <span class="o">=</span> <span class="n">cat_features</span> <span class="o">+</span> <span class="n">num_features</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;TASA_MORTALIDAD&quot;</span><span class="p">]</span>
-
-    <span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tscv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
-        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
-        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
-
-        <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Split </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> → MAE: </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R²: </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">preparar_data_por_zona</span><span class="p">(</span><span class="n">df_zona</span><span class="p">,</span> <span class="n">nombre_zona</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">df_zona</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;AÑO&quot;</span><span class="p">,</span> <span class="s2">&quot;DEPARTAMENTO DE RESIDENCIA&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span>
+        <span class="n">DEFUNCIONES</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;AÑO&quot;</span><span class="p">,</span> <span class="s2">&quot;count&quot;</span><span class="p">),</span>
+        <span class="n">PIB</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;PIB&quot;</span><span class="p">,</span> <span class="s2">&quot;first&quot;</span><span class="p">),</span>
+        <span class="o">**</span><span class="p">{</span><span class="s2">&quot;Total Mujeres&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Total Mujeres&quot;</span><span class="p">,</span> <span class="s2">&quot;first&quot;</span><span class="p">)},</span>
+        <span class="n">NUM_COMORBILIDADES</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;NUM_COMORBILIDADES&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">),</span>
+        <span class="n">ESTADO_CIVIL</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;ESTADO_CIVIL&quot;</span><span class="p">,</span> <span class="s2">&quot;first&quot;</span><span class="p">),</span>
+        <span class="n">GRUPO_ETARIO</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;GRUPO_ETARIO&quot;</span><span class="p">,</span> <span class="s2">&quot;first&quot;</span><span class="p">),</span>
+        <span class="n">ETNIA</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;ETNIA&quot;</span><span class="p">,</span> <span class="s2">&quot;first&quot;</span><span class="p">),</span>
+        <span class="o">**</span><span class="p">{</span><span class="s2">&quot;SEGURIDAD SOCIAL&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;SEGURIDAD SOCIAL&quot;</span><span class="p">,</span> <span class="s2">&quot;first&quot;</span><span class="p">)},</span>
+        <span class="n">TIENE_COMORBILIDAD</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;TIENE_COMORBILIDAD&quot;</span><span class="p">,</span> <span class="s2">&quot;first&quot;</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_data</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(9524, 27)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_data</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>DEPARTAMENTO</th>
-      <th>DEPARTAMENTO DE RESIDENCIA</th>
-      <th>MUNICIPIO</th>
-      <th>MUNICIPIO DE RESIDENCIA</th>
-      <th>AÑO</th>
-      <th>MES</th>
-      <th>SEX</th>
-      <th>ESTADO_CIVIL</th>
-      <th>NIVEL_EDUCACION</th>
-      <th>GRUPO_ETARIO</th>
-      <th>...</th>
-      <th>C_ANT3_DESCRIPCION</th>
-      <th>C_ANT2_DESCRIPCION</th>
-      <th>C_ANT1_DESCRIPCION</th>
-      <th>C_DIR1_DESCRIPCION</th>
-      <th>AÑO.1</th>
-      <th>PIB</th>
-      <th>Total Mujeres</th>
-      <th>TIENE_COMORBILIDAD</th>
-      <th>NUM_COMORBILIDADES</th>
-      <th>TASA_MORTALIDAD</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2</th>
-      <td>META</td>
-      <td>META</td>
-      <td>RESTREPO</td>
-      <td>RESTREPO</td>
-      <td>1985</td>
-      <td>1</td>
-      <td>Femenino</td>
-      <td>Casado</td>
-      <td>Primaria</td>
-      <td>55-59</td>
-      <td>...</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>1985</td>
-      <td>74.126</td>
-      <td>192905</td>
-      <td>False</td>
-      <td>0</td>
-      <td>1.036780</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>CUNDINAMARCA</td>
-      <td>CUNDINAMARCA</td>
-      <td>TOCAIMA</td>
-      <td>TOCAIMA</td>
-      <td>1985</td>
-      <td>1</td>
-      <td>Femenino</td>
-      <td>Viudo</td>
-      <td>Superior</td>
-      <td>75-79</td>
-      <td>...</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>1985</td>
-      <td>311.571</td>
-      <td>1014646</td>
-      <td>False</td>
-      <td>0</td>
-      <td>1.379792</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>HUILA</td>
-      <td>HUILA</td>
-      <td>GARZÓN</td>
-      <td>GARZÓN</td>
-      <td>1985</td>
-      <td>1</td>
-      <td>Femenino</td>
-      <td>Casado</td>
-      <td>Primaria</td>
-      <td>50-54</td>
-      <td>...</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>1985</td>
-      <td>120.326</td>
-      <td>345484</td>
-      <td>False</td>
-      <td>0</td>
-      <td>1.736694</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>HUILA</td>
-      <td>HUILA</td>
-      <td>SAN AGUSTÍN</td>
-      <td>SAN AGUSTÍN</td>
-      <td>1985</td>
-      <td>1</td>
-      <td>Femenino</td>
-      <td>Soltero</td>
-      <td>Primaria</td>
-      <td>60-64</td>
-      <td>...</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>1985</td>
-      <td>120.326</td>
-      <td>345484</td>
-      <td>False</td>
-      <td>0</td>
-      <td>1.736694</td>
-    </tr>
-    <tr>
-      <th>47</th>
-      <td>CUNDINAMARCA</td>
-      <td>CUNDINAMARCA</td>
-      <td>GUACHETÁ</td>
-      <td>GUACHETÁ</td>
-      <td>1985</td>
-      <td>3</td>
-      <td>Femenino</td>
-      <td>Casado</td>
-      <td>Ninguno</td>
-      <td>65-69</td>
-      <td>...</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>1985</td>
-      <td>311.571</td>
-      <td>1014646</td>
-      <td>False</td>
-      <td>0</td>
-      <td>1.379792</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>58881</th>
-      <td>CAUCA</td>
-      <td>CAUCA</td>
-      <td>POPAYÁN</td>
-      <td>POPAYÁN</td>
-      <td>2023</td>
-      <td>1</td>
-      <td>Femenino</td>
-      <td>Soltero</td>
-      <td>Primaria</td>
-      <td>65-69</td>
-      <td>...</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>2023</td>
-      <td>28537.000</td>
-      <td>788691</td>
-      <td>False</td>
-      <td>0</td>
-      <td>3.676979</td>
-    </tr>
-    <tr>
-      <th>58883</th>
-      <td>ANTIOQUIA</td>
-      <td>ANTIOQUIA</td>
-      <td>MEDELLÍN</td>
-      <td>MEDELLÍN</td>
-      <td>2023</td>
-      <td>1</td>
-      <td>Femenino</td>
-      <td>Soltero</td>
-      <td>Primaria</td>
-      <td>75-79</td>
-      <td>...</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>2023</td>
-      <td>231122.000</td>
-      <td>3543877</td>
-      <td>False</td>
-      <td>0</td>
-      <td>0.987619</td>
-    </tr>
-    <tr>
-      <th>58912</th>
-      <td>CÓRDOBA</td>
-      <td>CÓRDOBA</td>
-      <td>MONTERÍA</td>
-      <td>MONTERÍA</td>
-      <td>2023</td>
-      <td>11</td>
-      <td>Femenino</td>
-      <td>Soltero</td>
-      <td>Primaria</td>
-      <td>85 y más</td>
-      <td>...</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>2023</td>
-      <td>28303.000</td>
-      <td>955208</td>
-      <td>False</td>
-      <td>0</td>
-      <td>5.339151</td>
-    </tr>
-    <tr>
-      <th>58917</th>
-      <td>CÓRDOBA</td>
-      <td>CÓRDOBA</td>
-      <td>MONTERÍA</td>
-      <td>MONTERÍA</td>
-      <td>2023</td>
-      <td>12</td>
-      <td>Femenino</td>
-      <td>Unión Libre, divorciado, otro</td>
-      <td>Primaria</td>
-      <td>85 y más</td>
-      <td>...</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>2023</td>
-      <td>28303.000</td>
-      <td>955208</td>
-      <td>False</td>
-      <td>0</td>
-      <td>5.339151</td>
-    </tr>
-    <tr>
-      <th>58922</th>
-      <td>META</td>
-      <td>META</td>
-      <td>VILLAVICENCIO</td>
-      <td>VILLAVICENCIO</td>
-      <td>2023</td>
-      <td>12</td>
-      <td>Femenino</td>
-      <td>Soltero</td>
-      <td>Primaria</td>
-      <td>60-64</td>
-      <td>...</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>No patología</td>
-      <td>2023</td>
-      <td>53797.000</td>
-      <td>562262</td>
-      <td>False</td>
-      <td>0</td>
-      <td>1.956383</td>
-    </tr>
-  </tbody>
-</table>
-<p>9524 rows × 27 columns</p>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar</span><span class="p">(</span><span class="n">rural_data</span><span class="p">,</span> <span class="s2">&quot;rural&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ZONA: RURAL ---
-Split 1 → MAE: 1.2975, R²: -0.4381
-Split 2 → MAE: 1.2442, R²: -0.1959
-Split 3 → MAE: 0.9616, R²: -0.2975
-Split 4 → MAE: 0.9787, R²: 0.1006
-Split 5 → MAE: 0.9343, R²: 0.0646
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar</span><span class="p">(</span><span class="n">urbana_data</span><span class="p">,</span> <span class="s2">&quot;urbana&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_features</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;DEPARTAMENTO DE RESIDENCIA&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ESTADO_CIVIL&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;GRUPO_ETARIO&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ETNIA&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;SEGURIDAD SOCIAL&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;TIENE_COMORBILIDAD&quot;</span>
-<span class="p">]</span>
-
-<span class="n">num_features</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;PIB&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Total Mujeres&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;NUM_COMORBILIDADES&quot;</span>
-<span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
-
-<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
-    <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">cat_features</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">num_features</span><span class="p">)</span>
-<span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xgb</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
-
-<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span>
-    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
-    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-    <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-    <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
-    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
-<span class="p">)</span>
-
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
-    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">xgb_model</span><span class="p">)</span>
-<span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">entrenar_y_evaluar_xgb</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">zona</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- ZONA: </span><span class="si">{</span><span class="n">zona</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> ---&quot;</span><span class="p">)</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluar_expanding_window</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">zona</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;AÑO&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">features</span> <span class="o">=</span> <span class="n">cat_features</span> <span class="o">+</span> <span class="n">num_features</span>
+    <span class="n">years</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;AÑO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
 
-    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;TASA_MORTALIDAD&quot;</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Resultados para zona: </span><span class="si">{</span><span class="n">zona</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">years</span><span class="p">)):</span>
+        <span class="n">años_train</span> <span class="o">=</span> <span class="n">years</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">año_val</span> <span class="o">=</span> <span class="n">years</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
-    <span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">df_train</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;AÑO&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">años_train</span><span class="p">)]</span>
+        <span class="n">df_val</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;AÑO&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">año_val</span><span class="p">]</span>
 
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tscv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
-        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
-        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+        <span class="n">X_train</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">[</span><span class="n">cat_features</span> <span class="o">+</span> <span class="n">num_features</span><span class="p">]</span>
+        <span class="n">y_train</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">[</span><span class="s2">&quot;DEFUNCIONES&quot;</span><span class="p">]</span>
+
+        <span class="n">X_val</span> <span class="o">=</span> <span class="n">df_val</span><span class="p">[</span><span class="n">cat_features</span> <span class="o">+</span> <span class="n">num_features</span><span class="p">]</span>
+        <span class="n">y_val</span> <span class="o">=</span> <span class="n">df_val</span><span class="p">[</span><span class="s2">&quot;DEFUNCIONES&quot;</span><span class="p">]</span>
 
         <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Split </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> → MAE: </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R²: </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_val</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Entrena </span><span class="si">{</span><span class="n">años_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">–</span><span class="si">{</span><span class="n">años_train</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> → Valida </span><span class="si">{</span><span class="n">año_val</span><span class="si">}</span><span class="s2"> | MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar_xgb</span><span class="p">(</span><span class="n">rural_data</span><span class="p">,</span> <span class="s2">&quot;rural&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ZONA: RURAL ---
-Split 1 → MAE: 1.1244, R²: 0.0105
-Split 2 → MAE: 0.8652, R²: 0.4128
-Split 3 → MAE: 0.7282, R²: 0.2287
-Split 4 → MAE: 0.8878, R²: 0.2699
-Split 5 → MAE: 0.6626, R²: 0.3629
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar_xgb</span><span class="p">(</span><span class="n">urbana_data</span><span class="p">,</span> <span class="s2">&quot;urbana&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ZONA: URBANA ---
-Split 1 → MAE: 0.7923, R²: -0.0869
-Split 2 → MAE: 0.8856, R²: 0.0151
-Split 3 → MAE: 0.6711, R²: 0.0783
-Split 4 → MAE: 1.3595, R²: -0.6401
-Split 5 → MAE: 1.9312, R²: -4.5884
-</pre></div>
-</div>
-</div>
-</div>
-<p>Escala logarirmimca</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cat_features</span> <span class="o">=</span> <span class="p">[</span> 
-    <span class="s2">&quot;DEPARTAMENTO DE RESIDENCIA&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ESTADO_CIVIL&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;GRUPO_ETARIO&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ETNIA&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;SEGURIDAD SOCIAL&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;TIENE_COMORBILIDAD&quot;</span>
-<span class="p">]</span>
-
-<span class="n">num_features</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;AÑO&quot;</span><span class="p">,</span>                <span class="c1"># 🆕 Año como variable predictora</span>
-    <span class="s2">&quot;PIB&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Total Mujeres&quot;</span><span class="p">,</span>      <span class="c1"># corregido: usar el mismo nombre que tu DataFrame</span>
-    <span class="s2">&quot;NUM_COMORBILIDADES&quot;</span>
-<span class="p">]</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
-
-<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([</span>
-    <span class="p">(</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span> <span class="n">cat_features</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;num&quot;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">(),</span> <span class="n">num_features</span><span class="p">)</span>
-<span class="p">])</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xgb</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
-
-<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span>
-    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
-    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-    <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-    <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
-    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
-<span class="p">)</span>
-
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
-    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">xgb_model</span><span class="p">)</span>
-<span class="p">])</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">xgboost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xgb</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
-
-<span class="n">xgb_model</span> <span class="o">=</span> <span class="n">xgb</span><span class="o">.</span><span class="n">XGBRegressor</span><span class="p">(</span>
-    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span>
-    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
-    <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-    <span class="n">subsample</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-    <span class="n">colsample_bytree</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
-    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
-    <span class="n">verbosity</span><span class="o">=</span><span class="mi">0</span>
-<span class="p">)</span>
-
-<span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
-    <span class="p">(</span><span class="s2">&quot;preprocessing&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">,</span> <span class="n">xgb_model</span><span class="p">)</span>
-<span class="p">])</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesSplit</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">entrenar_y_evaluar_xgb_log</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">zona</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- ZONA: </span><span class="si">{</span><span class="n">zona</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> (log TASA_MORTALIDAD) ---&quot;</span><span class="p">)</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">predecir_defunciones_futuras</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">zona</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;AÑO&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">features</span> <span class="o">=</span> <span class="n">cat_features</span> <span class="o">+</span> <span class="n">num_features</span>
+    <span class="n">df_2023</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;AÑO&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2023</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">anios_futuros</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">2031</span><span class="p">))</span>
 
-    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;TASA_MORTALIDAD&quot;</span><span class="p">])</span>  <span class="c1"># ← transformación logarítmica</span>
+    <span class="c1"># Proyección simple (ajústala según contexto)</span>
+    <span class="n">crecimiento_pib</span> <span class="o">=</span> <span class="mf">0.03</span>
+    <span class="n">crecimiento_poblacional</span> <span class="o">=</span> <span class="mf">0.01</span>
+    <span class="n">crecimiento_comorbilidades</span> <span class="o">=</span> <span class="mf">0.00</span>  <span class="c1"># constante</span>
 
-    <span class="n">tscv</span> <span class="o">=</span> <span class="n">TimeSeriesSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">registros_futuros</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tscv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">)):</span>
-        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
-        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">anio</span> <span class="ow">in</span> <span class="n">anios_futuros</span><span class="p">:</span>
+        <span class="n">factor_anios</span> <span class="o">=</span> <span class="n">anio</span> <span class="o">-</span> <span class="mi">2023</span>
 
-        <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-        <span class="n">y_pred_log</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-        
-        <span class="c1"># Volver al espacio original para evaluar</span>
-        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">y_pred_log</span><span class="p">)</span>
-        <span class="n">y_test_original</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expm1</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+        <span class="n">df_anio</span> <span class="o">=</span> <span class="n">df_2023</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">df_anio</span><span class="p">[</span><span class="s2">&quot;AÑO&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">anio</span>
+        <span class="n">df_anio</span><span class="p">[</span><span class="s2">&quot;PIB&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_anio</span><span class="p">[</span><span class="s2">&quot;PIB&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">crecimiento_pib</span><span class="p">)</span> <span class="o">**</span> <span class="n">factor_anios</span>
+        <span class="n">df_anio</span><span class="p">[</span><span class="s2">&quot;Total Mujeres&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_anio</span><span class="p">[</span><span class="s2">&quot;Total Mujeres&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">crecimiento_poblacional</span><span class="p">)</span> <span class="o">**</span> <span class="n">factor_anios</span>
+        <span class="n">df_anio</span><span class="p">[</span><span class="s2">&quot;NUM_COMORBILIDADES&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_anio</span><span class="p">[</span><span class="s2">&quot;NUM_COMORBILIDADES&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">crecimiento_comorbilidades</span><span class="p">)</span> <span class="o">**</span> <span class="n">factor_anios</span>
 
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Split </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> → MAE: </span><span class="si">{</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test_original</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, R²: </span><span class="si">{</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test_original</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">registros_futuros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df_anio</span><span class="p">)</span>
+
+    <span class="n">df_futuro</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">registros_futuros</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Entrenamiento completo con los datos históricos</span>
+    <span class="n">X_all</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cat_features</span> <span class="o">+</span> <span class="n">num_features</span><span class="p">]</span>
+    <span class="n">y_all</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;DEFUNCIONES&quot;</span><span class="p">]</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_all</span><span class="p">,</span> <span class="n">y_all</span><span class="p">)</span>
+
+    <span class="c1"># Predicción</span>
+    <span class="n">X_futuro</span> <span class="o">=</span> <span class="n">df_futuro</span><span class="p">[</span><span class="n">cat_features</span> <span class="o">+</span> <span class="n">num_features</span><span class="p">]</span>
+    <span class="n">df_futuro</span><span class="p">[</span><span class="s2">&quot;DEFUNCIONES_PREDICHAS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_futuro</span><span class="p">)</span>
+    <span class="n">df_futuro</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">zona</span>
+
+    <span class="n">resumen</span> <span class="o">=</span> <span class="n">df_futuro</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;AÑO&quot;</span><span class="p">)[</span><span class="s2">&quot;DEFUNCIONES_PREDICHAS&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Predicción total de defunciones (zona </span><span class="si">{</span><span class="n">zona</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">resumen</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_futuro</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar_xgb</span><span class="p">(</span><span class="n">rural_data</span><span class="p">,</span> <span class="s2">&quot;rural&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ZONA: RURAL ---
-Split 1 → MAE: 1.0643, R²: 0.0989
-Split 2 → MAE: 0.8735, R²: 0.3953
-Split 3 → MAE: 0.7203, R²: 0.2097
-Split 4 → MAE: 0.9094, R²: 0.2062
-Split 5 → MAE: 0.6086, R²: 0.5037
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_raw</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;AREA DE RESIDENCIA&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Cabecera municipal&quot;</span><span class="p">]</span>
+<span class="n">urbana_raw</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;AREA DE RESIDENCIA&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Cabecera municipal&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entrenar_y_evaluar_xgb</span><span class="p">(</span><span class="n">urbana_data</span><span class="p">,</span> <span class="s2">&quot;urbana&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rural_data_agg</span> <span class="o">=</span> <span class="n">preparar_data_por_zona</span><span class="p">(</span><span class="n">rural_raw</span><span class="p">,</span> <span class="s2">&quot;rural&quot;</span><span class="p">)</span>
+<span class="n">urbana_data_agg</span> <span class="o">=</span> <span class="n">preparar_data_por_zona</span><span class="p">(</span><span class="n">urbana_raw</span><span class="p">,</span> <span class="s2">&quot;urbana&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evaluar_expanding_window</span><span class="p">(</span><span class="n">rural_data_agg</span><span class="p">,</span> <span class="s2">&quot;rural&quot;</span><span class="p">)</span> 
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- ZONA: URBANA ---
-Split 1 → MAE: 0.7368, R²: 0.0433
-Split 2 → MAE: 0.8965, R²: 0.0666
-Split 3 → MAE: 0.6378, R²: 0.1554
-Split 4 → MAE: 1.3775, R²: -0.6404
-Split 5 → MAE: 2.1024, R²: -5.3751
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Resultados para zona: RURAL
+Entrena 1985–1990 → Valida 1991 | MAE: 1.97, R²: 0.5118
+Entrena 1985–1991 → Valida 1992 | MAE: 2.96, R²: 0.5218
+Entrena 1985–1992 → Valida 1993 | MAE: 3.37, R²: 0.5847
+Entrena 1985–1993 → Valida 1994 | MAE: 3.64, R²: 0.6553
+Entrena 1985–1994 → Valida 1995 | MAE: 2.60, R²: 0.7661
+Entrena 1985–1995 → Valida 1996 | MAE: 5.75, R²: 0.2079
+Entrena 1985–1996 → Valida 1997 | MAE: 5.06, R²: 0.6424
+Entrena 1985–1997 → Valida 1998 | MAE: 4.49, R²: 0.5715
+Entrena 1985–1998 → Valida 1999 | MAE: 5.73, R²: 0.4690
+Entrena 1985–1999 → Valida 2000 | MAE: 3.76, R²: 0.8087
+Entrena 1985–2000 → Valida 2001 | MAE: 3.45, R²: 0.8150
+Entrena 1985–2001 → Valida 2002 | MAE: 4.06, R²: 0.7462
+Entrena 1985–2002 → Valida 2003 | MAE: 4.15, R²: 0.7421
+Entrena 1985–2003 → Valida 2004 | MAE: 3.47, R²: 0.8365
+Entrena 1985–2004 → Valida 2005 | MAE: 4.08, R²: 0.6486
+Entrena 1985–2005 → Valida 2006 | MAE: 2.66, R²: 0.9046
+Entrena 1985–2006 → Valida 2007 | MAE: 2.80, R²: 0.7930
+Entrena 1985–2007 → Valida 2008 | MAE: 2.94, R²: 0.8043
+Entrena 1985–2008 → Valida 2009 | MAE: 3.42, R²: 0.7528
+Entrena 1985–2009 → Valida 2010 | MAE: 2.56, R²: 0.8527
+Entrena 1985–2010 → Valida 2011 | MAE: 2.79, R²: 0.8236
+Entrena 1985–2011 → Valida 2012 | MAE: 2.07, R²: 0.8924
+Entrena 1985–2012 → Valida 2013 | MAE: 2.45, R²: 0.8311
+Entrena 1985–2013 → Valida 2014 | MAE: 2.91, R²: 0.8065
+Entrena 1985–2014 → Valida 2015 | MAE: 2.72, R²: 0.8166
+Entrena 1985–2015 → Valida 2016 | MAE: 3.25, R²: 0.7998
+Entrena 1985–2016 → Valida 2017 | MAE: 3.13, R²: 0.7871
+Entrena 1985–2017 → Valida 2018 | MAE: 3.07, R²: 0.8274
+Entrena 1985–2018 → Valida 2019 | MAE: 2.97, R²: 0.7527
+Entrena 1985–2019 → Valida 2020 | MAE: 3.12, R²: 0.7768
+Entrena 1985–2020 → Valida 2021 | MAE: 3.18, R²: 0.8072
+Entrena 1985–2021 → Valida 2022 | MAE: 2.76, R²: 0.8523
+Entrena 1985–2022 → Valida 2023 | MAE: 3.29, R²: 0.6956
 </pre></div>
 </div>
 </div>
 </div>
-</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evaluar_expanding_window</span><span class="p">(</span><span class="n">urbana_data_agg</span><span class="p">,</span> <span class="s2">&quot;urbana&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Resultados para zona: URBANA
+Entrena 1985–1990 → Valida 1991 | MAE: 12.80, R²: 0.8315
+Entrena 1985–1991 → Valida 1992 | MAE: 9.19, R²: 0.9315
+Entrena 1985–1992 → Valida 1993 | MAE: 7.14, R²: 0.9607
+Entrena 1985–1993 → Valida 1994 | MAE: 6.58, R²: 0.9597
+Entrena 1985–1994 → Valida 1995 | MAE: 9.10, R²: 0.9370
+Entrena 1985–1995 → Valida 1996 | MAE: 11.41, R²: 0.8868
+Entrena 1985–1996 → Valida 1997 | MAE: 6.01, R²: 0.9720
+Entrena 1985–1997 → Valida 1998 | MAE: 6.41, R²: 0.9745
+Entrena 1985–1998 → Valida 1999 | MAE: 9.29, R²: 0.9226
+Entrena 1985–1999 → Valida 2000 | MAE: 7.00, R²: 0.9661
+Entrena 1985–2000 → Valida 2001 | MAE: 8.34, R²: 0.9248
+Entrena 1985–2001 → Valida 2002 | MAE: 11.70, R²: 0.9179
+Entrena 1985–2002 → Valida 2003 | MAE: 13.41, R²: 0.8716
+Entrena 1985–2003 → Valida 2004 | MAE: 7.52, R²: 0.9556
+Entrena 1985–2004 → Valida 2005 | MAE: 9.04, R²: 0.9479
+Entrena 1985–2005 → Valida 2006 | MAE: 6.47, R²: 0.9576
+Entrena 1985–2006 → Valida 2007 | MAE: 6.46, R²: 0.9744
+Entrena 1985–2007 → Valida 2008 | MAE: 8.46, R²: 0.9401
+Entrena 1985–2008 → Valida 2009 | MAE: 9.84, R²: 0.9407
+Entrena 1985–2009 → Valida 2010 | MAE: 4.20, R²: 0.9885
+Entrena 1985–2010 → Valida 2011 | MAE: 7.01, R²: 0.9655
+Entrena 1985–2011 → Valida 2012 | MAE: 6.61, R²: 0.9678
+Entrena 1985–2012 → Valida 2013 | MAE: 6.91, R²: 0.9641
+Entrena 1985–2013 → Valida 2014 | MAE: 7.74, R²: 0.9591
+Entrena 1985–2014 → Valida 2015 | MAE: 6.90, R²: 0.9675
+Entrena 1985–2015 → Valida 2016 | MAE: 9.65, R²: 0.9381
+Entrena 1985–2016 → Valida 2017 | MAE: 7.29, R²: 0.9367
+Entrena 1985–2017 → Valida 2018 | MAE: 10.08, R²: 0.9186
+Entrena 1985–2018 → Valida 2019 | MAE: 10.21, R²: 0.9305
+Entrena 1985–2019 → Valida 2020 | MAE: 8.38, R²: 0.9653
+Entrena 1985–2020 → Valida 2021 | MAE: 10.34, R²: 0.9455
+Entrena 1985–2021 → Valida 2022 | MAE: 7.68, R²: 0.9647
+Entrena 1985–2022 → Valida 2023 | MAE: 8.92, R²: 0.9491
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predicciones 2024–2030</span>
+<span class="n">rural_pred</span> <span class="o">=</span> <span class="n">predecir_defunciones_futuras</span><span class="p">(</span><span class="n">rural_data_agg</span><span class="p">,</span> <span class="s2">&quot;rural&quot;</span><span class="p">)</span>
+<span class="n">urbana_pred</span> <span class="o">=</span> <span class="n">predecir_defunciones_futuras</span><span class="p">(</span><span class="n">urbana_data_agg</span><span class="p">,</span> <span class="s2">&quot;urbana&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Predicción total de defunciones (zona RURAL):
+    AÑO  DEFUNCIONES_PREDICHAS
+0  2024             342.580505
+1  2025             342.276306
+2  2026             343.873291
+3  2027             342.509094
+4  2028             342.284821
+5  2029             342.502106
+6  2030             345.247955
+
+ Predicción total de defunciones (zona URBANA):
+    AÑO  DEFUNCIONES_PREDICHAS
+0  2024            1541.489746
+1  2025            1536.023682
+2  2026            1547.362915
+3  2027            1548.169556
+4  2028            1556.561768
+5  2029            1559.287476
+6  2030            1564.508667
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combinar predicciones</span>
+<span class="n">predicciones_completas</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">rural_pred</span><span class="p">,</span> <span class="n">urbana_pred</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evolucion_defunciones</span> <span class="o">=</span> <span class="n">predicciones_completas</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;AÑO&quot;</span><span class="p">,</span> <span class="s2">&quot;ZONA&quot;</span><span class="p">])[</span><span class="s2">&quot;DEFUNCIONES_PREDICHAS&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Separar por zona</span>
+<span class="n">rural</span> <span class="o">=</span> <span class="n">evolucion_defunciones</span><span class="p">[</span><span class="n">evolucion_defunciones</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;rural&quot;</span><span class="p">]</span>
+<span class="n">urbana</span> <span class="o">=</span> <span class="n">evolucion_defunciones</span><span class="p">[</span><span class="n">evolucion_defunciones</span><span class="p">[</span><span class="s2">&quot;ZONA&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;urbana&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Gráfico para zona rural</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">rural</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;AÑO&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;DEFUNCIONES_PREDICHAS&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;forestgreen&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Evolución de defunciones predichas – Zona Rural (2024–2030)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Defunciones predichas&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="c1"># Gráfico para zona urbana</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">urbana</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;AÑO&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;DEFUNCIONES_PREDICHAS&quot;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;steelblue&quot;</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Evolución de defunciones predichas – Zona Urbana (2024–2030)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Año&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Defunciones predichas&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e315d7c65e776403d5e11f6aad240934ccca67eb173118ec7bf20b9c40b88a5d.png" src="_images/e315d7c65e776403d5e11f6aad240934ccca67eb173118ec7bf20b9c40b88a5d.png" />
+</div>
+</div>
 </section>
 </section>
 
@@ -2233,10 +1893,7 @@ Split 5 → MAE: 2.1024, R²: -5.3751
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-prediccion-de-la-tasa-de-mortalidad-estandarizada-por-zona-rural-vs-urbana">Modelo de predicción de la tasa de mortalidad estandarizada por zona (Rural vs Urbana)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definicion-y-entrenamiento-del-modelo">Definición y Entrenamiento del Modelo</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelo-de-prediccion-de-la-tasa-de-mortalidad-estandarizada-por-zona-rural-vs-urbana">Modelo de predicción de la tasa de mortalidad estandarizada por zona (Rural vs Urbana)</a></li>
 </ul>
   </nav></div>
 
